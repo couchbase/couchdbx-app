@@ -35,7 +35,7 @@
 	// find couch.uri file
 	NSMutableString *urifile = [[NSMutableString alloc] init];
 	[urifile appendString: [task currentDirectoryPath]]; // couchdbx-core
-	[urifile appendString: @"/couchdb/var/lib/couchdb/couch.uri"];
+	[urifile appendString: @"/var/lib/couchdb/couch.uri"];
 
 	// get couch uri
 	NSString *uri = [NSString stringWithContentsOfFile:urifile encoding:NSUTF8StringEncoding error:NULL];
@@ -125,12 +125,15 @@
 	// if data dirs are not set in local.ini
 	NSMutableString *iniFile = [[NSMutableString alloc] init];
 	[iniFile appendString:[[NSBundle mainBundle] resourcePath]];
-	[iniFile appendString:@"/couchdbx-core/couchdb/etc/couchdb/local.ini"];
+	[iniFile appendString:@"/couchdbx-core/etc/couchdb/local.ini"];
+    NSLog(@"Loading stuff from %@", iniFile);
 	NSString *ini = [NSString stringWithContentsOfFile:iniFile encoding:NSUTF8StringEncoding error:NULL];
+    assert(ini);
 	NSRange found = [ini rangeOfString:dataDir];
 	if(found.length == 0) {
 		//   set them
 		NSMutableString *newIni = [[NSMutableString alloc] init];
+        assert(newIni);
 		[newIni appendString: ini];
 		[newIni appendString:@"[couchdb]\ndatabase_dir = "];
 		[newIni appendString:dataDir];
@@ -161,7 +164,7 @@
 	[launchPath appendString:@"/couchdbx-core"];
 	[task setCurrentDirectoryPath:launchPath];
 
-	[launchPath appendString:@"/couchdb/bin/couchdb"];
+	[launchPath appendString:@"/bin/couchdb"];
 	[task setLaunchPath:launchPath];
 	NSArray *args = [[NSArray alloc] initWithObjects:@"-i", nil];
 	[task setArguments:args];
