@@ -7226,6 +7226,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				3DF6EC2011EC7161000AD45B /* CopyFiles */,
 				DA4C46E413299AF700CE5592 /* CopyFiles */,
+				DA7BE7281329C87B0084B6D2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -7276,6 +7277,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DA7BE7281329C87B0084B6D2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/fix-paths.sh",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "exec $SCRIPT_INPUT_FILE_0";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
