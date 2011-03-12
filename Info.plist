@@ -5,7 +5,7 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
-	<string>http://couchdbx.couchone.com/couchdbx/_design/appcast/_rewrite/cast</string>
+	<string>http://appcast.couchbase.com/couchdbx.xml</string>
 	<key>HomePage</key>
 	<string>http://127.0.0.1:5984/_utils</string>
 	<key>CFBundleDevelopmentRegion</key>
