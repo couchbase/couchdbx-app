@@ -14,7 +14,8 @@ clean_lib() {
 }
 
 # Find and cleanup all libs.
-for l in $dest/lib/*.dylib $dest/lib/couchdb/erlang/lib/couch-*/priv/lib/couch_icu_driver.so
+for l in $dest/lib/*.dylib $dest/lib/couchdb/bin/couchjs \
+    $dest/lib/couchdb/erlang/lib/couch-*/priv/lib/couch_icu_driver.so
 do
     otool -L $l | grep "$instdir" \
         | sed -e 's/(\(.*\))//g' -e "s,${instdir}build/,," | clean_lib $l
