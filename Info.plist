@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>CouchDb.icns</string>
+	<string>Couchbase.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.couchone.couchbase-server</string>
 	<key>CFBundleInfoDictionaryVersion</key>
