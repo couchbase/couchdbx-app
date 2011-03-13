@@ -109,7 +109,7 @@
             applicationSupportFolder = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:path length:(NSUInteger)strlen((char*)path)];
         }
     }
-	applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:@"CouchDBX"];
+	applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:@"CouchbaseServer"];
     return applicationSupportFolder;
 }
 

@@ -92,7 +92,7 @@
 		755FCDE80E78DCD000F175AD /* browse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = browse.png; sourceTree = "<group>"; };
 		755FCDEA0E78DCD900F175AD /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* CouchDBX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchDBX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* CouchbaseServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchbaseServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA4C46E713299B2400CE5592 /* autoconf2.13 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoconf2.13; sourceTree = "<group>"; };
 		DA4C46E813299B2400CE5592 /* autoconf2.59 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoconf2.59; sourceTree = "<group>"; };
 		DA4C46E913299B2400CE5592 /* autoheader2.13 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoheader2.13; sourceTree = "<group>"; };
@@ -2605,7 +2605,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* CouchDBX.app */,
+				8D1107320486CEB800E47090 /* CouchbaseServer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7220,9 +7220,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* CouchDBX */ = {
+		8D1107260486CEB800E47090 /* CouchbaseServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CouchDBX" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CouchbaseServer" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -7235,10 +7235,10 @@
 			);
 			dependencies = (
 			);
-			name = CouchDBX;
+			name = CouchbaseServer;
 			productInstallPath = "$(HOME)/Applications";
 			productName = CouchDBX;
-			productReference = 8D1107320486CEB800E47090 /* CouchDBX.app */;
+			productReference = 8D1107320486CEB800E47090 /* CouchbaseServer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -7257,7 +7257,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* CouchDBX */,
+				8D1107260486CEB800E47090 /* CouchbaseServer */,
 			);
 		};
 /* End PBXProject section */
@@ -7363,7 +7363,7 @@
 					"\"$(SRCROOT)/otp/lib/erlang/usr/lib\"",
 					"\"$(SRCROOT)/js_src/lib\"",
 				);
-				PRODUCT_NAME = CouchDBX;
+				PRODUCT_NAME = CouchbaseServer;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -7397,7 +7397,7 @@
 					"\"$(SRCROOT)/otp/lib/erlang/usr/lib\"",
 					"\"$(SRCROOT)/js_src/lib\"",
 				);
-				PRODUCT_NAME = CouchDBX;
+				PRODUCT_NAME = CouchbaseServer;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -7427,7 +7427,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CouchDBX" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CouchbaseServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
