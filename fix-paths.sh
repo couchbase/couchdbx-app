@@ -39,3 +39,63 @@ do
 done
 
 relativize etc/couchdb/default.ini
+
+# Clean up unnecessary items
+
+cd $dest/lib/erlang/lib
+rm -rf \
+    appmon-*/ \
+    asn1-*/ \
+    common_test-*/ \
+    compiler-*/ \
+    cosEvent-*/ \
+    cosEventDomain-*/ \
+    cosFileTransfer-*/ \
+    cosNotification-*/ \
+    cosProperty-*/ \
+    cosTime-*/ \
+    cosTransactions-*/ \
+    debugger-*/ \
+    dialyzer-*/ \
+    docbuilder-*/ \
+    edoc-*/ \
+    erl_docgen-*/ \
+    erl_interface-*/ \
+    erts-*/ \
+    et-*/ \
+    eunit-*/ \
+    gs-*/ \
+    hipe-*/ \
+    ic-*/ \
+    inviso-*/ \
+    jinterface-*/ \
+    megaco-*/ \
+    mnesia-*/ \
+    observer-*/ \
+    odbc-*/ \
+    orber-*/ \
+    os_mon-*/ \
+    otp_mibs-*/ \
+    parsetools-*/ \
+    percept-*/ \
+    pman-*/ \
+    reltool-*/ \
+    runtime_tools-*/ \
+    snmp-*/ \
+    ssh-*/ \
+    syntax_tools-*/ \
+    test_server-*/ \
+    toolbar-*/ \
+    tools-*/ \
+    tv-*/ \
+    typer-*/ \
+    webtool-*/ \
+    wx-*/
+
+rm -rf */{examples,src,include} */priv/obj
+
+cd $dest
+rm -rf lib/erlang/erts-*/include
+rm -rf etc/logrotate.d include info man \
+    share/autoconf share/doc share/icu share/emacs share/man \
+    lib/*.a lib/icu lib/erlang/usr 
