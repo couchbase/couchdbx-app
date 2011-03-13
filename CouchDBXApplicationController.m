@@ -165,6 +165,7 @@
 	[task setCurrentDirectoryPath:launchPath];
 
 	[launchPath appendString:@"/bin/couchdb"];
+    NSLog(@"Launching '%@'", launchPath);
 	[task setLaunchPath:launchPath];
 	NSArray *args = [[NSArray alloc] initWithObjects:@"-i", nil];
 	[task setArguments:args];
