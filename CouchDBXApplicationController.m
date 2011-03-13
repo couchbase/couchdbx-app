@@ -140,6 +140,7 @@
 		[newIni appendString:@"\nview_index_dir = "];
 		[newIni appendString:dataDir];
 		[newIni appendString:@"\n\n"];
+		[newIni appendString:@"[query_servers]\njavascript = bin/couchjs share/couchdb/server/main.js"];
 		[newIni writeToFile:iniFile atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 		[newIni release];
 	}
