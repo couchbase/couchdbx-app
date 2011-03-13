@@ -8,8 +8,8 @@ dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchdbx-core"
 clean_lib() {
     while read something
     do
-        install_name_tool -change "$instdir$something" $something "$1"
-        install_name_tool -change "$builddir$something" $something "$1"
+        install_name_tool -change "$instdir$something" "$something" "$1"
+        install_name_tool -change "$builddir$something" "$something" "$1"
     done
 }
 
@@ -17,8 +17,8 @@ clean_lib() {
 for l in "$dest/lib/"*.dylib "$dest/lib/couchdb/bin/couchjs" \
     "$dest/lib/couchdb/erlang/lib/"couch-*/priv/lib/couch_icu_driver.so
 do
-    otool -L $l | grep "$instdir" \
-        | sed -e 's/(\(.*\))//g' -e "s,${instdir}build/,," | clean_lib $l
+    otool -L "$l" | grep "$instdir" \
+        | sed -e 's/(\(.*\))//g' -e "s,${instdir}build/,," | clean_lib "$l"
 done
 
 absolutize() {
