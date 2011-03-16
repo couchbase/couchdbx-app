@@ -7,6 +7,10 @@
 @interface CouchDBXApplicationController : NSObject{
     NSStatusItem *statusBar;
     IBOutlet NSMenu *statusMenu;
+
+    IBOutlet NSMenuItem *launchBrowserItem;
+    IBOutlet NSMenuItem *launchAtStartupItem;
+
     NSTask *task;
     NSPipe *in, *out;
 }
@@ -21,5 +25,10 @@
 -(void)cleanup;
 -(void)ensureFullCommit;
 -(NSString *)applicationSupportFolder;
+
+-(void)updateAddItemButtonState;
+
+-(IBAction)setLaunchPref:(id)sender;
+-(IBAction)changeLoginItems:(id)sender;
 
 @end

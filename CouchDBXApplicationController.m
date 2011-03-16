@@ -57,6 +57,11 @@
 
 -(void)awakeFromNib
 {
+    [[NSUserDefaults standardUserDefaults]
+     registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
+                        [NSNumber numberWithBool:YES], @"browseAtStart", nil, nil]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 20.0];
     NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status.png"];
     [statusBar setImage: statusIcon];
@@ -64,6 +69,10 @@
     [statusBar setEnabled:YES];
     [statusBar setHighlightMode:YES];
     [statusBar retain];
+    
+    
+    [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
+    [self updateAddItemButtonState];
 
 	[self launchCouchDB];
 }
@@ -177,7 +186,11 @@
   	[task launch];
   	[fh readInBackgroundAndNotify];
 	sleep(1);
-	[self openFuton];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"browseAtStart"]) {
+        [self openFuton];
+    }
 }
 
 -(void)taskTerminated:(NSNotification *)note
@@ -229,5 +242,126 @@
     if (task)
       [[out fileHandleForReading] readInBackgroundAndNotify];
 }
+
+-(IBAction)setLaunchPref:(id)sender {
+    
+    NSCellStateValue stateVal = [sender state];
+    stateVal = (stateVal == NSOnState) ? NSOffState : NSOnState;
+
+    NSLog(@"Setting launch pref to %s", stateVal == NSOnState ? "on" : "off");
+    
+    [[NSUserDefaults standardUserDefaults]
+     setBool:(stateVal == NSOnState)
+     forKey:@"browseAtStart"];
+    
+    [launchBrowserItem setState:([[NSUserDefaults standardUserDefaults]
+                                  boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(bool) isInLoginItems {
+    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
+    BOOL rv = NO;
+    
+    [defaults addSuiteNamed:@"loginwindow"];
+    
+    NSMutableArray *loginItems=[[[defaults
+                                  persistentDomainForName:@"loginwindow"]
+                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
+    
+    // Remove anything that looks like the current login item.
+    NSString *myName=[[[NSBundle mainBundle] bundlePath] lastPathComponent];
+    NSEnumerator *e=[loginItems objectEnumerator];
+    id current=nil;
+    while( (current=[e nextObject]) != nil) {
+        if([[current valueForKey:@"Path"] hasSuffix:myName]) {
+            rv = YES;
+        }
+    }
+
+    [defaults release];
+    return rv;
+}
+
+-(void) updateAddItemButtonState {
+    [launchAtStartupItem setState:[self isInLoginItems] ? NSOnState : NSOffState];
+}
+
+-(void) removeLoginItem:(id)sender {
+    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
+    
+    [defaults addSuiteNamed:@"loginwindow"];
+    
+    NSMutableArray *loginItems=[[[defaults
+                                  persistentDomainForName:@"loginwindow"]
+                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
+    
+    // Remove anything that looks like the current login item.
+    NSString *myName=[[[NSBundle mainBundle] bundlePath] lastPathComponent];
+    NSEnumerator *e=[loginItems objectEnumerator];
+    id current=nil;
+    while( (current=[e nextObject]) != nil) {
+        if([[current valueForKey:@"Path"] hasSuffix:myName]) {
+            NSLog(@"Removing login item: %@", [current valueForKey:@"Path"]);
+            [loginItems removeObject:current];
+        }
+    }
+    
+    [defaults removeObjectForKey:@"AutoLaunchedApplicationDictionary"];
+    [defaults setObject:loginItems forKey:
+     @"AutoLaunchedApplicationDictionary"];
+    
+    // Use the corefoundation API since I can't figure out the other one.
+    CFPreferencesSetValue((CFStringRef)@"AutoLaunchedApplicationDictionary",
+                          loginItems, (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+    CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+    
+    [defaults release];
+}
+
+// XXX:  I need to make this be able to add or remove, and validate the current user wishes.
+-(void)addToLoginItems:(id)sender {
+    
+    [self removeLoginItem: self];
+    
+    NSMutableDictionary * myDict=[[NSMutableDictionary alloc] init];
+    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
+    
+    [defaults addSuiteNamed:@"loginwindow"];
+    
+    NSLog(@"Adding login item: %@", [[NSBundle mainBundle] bundlePath]);
+    [myDict setObject:[NSNumber numberWithBool:NO] forKey:@"Hide"];
+    [myDict setObject:[[NSBundle mainBundle] bundlePath]
+               forKey:@"Path"];
+    
+    NSMutableArray *loginItems=[[[defaults
+                                  persistentDomainForName:@"loginwindow"]
+                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
+    
+    [loginItems addObject:myDict];
+    [defaults removeObjectForKey:@"AutoLaunchedApplicationDictionary"];
+    [defaults setObject:loginItems forKey:
+     @"AutoLaunchedApplicationDictionary"];
+    
+    // Use the corefoundation API since I can't figure out the other one.
+    CFPreferencesSetValue((CFStringRef)@"AutoLaunchedApplicationDictionary",
+                          loginItems, (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+    CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+    
+    [defaults release];
+    [myDict release];
+    [loginItems release];
+}
+
+-(IBAction)changeLoginItems:(id)sender {
+    if([sender state] == NSOffState) {
+        [self addToLoginItems:self];
+    } else {
+        [self removeLoginItem:self];
+    }
+    [self updateAddItemButtonState];
+}
+
 
 @end
