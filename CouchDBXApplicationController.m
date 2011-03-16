@@ -62,14 +62,14 @@
 
 -(void)awakeFromNib
 {
-    [browse setEnabled:NO];
-	
-	NSLayoutManager *lm;
-	lm = [outputView layoutManager];
-	[lm setDelegate:self];
-	
-	[webView setUIDelegate:self];
-	
+    statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 20.0];
+    NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status.png"];
+    [statusBar setImage: statusIcon];
+    [statusBar setMenu: statusMenu];
+    [statusBar setEnabled:YES];
+    [statusBar setHighlightMode:YES];
+    [statusBar retain];
+
 	[self launchCouchDB];
 }
 
@@ -89,10 +89,6 @@
     writer = [in fileHandleForWriting];
     [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
     [writer closeFile];
-  
-    [browse setEnabled:NO];
-    [start setImage:[NSImage imageNamed:@"start.png"]];
-    [start setLabel:@"start"];
 }
 
 
@@ -151,10 +147,6 @@
 -(void)launchCouchDB
 {
 	[self maybeSetDataDirs];
-    [browse setEnabled:YES];
-    [start setImage:[NSImage imageNamed:@"stop.png"]];
-    [start setLabel:@"stop"];
-
 
 	in = [[NSPipe alloc] init];
 	out = [[NSPipe alloc] init];
@@ -188,7 +180,6 @@
 						object:task];
 
   	[task launch];
-  	[outputView setString:@"Starting CouchDB...\n"];
   	[fh readInBackgroundAndNotify];
 	sleep(1);
 	[self openFuton];
@@ -216,8 +207,8 @@
 {
 	NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
 	NSString *homePage = [info objectForKey:@"HomePage"];
-	[webView setTextSizeMultiplier:1.3];
-	[[webView mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:homePage]]];
+    NSURL *url=[NSURL URLWithString:homePage];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 -(IBAction)browse:(id)sender
@@ -230,9 +221,7 @@
 {
     NSString *s = [[NSString alloc] initWithData: d
                                         encoding: NSUTF8StringEncoding];
-    NSTextStorage *ts = [outputView textStorage];
-    [ts replaceCharactersInRange:NSMakeRange([ts length], 0) withString:s];
-    [s release];
+    NSLog(@"%@", s);
 }
 
 - (void)dataReady:(NSNotification *)n
@@ -244,66 +233,6 @@
     }
     if (task)
       [[out fileHandleForReading] readInBackgroundAndNotify];
-}
-
-- (void)layoutManager:(NSLayoutManager *)aLayoutManager didCompleteLayoutForTextContainer:(NSTextContainer *)aTextContainer atEnd:(BOOL)flag
-{
-	if (flag) {
-		NSTextStorage *ts = [outputView textStorage];
-		[outputView scrollRangeToVisible:NSMakeRange([ts length], 0)];
-	}
-}
-
-- (void)webView:(WebView *)sender runOpenPanelForFileButtonWithResultListener:(id < WebOpenPanelResultListener >)resultListener
-{
-	[self openChooseFileDialogWithListener: resultListener
-			allowMultipleFiles: FALSE];
-}
-- (void)webView:(WebView *)sender runOpenPanelForFileButtonWithResultListener:(id < WebOpenPanelResultListener >)resultListener allowMultipleFiles:(BOOL)allowMultipleFiles
-{
-	[self openChooseFileDialogWithListener: resultListener
-			allowMultipleFiles: allowMultipleFiles];
-}
-
-#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 1060 
-	#define MULTIPLE_SELECTION_POSSIBLE TRUE
-#else
-	#define MULTIPLE_SELECTION_POSSIBLE FALSE
-#endif
-- (void)openChooseFileDialogWithListener: (id < WebOpenPanelResultListener >)resultListener allowMultipleFiles: (BOOL)multipleSelection
-{
-	NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-	[openDlg setCanChooseFiles:YES];
-	[openDlg setCanChooseDirectories:NO];
-	[openDlg setAllowsMultipleSelection: (multipleSelection && MULTIPLE_SELECTION_POSSIBLE)];
-	NSInteger result = [openDlg runModal];
-	if (result == NSFileHandlingPanelOKButton) {
-		NSArray* files = [openDlg URLs];
-#if MULTIPLE_SELECTION_POSSIBLE
-		NSInteger filesNumber = [files count];
-		if (filesNumber == 1) {
-#endif
-			NSURL* fileURL = [files objectAtIndex:0];
-			NSString* path = [fileURL path];
-			[resultListener chooseFilename:path ];
-#if MULTIPLE_SELECTION_POSSIBLE			
-		} else {
-			NSMutableArray* fileNames = [NSMutableArray arrayWithCapacity:filesNumber];
-			for (NSURL* fileURL in files) {
-				NSString* path = [fileURL path];
-				[fileNames addObject:path];
-			}
-			[resultListener chooseFilenames: fileNames];
-		} 
-#endif		
-	} else {
-		[resultListener cancel];
-	}
-}
-
-- (void)webView:(WebView *)sender runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WebFrame *)frame
-{
-	NSRunInformationalAlertPanel(nil, message, nil, nil, nil);
 }
 
 @end

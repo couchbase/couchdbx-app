@@ -3,14 +3,10 @@
     This is Apache 2.0 licensed free software
 */
 #import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
 
 @interface CouchDBXApplicationController : NSObject{
-    IBOutlet NSToolbarItem *start;
-    IBOutlet NSToolbarItem *browse;
-	IBOutlet NSTextView *outputView;
-	IBOutlet WebView *webView;
-    
+    NSStatusItem *statusBar;
+    IBOutlet NSMenu *statusMenu;
     NSTask *task;
     NSPipe *in, *out;
 }
@@ -20,10 +16,9 @@
 
 -(void)launchCouchDB;
 -(void)stop;
+-(void)openFuton;
 -(void)taskTerminated:(NSNotification *)note;
 -(void)cleanup;
--(void)openFuton;
--(void)openChooseFileDialogWithListener: (id < WebOpenPanelResultListener >)resultListener allowMultipleFiles: (BOOL)multipleSelection;
 -(void)ensureFullCommit;
 -(NSString *)applicationSupportFolder;
 

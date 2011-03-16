@@ -36,6 +36,7 @@
 		DA4C51A613299C6A00CE5592 /* sbin in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519B13299C6A00CE5592 /* sbin */; };
 		DA4C51A713299C6A00CE5592 /* share in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519C13299C6A00CE5592 /* share */; };
 		DA4C51A813299C6A00CE5592 /* var in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519D13299C6A00CE5592 /* var */; };
+		DA62FA621331368800280453 /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DA62FA611331368800280453 /* Couchbase-Status.png */; };
 		DA791EB5132CA4FC00E40CB9 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DA791EB4132CA4FC00E40CB9 /* Credits.html */; };
 /* End PBXBuildFile section */
 
@@ -2571,6 +2572,7 @@
 		DA4C519B13299C6A00CE5592 /* sbin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sbin; path = ../../build/sbin; sourceTree = "<group>"; };
 		DA4C519C13299C6A00CE5592 /* share */ = {isa = PBXFileReference; lastKnownFileType = folder; name = share; path = ../../build/share; sourceTree = "<group>"; };
 		DA4C519D13299C6A00CE5592 /* var */ = {isa = PBXFileReference; lastKnownFileType = folder; name = var; path = ../../build/var; sourceTree = "<group>"; };
+		DA62FA611331368800280453 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
 		DA791EB4132CA4FC00E40CB9 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = CouchDBX.xcodeproj/../English.lproj/Credits.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2654,6 +2656,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA62FA611331368800280453 /* Couchbase-Status.png */,
 				DA23EBA6132D5BB800E4F823 /* Couchbase.icns */,
 				DA791EB4132CA4FC00E40CB9 /* Credits.html */,
 				3D116834120EFE7D001DC2AE /* ensure_full_commit.sh */,
@@ -7296,6 +7299,7 @@
 				DA791EB5132CA4FC00E40CB9 /* Credits.html in Resources */,
 				DA23EBA7132D5BB800E4F823 /* Couchbase.icns in Resources */,
 				DA23EBA9132D61EC00E4F823 /* erl in Resources */,
+				DA62FA621331368800280453 /* Couchbase-Status.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
