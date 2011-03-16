@@ -25,6 +25,11 @@
 	[updater setDelegate: updaterDelegate];
 }
 
+- (IBAction)showAboutPanel:(id)sender {
+    [NSApp activateIgnoringOtherApps:YES];
+    [[NSApplication sharedApplication] orderFrontStandardAboutPanel:sender];
+}
+
 -(void)ensureFullCommit
 {
 	// find couch.uri file

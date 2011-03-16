@@ -31,4 +31,6 @@
 -(IBAction)setLaunchPref:(id)sender;
 -(IBAction)changeLoginItems:(id)sender;
 
+-(IBAction)showAboutPanel:(id)sender;
+
 @end
