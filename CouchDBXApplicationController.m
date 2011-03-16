@@ -8,11 +8,6 @@
 
 @implementation CouchDBXApplicationController
 
--(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app
-{
-  return YES;
-}
-
 -(void)applicationWillTerminate:(NSNotification *)notification
 {
 	[self ensureFullCommit];
