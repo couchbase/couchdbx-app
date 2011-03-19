@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../ImportableDatabase.h">
+   </FileRef>
+   <FileRef
+      location = "group:../ImportableDatabase.m">
+   </FileRef>
+   <FileRef
+      location = "group:../ImportController.h">
+   </FileRef>
+   <FileRef
+      location = "group:../ImportController.m">
+   </FileRef>
+   <FileRef
       location = "group:../English.lproj/Credits.html">
    </FileRef>
    <FileRef

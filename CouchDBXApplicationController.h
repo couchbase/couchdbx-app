@@ -32,5 +32,7 @@
 -(IBAction)changeLoginItems:(id)sender;
 
 -(IBAction)showAboutPanel:(id)sender;
+-(IBAction)showImportWindow:(id)sender;
+
 
 @end

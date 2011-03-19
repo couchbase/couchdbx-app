@@ -3,6 +3,7 @@
  *  This is Apache 2.0 licensed free software
  */
 #import "CouchDBXApplicationController.h"
+#import "ImportController.h"
 #import "Sparkle/Sparkle.h"
 #import "SUUpdaterDelegate.h"
 
@@ -64,7 +65,8 @@
 {
     [[NSUserDefaults standardUserDefaults]
      registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
-                        [NSNumber numberWithBool:YES], @"browseAtStart", nil, nil]];
+                        [NSNumber numberWithBool:YES], @"browseAtStart",
+                        [NSNumber numberWithBool:YES], @"runImport", nil, nil]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 20.0];
@@ -80,6 +82,10 @@
     [self updateAddItemButtonState];
 
 	[self launchCouchDB];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"runImport"]) {
+        [self showImportWindow:nil];
+    }
 }
 
 -(IBAction)start:(id)sender
@@ -100,22 +106,24 @@
     [writer closeFile];
 }
 
-
 /* found at http://www.cocoadev.com/index.pl?ApplicationSupportFolder */
-- (NSString *)applicationSupportFolder {
+- (NSString *)applicationSupportFolder:(NSString*)appName {
     NSString *applicationSupportFolder = nil;
     FSRef foundRef;
     OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, kDontCreateFolder, &foundRef);
     if (err == noErr) {
         unsigned char path[PATH_MAX];
         OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
-        if (validPath == noErr)
-        {
+        if (validPath == noErr) {
             applicationSupportFolder = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:path length:(NSUInteger)strlen((char*)path)];
         }
     }
-	applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:@"CouchbaseServer"];
+	applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:appName];
     return applicationSupportFolder;
+}
+
+- (NSString *)applicationSupportFolder {
+    return [self applicationSupportFolder:@"CouchbaseServer"];
 }
 
 -(void)maybeSetDataDirs
@@ -371,6 +379,22 @@
         [self removeLoginItem:self];
     }
     [self updateAddItemButtonState];
+}
+
+- (IBAction)showImportWindow:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    NSLog(@"Starting import");
+    [NSApp activateIgnoringOtherApps:YES];
+
+    ImportController *controller = [[ImportController alloc]
+                                    initWithWindowNibName:@"Importer"];
+
+    [controller setPaths:[self applicationSupportFolder]
+                    from:[self applicationSupportFolder:@"CouchDBX"]];
+    [controller loadWindow];
 }
 
 

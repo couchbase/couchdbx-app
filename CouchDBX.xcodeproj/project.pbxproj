@@ -25,6 +25,8 @@
 		DA23EBA7132D5BB800E4F823 /* Couchbase.icns in Resources */ = {isa = PBXBuildFile; fileRef = DA23EBA6132D5BB800E4F823 /* Couchbase.icns */; };
 		DA23EBA9132D61EC00E4F823 /* erl in Resources */ = {isa = PBXBuildFile; fileRef = DA23EBA8132D61EC00E4F823 /* erl */; };
 		DA23EBAB132D621600E4F823 /* erl in Install custom erl start thing */ = {isa = PBXBuildFile; fileRef = DA23EBA8132D61EC00E4F823 /* erl */; };
+		DA3B5D581334A01D00A63ED8 /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DA3B5D561334A01D00A63ED8 /* Importer.nib */; };
+		DA3B5D5C1334A14D00A63ED8 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3B5D5B1334A14D00A63ED8 /* ImportController.m */; };
 		DA4C519E13299C6A00CE5592 /* bin in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519313299C6A00CE5592 /* bin */; };
 		DA4C519F13299C6A00CE5592 /* env.sh in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519413299C6A00CE5592 /* env.sh */; };
 		DA4C51A013299C6A00CE5592 /* etc in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519513299C6A00CE5592 /* etc */; };
@@ -37,6 +39,7 @@
 		DA4C51A713299C6A00CE5592 /* share in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519C13299C6A00CE5592 /* share */; };
 		DA4C51A813299C6A00CE5592 /* var in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519D13299C6A00CE5592 /* var */; };
 		DA62FA621331368800280453 /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DA62FA611331368800280453 /* Couchbase-Status.png */; };
+		DA6E27D31334B0E4007AB2C5 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */; };
 		DA791EB5132CA4FC00E40CB9 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DA791EB4132CA4FC00E40CB9 /* Credits.html */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +113,9 @@
 		8D1107320486CEB800E47090 /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA23EBA6132D5BB800E4F823 /* Couchbase.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Couchbase.icns; sourceTree = "<group>"; };
 		DA23EBA8132D61EC00E4F823 /* erl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = erl; path = support/erl; sourceTree = "<group>"; };
+		DA3B5D571334A01D00A63ED8 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Importer.nib; sourceTree = "<group>"; };
+		DA3B5D5A1334A14D00A63ED8 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportController.h; path = CouchDBX.xcodeproj/../ImportController.h; sourceTree = "<group>"; };
+		DA3B5D5B1334A14D00A63ED8 /* ImportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportController.m; path = CouchDBX.xcodeproj/../ImportController.m; sourceTree = "<group>"; };
 		DA4C46E713299B2400CE5592 /* autoconf2.13 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoconf2.13; sourceTree = "<group>"; };
 		DA4C46E813299B2400CE5592 /* autoconf2.59 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoconf2.59; sourceTree = "<group>"; };
 		DA4C46E913299B2400CE5592 /* autoheader2.13 */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoheader2.13; sourceTree = "<group>"; };
@@ -2573,6 +2579,8 @@
 		DA4C519C13299C6A00CE5592 /* share */ = {isa = PBXFileReference; lastKnownFileType = folder; name = share; path = ../../build/share; sourceTree = "<group>"; };
 		DA4C519D13299C6A00CE5592 /* var */ = {isa = PBXFileReference; lastKnownFileType = folder; name = var; path = ../../build/var; sourceTree = "<group>"; };
 		DA62FA611331368800280453 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
+		DA6E27D11334B0E4007AB2C5 /* ImportableDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportableDatabase.h; path = CouchDBX.xcodeproj/../ImportableDatabase.h; sourceTree = "<group>"; };
+		DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportableDatabase.m; path = CouchDBX.xcodeproj/../ImportableDatabase.m; sourceTree = "<group>"; };
 		DA791EB4132CA4FC00E40CB9 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = CouchDBX.xcodeproj/../English.lproj/Credits.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2593,6 +2601,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA6E27D11334B0E4007AB2C5 /* ImportableDatabase.h */,
+				DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */,
+				DA3B5D5A1334A14D00A63ED8 /* ImportController.h */,
+				DA3B5D5B1334A14D00A63ED8 /* ImportController.m */,
 				3D116819120EF082001DC2AE /* SUUpdaterDelegate.h */,
 				3D11681A120EF082001DC2AE /* SUUpdaterDelegate.m */,
 				3DC028F10E19960A004977D9 /* CouchDBXApplicationController.h */,
@@ -2656,6 +2668,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA3B5D561334A01D00A63ED8 /* Importer.nib */,
 				DA62FA611331368800280453 /* Couchbase-Status.png */,
 				DA23EBA6132D5BB800E4F823 /* Couchbase.icns */,
 				DA791EB4132CA4FC00E40CB9 /* Credits.html */,
@@ -7273,6 +7286,7 @@
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CouchDBX */;
 			projectDirPath = "";
@@ -7293,6 +7307,7 @@
 				3DC028EA0E199454004977D9 /* stop.png in Resources */,
 				3DC028EB0E199454004977D9 /* pause.png in Resources */,
 				755FCDE90E78DCD000F175AD /* browse.png in Resources */,
+				DA3B5D581334A01D00A63ED8 /* Importer.nib in Resources */,
 				755FCDEB0E78DCD900F175AD /* start.png in Resources */,
 				3DF6EC7411EDCC96000AD45B /* dsa_pub.pem in Resources */,
 				3D116835120EFE7D001DC2AE /* ensure_full_commit.sh in Resources */,
@@ -7331,6 +7346,8 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				3DC028F30E19960A004977D9 /* CouchDBXApplicationController.m in Sources */,
 				3D11681B120EF082001DC2AE /* SUUpdaterDelegate.m in Sources */,
+				DA3B5D5C1334A14D00A63ED8 /* ImportController.m in Sources */,
+				DA6E27D31334B0E4007AB2C5 /* ImportableDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7351,6 +7368,14 @@
 				29B97319FDCFA39411CA2CEA /* English */,
 			);
 			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		DA3B5D561334A01D00A63ED8 /* Importer.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA3B5D571334A01D00A63ED8 /* English */,
+			);
+			name = Importer.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
