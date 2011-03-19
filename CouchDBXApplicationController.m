@@ -201,6 +201,11 @@
 -(void)taskTerminated:(NSNotification *)note
 {
     [self cleanup];
+
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self selector:@selector(launchCouchDB)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 -(void)cleanup
