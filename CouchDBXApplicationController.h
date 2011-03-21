@@ -13,6 +13,8 @@
 
     NSTask *task;
     NSPipe *in, *out;
+
+    BOOL hasSeenStart;
 }
 
 -(IBAction)start:(id)sender;

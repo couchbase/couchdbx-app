@@ -63,6 +63,8 @@
 
 -(void)awakeFromNib
 {
+    hasSeenStart = NO;
+
     [[NSUserDefaults standardUserDefaults]
      registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSNumber numberWithBool:YES], @"browseAtStart",
@@ -198,12 +200,6 @@
 
   	[task launch];
   	[fh readInBackgroundAndNotify];
-	sleep(1);
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"browseAtStart"]) {
-        [self openFuton];
-    }
 }
 
 -(void)taskTerminated:(NSNotification *)note
@@ -247,6 +243,17 @@
 {
     NSString *s = [[NSString alloc] initWithData: d
                                         encoding: NSUTF8StringEncoding];
+
+    if (!hasSeenStart) {
+        if ([s hasPrefix:@"Apache CouchDB has started"]) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults boolForKey:@"browseAtStart"]) {
+                [self openFuton];
+            }
+            hasSeenStart = YES;
+        }
+    }
+
     NSLog(@"%@", s);
 }
 
