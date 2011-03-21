@@ -27,7 +27,7 @@
 	<key>HomePage</key>
 	<string>http://127.0.0.1:5984/_utils</string>
 	<key>SupportPage</key>
-	<string>http://techzone.couchbase.com/products/couchbase-server</string>
+	<string>http://techzone.couchbase.com/forums/couchbase/couchbase-server</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.business</string>
 	<key>LSUIElement</key>
