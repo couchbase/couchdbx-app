@@ -171,6 +171,8 @@
 	out = [[NSPipe alloc] init];
 	task = [[NSTask alloc] init];
 
+    startTime = time(NULL);
+
 	NSMutableString *launchPath = [[NSMutableString alloc] init];
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
 	[launchPath appendString:@"/couchdbx-core"];
@@ -205,6 +207,14 @@
 -(void)taskTerminated:(NSNotification *)note
 {
     [self cleanup];
+    NSLog(@"Terminated with status %d", [[note object] terminationStatus]);
+
+    time_t now = time(NULL);
+    if (now - startTime < MIN_LIFETIME) {
+        NSRunAlertPanel(@"Problem Running Couchbase",
+                        @"Couchbase Server doesn't seem to be operating properly.  "
+                        @"Check Console logs for more details.", @"OK", nil, nil);
+    }
 
     [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self selector:@selector(launchCouchDB)

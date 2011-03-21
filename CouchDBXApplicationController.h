@@ -4,6 +4,8 @@
 */
 #import <Cocoa/Cocoa.h>
 
+#define MIN_LIFETIME 10
+
 @interface CouchDBXApplicationController : NSObject{
     NSStatusItem *statusBar;
     IBOutlet NSMenu *statusMenu;
@@ -15,6 +17,7 @@
     NSPipe *in, *out;
 
     BOOL hasSeenStart;
+    time_t startTime;
 }
 
 -(IBAction)start:(id)sender;
