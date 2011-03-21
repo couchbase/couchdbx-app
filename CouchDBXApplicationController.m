@@ -211,9 +211,12 @@
 
     time_t now = time(NULL);
     if (now - startTime < MIN_LIFETIME) {
-        NSRunAlertPanel(@"Problem Running Couchbase",
-                        @"Couchbase Server doesn't seem to be operating properly.  "
-                        @"Check Console logs for more details.", @"OK", nil, nil);
+        NSInteger b = NSRunAlertPanel(@"Problem Running Couchbase",
+                                      @"Couchbase Server doesn't seem to be operating properly.  "
+                                      @"Check Console logs for more details.", @"Retry", @"Quit", nil);
+        if (b == NSAlertAlternateReturn) {
+            [NSApp terminate:self];
+        }
     }
 
     [NSTimer scheduledTimerWithTimeInterval:1.0
