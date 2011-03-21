@@ -26,6 +26,8 @@
 	<string>1.1.1</string>
 	<key>HomePage</key>
 	<string>http://127.0.0.1:5984/_utils</string>
+	<key>SupportPage</key>
+	<string>http://techzone.couchbase.com/products/couchbase-server</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.business</string>
 	<key>LSUIElement</key>
@@ -44,7 +46,5 @@
 	<array/>
 	<key>UTImportedTypeDeclarations</key>
 	<array/>
-	<key>LSUIElement</key>
-	<true/>
 </dict>
 </plist>

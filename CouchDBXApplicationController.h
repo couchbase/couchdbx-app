@@ -38,6 +38,7 @@
 
 -(IBAction)showAboutPanel:(id)sender;
 -(IBAction)showImportWindow:(id)sender;
+-(IBAction)showTechSupport:(id)sender;
 
 
 @end

@@ -414,5 +414,12 @@
     [controller loadWindow];
 }
 
+-(IBAction)showTechSupport:(id)sender {
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+	NSString *homePage = [info objectForKey:@"SupportPage"];
+    NSURL *url=[NSURL URLWithString:homePage];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+
+}
 
 @end

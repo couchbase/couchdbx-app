@@ -74,6 +74,14 @@
 						<reference key="NSOnImage" ref="190466617"/>
 						<reference key="NSMixedImage" ref="358770894"/>
 					</object>
+					<object class="NSMenuItem" id="769843498">
+						<reference key="NSMenu" ref="54003695"/>
+						<string key="NSTitle">Visit Support Forum</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="190466617"/>
+						<reference key="NSMixedImage" ref="358770894"/>
+					</object>
 					<object class="NSMenuItem" id="1024804093">
 						<reference key="NSMenu" ref="54003695"/>
 						<bool key="NSIsDisabled">YES</bool>
@@ -200,6 +208,14 @@
 					</object>
 					<int key="connectionID">495</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showTechSupport:</string>
+						<reference key="source" ref="259954524"/>
+						<reference key="destination" ref="769843498"/>
+					</object>
+					<int key="connectionID">497</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -255,6 +271,7 @@
 							<reference ref="80464832"/>
 							<reference ref="1024804093"/>
 							<reference ref="452718719"/>
+							<reference ref="769843498"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -298,6 +315,11 @@
 						<reference key="object" ref="452718719"/>
 						<reference key="parent" ref="54003695"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">496</int>
+						<reference key="object" ref="769843498"/>
+						<reference key="parent" ref="54003695"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -318,9 +340,11 @@
 					<string>475.IBPluginDependency</string>
 					<string>478.IBPluginDependency</string>
 					<string>490.IBPluginDependency</string>
+					<string>496.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -349,7 +373,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">495</int>
+			<int key="maxID">497</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -365,10 +389,14 @@
 							<string>changeLoginItems:</string>
 							<string>setLaunchPref:</string>
 							<string>showAboutPanel:</string>
+							<string>showImportWindow:</string>
+							<string>showTechSupport:</string>
 							<string>start:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -384,6 +412,8 @@
 							<string>changeLoginItems:</string>
 							<string>setLaunchPref:</string>
 							<string>showAboutPanel:</string>
+							<string>showImportWindow:</string>
+							<string>showTechSupport:</string>
 							<string>start:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -402,6 +432,14 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">showAboutPanel:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showImportWindow:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showTechSupport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
