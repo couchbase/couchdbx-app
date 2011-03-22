@@ -82,6 +82,14 @@
 						<reference key="NSOnImage" ref="190466617"/>
 						<reference key="NSMixedImage" ref="358770894"/>
 					</object>
+					<object class="NSMenuItem" id="817844652">
+						<reference key="NSMenu" ref="54003695"/>
+						<string key="NSTitle">Check for Updates</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="190466617"/>
+						<reference key="NSMixedImage" ref="358770894"/>
+					</object>
 					<object class="NSMenuItem" id="1024804093">
 						<reference key="NSMenu" ref="54003695"/>
 						<bool key="NSIsDisabled">YES</bool>
@@ -216,6 +224,14 @@
 					</object>
 					<int key="connectionID">497</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="157747525"/>
+						<reference key="destination" ref="817844652"/>
+					</object>
+					<int key="connectionID">499</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -272,6 +288,7 @@
 							<reference ref="1024804093"/>
 							<reference ref="452718719"/>
 							<reference ref="769843498"/>
+							<reference ref="817844652"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -320,6 +337,11 @@
 						<reference key="object" ref="769843498"/>
 						<reference key="parent" ref="54003695"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">498</int>
+						<reference key="object" ref="817844652"/>
+						<reference key="parent" ref="54003695"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -341,9 +363,11 @@
 					<string>478.IBPluginDependency</string>
 					<string>490.IBPluginDependency</string>
 					<string>496.IBPluginDependency</string>
+					<string>498.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -373,7 +397,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">497</int>
+			<int key="maxID">499</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
