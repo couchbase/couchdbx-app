@@ -71,7 +71,7 @@
                         [NSNumber numberWithBool:YES], @"runImport", nil, nil]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 20.0];
+    statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 26.0];
     NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status.png"];
     [statusBar setImage: statusIcon];
     [statusBar setMenu: statusMenu];
