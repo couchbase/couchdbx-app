@@ -298,105 +298,15 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
--(bool) isInLoginItems {
-    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
-    BOOL rv = NO;
-    
-    [defaults addSuiteNamed:@"loginwindow"];
-    
-    NSMutableArray *loginItems=[[[defaults
-                                  persistentDomainForName:@"loginwindow"]
-                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
-    
-    // Remove anything that looks like the current login item.
-    NSString *myName=[[[NSBundle mainBundle] bundlePath] lastPathComponent];
-    NSEnumerator *e=[loginItems objectEnumerator];
-    id current=nil;
-    while( (current=[e nextObject]) != nil) {
-        if([[current valueForKey:@"Path"] hasSuffix:myName]) {
-            rv = YES;
-        }
-    }
-
-    [defaults release];
-    return rv;
-}
-
 -(void) updateAddItemButtonState {
-    [launchAtStartupItem setState:[self isInLoginItems] ? NSOnState : NSOffState];
-}
-
--(void) removeLoginItem:(id)sender {
-    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
-    
-    [defaults addSuiteNamed:@"loginwindow"];
-    
-    NSMutableArray *loginItems=[[[defaults
-                                  persistentDomainForName:@"loginwindow"]
-                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
-    
-    // Remove anything that looks like the current login item.
-    NSString *myName=[[[NSBundle mainBundle] bundlePath] lastPathComponent];
-    NSEnumerator *e=[loginItems objectEnumerator];
-    id current=nil;
-    while( (current=[e nextObject]) != nil) {
-        if([[current valueForKey:@"Path"] hasSuffix:myName]) {
-            NSLog(@"Removing login item: %@", [current valueForKey:@"Path"]);
-            [loginItems removeObject:current];
-        }
-    }
-    
-    [defaults removeObjectForKey:@"AutoLaunchedApplicationDictionary"];
-    [defaults setObject:loginItems forKey:
-     @"AutoLaunchedApplicationDictionary"];
-    
-    // Use the corefoundation API since I can't figure out the other one.
-    CFPreferencesSetValue((CFStringRef)@"AutoLaunchedApplicationDictionary",
-                          loginItems, (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-    CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-    
-    [defaults release];
-}
-
-// XXX:  I need to make this be able to add or remove, and validate the current user wishes.
--(void)addToLoginItems:(id)sender {
-    
-    [self removeLoginItem: self];
-    
-    NSMutableDictionary * myDict=[[NSMutableDictionary alloc] init];
-    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
-    
-    [defaults addSuiteNamed:@"loginwindow"];
-    
-    NSLog(@"Adding login item: %@", [[NSBundle mainBundle] bundlePath]);
-    [myDict setObject:[NSNumber numberWithBool:NO] forKey:@"Hide"];
-    [myDict setObject:[[NSBundle mainBundle] bundlePath]
-               forKey:@"Path"];
-    
-    NSMutableArray *loginItems=[[[defaults
-                                  persistentDomainForName:@"loginwindow"]
-                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
-    
-    [loginItems addObject:myDict];
-    [defaults removeObjectForKey:@"AutoLaunchedApplicationDictionary"];
-    [defaults setObject:loginItems forKey:
-     @"AutoLaunchedApplicationDictionary"];
-    
-    // Use the corefoundation API since I can't figure out the other one.
-    CFPreferencesSetValue((CFStringRef)@"AutoLaunchedApplicationDictionary",
-                          loginItems, (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-    CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-    
-    [defaults release];
-    [myDict release];
-    [loginItems release];
+    [launchAtStartupItem setState:[loginItems inLoginItems] ? NSOnState : NSOffState];
 }
 
 -(IBAction)changeLoginItems:(id)sender {
     if([sender state] == NSOffState) {
-        [self addToLoginItems:self];
+        [loginItems addToLoginItems:self];
     } else {
-        [self removeLoginItem:self];
+        [loginItems removeLoginItem:self];
     }
     [self updateAddItemButtonState];
 }

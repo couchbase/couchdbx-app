@@ -38,6 +38,7 @@
 		DA4C51A613299C6A00CE5592 /* sbin in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519B13299C6A00CE5592 /* sbin */; };
 		DA4C51A713299C6A00CE5592 /* share in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519C13299C6A00CE5592 /* share */; };
 		DA4C51A813299C6A00CE5592 /* var in Install Core */ = {isa = PBXBuildFile; fileRef = DA4C519D13299C6A00CE5592 /* var */; };
+		DA61C6E4133AFB2C0095F5CF /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA61C6E3133AFB2C0095F5CF /* LoginItemManager.m */; };
 		DA62FA621331368800280453 /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DA62FA611331368800280453 /* Couchbase-Status.png */; };
 		DA6E27D31334B0E4007AB2C5 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */; };
 		DA791EB5132CA4FC00E40CB9 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DA791EB4132CA4FC00E40CB9 /* Credits.html */; };
@@ -2578,6 +2579,8 @@
 		DA4C519B13299C6A00CE5592 /* sbin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sbin; path = ../../build/sbin; sourceTree = "<group>"; };
 		DA4C519C13299C6A00CE5592 /* share */ = {isa = PBXFileReference; lastKnownFileType = folder; name = share; path = ../../build/share; sourceTree = "<group>"; };
 		DA4C519D13299C6A00CE5592 /* var */ = {isa = PBXFileReference; lastKnownFileType = folder; name = var; path = ../../build/var; sourceTree = "<group>"; };
+		DA61C6E2133AFB2C0095F5CF /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
+		DA61C6E3133AFB2C0095F5CF /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		DA62FA611331368800280453 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
 		DA6E27D11334B0E4007AB2C5 /* ImportableDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportableDatabase.h; path = CouchDBX.xcodeproj/../ImportableDatabase.h; sourceTree = "<group>"; };
 		DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportableDatabase.m; path = CouchDBX.xcodeproj/../ImportableDatabase.m; sourceTree = "<group>"; };
@@ -2601,6 +2604,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DA61C6E2133AFB2C0095F5CF /* LoginItemManager.h */,
+				DA61C6E3133AFB2C0095F5CF /* LoginItemManager.m */,
 				DA6E27D11334B0E4007AB2C5 /* ImportableDatabase.h */,
 				DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */,
 				DA3B5D5A1334A14D00A63ED8 /* ImportController.h */,
@@ -7348,6 +7353,7 @@
 				3D11681B120EF082001DC2AE /* SUUpdaterDelegate.m in Sources */,
 				DA3B5D5C1334A14D00A63ED8 /* ImportController.m in Sources */,
 				DA6E27D31334B0E4007AB2C5 /* ImportableDatabase.m in Sources */,
+				DA61C6E4133AFB2C0095F5CF /* LoginItemManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

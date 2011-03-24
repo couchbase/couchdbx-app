@@ -4,6 +4,8 @@
 */
 #import <Cocoa/Cocoa.h>
 
+#import "LoginItemManager.h"
+
 #define MIN_LIFETIME 10
 
 @interface CouchDBXApplicationController : NSObject{
@@ -12,6 +14,7 @@
 
     IBOutlet NSMenuItem *launchBrowserItem;
     IBOutlet NSMenuItem *launchAtStartupItem;
+    IBOutlet LoginItemManager *loginItems;
 
     NSTask *task;
     NSPipe *in, *out;
