@@ -6,6 +6,21 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		DAB2E37A133D1D0300818A4D /* Zip */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = DAB2E37D133D1D0400818A4D /* Build configuration list for PBXAggregateTarget "Zip" */;
+			buildPhases = (
+				DAB2E38A133D1D2C00818A4D /* Zip it up */,
+			);
+			dependencies = (
+				DAB2E380133D1D0C00818A4D /* PBXTargetDependency */,
+			);
+			name = Zip;
+			productName = Zip;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3D11681B120EF082001DC2AE /* SUUpdaterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D11681A120EF082001DC2AE /* SUUpdaterDelegate.m */; };
 		3D116835120EFE7D001DC2AE /* ensure_full_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = 3D116834120EFE7D001DC2AE /* ensure_full_commit.sh */; };
@@ -43,6 +58,16 @@
 		DA6E27D31334B0E4007AB2C5 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E27D21334B0E4007AB2C5 /* ImportableDatabase.m */; };
 		DA791EB5132CA4FC00E40CB9 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DA791EB4132CA4FC00E40CB9 /* Credits.html */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DAB2E37F133D1D0C00818A4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = "Couchbase Server";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3DF6EC2011EC7161000AD45B /* Install Sparkle */ = {
@@ -7297,6 +7322,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				DAB2E37A133D1D0300818A4D /* Zip */,
 				8D1107260486CEB800E47090 /* Couchbase Server */,
 			);
 		};
@@ -7341,6 +7367,20 @@
 			shellPath = "/bin/sh -e";
 			shellScript = "exec $SCRIPT_INPUT_FILE_0";
 		};
+		DAB2E38A133D1D2C00818A4D /* Zip it up */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Zip it up";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nzip -yr \"CouchbaseServer-$V.zip\" 'Couchbase Server.app'\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -7358,6 +7398,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DAB2E380133D1D0C00818A4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Couchbase Server */;
+			targetProxy = DAB2E37F133D1D0C00818A4D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -7479,6 +7527,20 @@
 			};
 			name = Release;
 		};
+		DAB2E37B133D1D0400818A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DAB2E37C133D1D0400818A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -7496,6 +7558,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAB2E37D133D1D0400818A4D /* Build configuration list for PBXAggregateTarget "Zip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAB2E37B133D1D0400818A4D /* Debug */,
+				DAB2E37C133D1D0400818A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
