@@ -1,24 +1,24 @@
 /*
-    Author: Jan Lehnardt <jan@apache.org>
-    This is Apache 2.0 licensed free software
-*/
+ Author: Jan Lehnardt <jan@apache.org>
+ This is Apache 2.0 licensed free software
+ */
 #import <Cocoa/Cocoa.h>
 
 #import "LoginItemManager.h"
 
 #define MIN_LIFETIME 10
 
-@interface CouchDBXApplicationController : NSObject{
+@interface Couchbase_ServerAppDelegate : NSObject{
     NSStatusItem *statusBar;
     IBOutlet NSMenu *statusMenu;
-
+    
     IBOutlet NSMenuItem *launchBrowserItem;
     IBOutlet NSMenuItem *launchAtStartupItem;
     IBOutlet LoginItemManager *loginItems;
-
+    
     NSTask *task;
     NSPipe *in, *out;
-
+    
     BOOL hasSeenStart;
     time_t startTime;
 }

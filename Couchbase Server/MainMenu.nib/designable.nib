@@ -40,7 +40,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSCustomObject" id="259954524">
-				<string key="NSClassName">CouchDBXApplicationController</string>
+				<string key="NSClassName">Couchbase_ServerAppDelegate</string>
 			</object>
 			<object class="NSUserDefaultsController" id="949324509">
 				<bool key="NSSharedInstance">YES</bool>
@@ -421,7 +421,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">CouchDBXApplicationController</string>
+					<string key="className">Couchbase_ServerAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -538,7 +538,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CouchDBXApplicationController.h</string>
+						<string key="minorKey">./Classes/Couchbase_ServerAppDelegate.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
