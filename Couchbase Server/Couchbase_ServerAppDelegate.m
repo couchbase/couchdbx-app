@@ -117,7 +117,8 @@
         unsigned char path[PATH_MAX];
         OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
         if (validPath == noErr) {
-            applicationSupportFolder = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:path length:(NSUInteger)strlen((char*)path)];
+            applicationSupportFolder = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
+                                                                                                   length:(NSUInteger)strlen((char*)path)];
         }
     }
 	applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:appName];

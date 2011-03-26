@@ -16,7 +16,7 @@
     if (self) {
         _name = [n retain];
         _shouldImport = YES;
-        _totalSize = [s longLongValue];
+        _totalSize = (size_t)[s longLongValue];
         _copiedSize = 0;
     }
 
@@ -54,7 +54,7 @@
     return _totalSize;
 }
 
--(size_t)copiedSize:(size_t)to {
+-(void)copiedSize:(size_t)to {
     _copiedSize = to;
 }
 

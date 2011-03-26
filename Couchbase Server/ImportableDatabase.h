@@ -28,7 +28,7 @@
 -(NSString *)description;
 
 -(size_t)totalSize;
--(size_t)copiedSize:(size_t)to;
+-(void)copiedSize:(size_t)to;
 -(size_t)copiedSize;
 
 @end
