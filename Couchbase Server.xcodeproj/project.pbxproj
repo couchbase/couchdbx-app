@@ -35,10 +35,6 @@
 		DAADFB03133DA61700B282D6 /* Couchbase.icns in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF9133DA61700B282D6 /* Couchbase.icns */; };
 		DAADFB04133DA61700B282D6 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFA133DA61700B282D6 /* Credits.html */; };
 		DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */; };
-		DAADFB06133DA61700B282D6 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFC133DA61700B282D6 /* start.png */; };
-		DAADFB07133DA61700B282D6 /* browse.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFD133DA61700B282D6 /* browse.png */; };
-		DAADFB08133DA61700B282D6 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFE133DA61700B282D6 /* stop.png */; };
-		DAADFB09133DA61700B282D6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFF133DA61700B282D6 /* pause.png */; };
 		DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFB00133DA61700B282D6 /* MainMenu.nib */; };
 		DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 		DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
@@ -147,10 +143,6 @@
 		DAADFAF9133DA61700B282D6 /* Couchbase.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Couchbase.icns; sourceTree = "<group>"; };
 		DAADFAFA133DA61700B282D6 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ensure_full_commit.sh; sourceTree = "<group>"; };
-		DAADFAFC133DA61700B282D6 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
-		DAADFAFD133DA61700B282D6 /* browse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = browse.png; sourceTree = "<group>"; };
-		DAADFAFE133DA61700B282D6 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
-		DAADFAFF133DA61700B282D6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		DAADFB00133DA61700B282D6 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MainMenu.nib; sourceTree = "<group>"; };
 		DAADFB0B133DA68B00B282D6 /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
 		DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
@@ -267,10 +259,6 @@
 				DAADFAF9133DA61700B282D6 /* Couchbase.icns */,
 				DAADFAFA133DA61700B282D6 /* Credits.html */,
 				DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */,
-				DAADFAFC133DA61700B282D6 /* start.png */,
-				DAADFAFD133DA61700B282D6 /* browse.png */,
-				DAADFAFE133DA61700B282D6 /* stop.png */,
-				DAADFAFF133DA61700B282D6 /* pause.png */,
 				DAADFB00133DA61700B282D6 /* MainMenu.nib */,
 				DA1AD33F133DA58D00E6A9E1 /* Couchbase Server-Info.plist */,
 				DA1AD340133DA58D00E6A9E1 /* InfoPlist.strings */,
@@ -400,10 +388,6 @@
 				DAADFB04133DA61700B282D6 /* Credits.html in Resources */,
 				DAAEC783133DBD1E00EE9189 /* dsa_pub.pem in Resources */,
 				DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */,
-				DAADFB06133DA61700B282D6 /* start.png in Resources */,
-				DAADFB07133DA61700B282D6 /* browse.png in Resources */,
-				DAADFB08133DA61700B282D6 /* stop.png in Resources */,
-				DAADFB09133DA61700B282D6 /* pause.png in Resources */,
 				DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
