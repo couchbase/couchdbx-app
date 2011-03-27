@@ -70,6 +70,18 @@
                         [NSNumber numberWithBool:YES], @"browseAtStart",
                         [NSNumber numberWithBool:YES], @"runImport", nil, nil]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    // Make sure we have a unique identifier for this installation.
+    if ([defaults valueForKey:@"uniqueness"] == nil) {
+        CFUUIDRef uuidObj = CFUUIDCreate(nil);
+        NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+        CFRelease(uuidObj);
+
+        [defaults setValue:uuidString forKey:@"uniqueness"];
+        [defaults synchronize];
+
+        [uuidString release];
+    }
     
     statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 26.0];
     NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status.png"];

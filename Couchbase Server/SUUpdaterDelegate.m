@@ -13,5 +13,22 @@
 	[[[NSApplication sharedApplication] delegate] ensureFullCommit];
 }
 
+// Place our UUID into each request.
+- (NSArray *)feedParametersForUpdater:(SUUpdater *)updater
+                 sendingSystemProfile:(BOOL)sendingProfile {
+
+    NSString *uuid = [[NSUserDefaults standardUserDefaults]
+                      valueForKey:@"uniqueness"];
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                uuid, @"value",
+                                @"uuid", @"key",
+                                uuid, @"displayValue",
+                                @"uuid", @"displayKey",
+                                nil];
+
+    return [NSArray arrayWithObject: dictionary];
+}
+
 
 @end
