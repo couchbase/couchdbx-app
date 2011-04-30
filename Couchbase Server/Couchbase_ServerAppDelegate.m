@@ -319,7 +319,10 @@
             hasSeenStart = YES;
         }
     }
-    [self logMessage:s];
+
+    [self logMessage:[s stringByReplacingOccurrencesOfString:@"1> "
+                                                  withString:@""]];
+
     [s release];
 }
 
