@@ -30,6 +30,7 @@
 		DA1AD35D133DA58D00E6A9E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35B133DA58D00E6A9E1 /* InfoPlist.strings */; };
 		DA1AD360133DA58D00E6A9E1 /* Couchbase_ServerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35F133DA58D00E6A9E1 /* Couchbase_ServerTests.h */; };
 		DA1AD362133DA58D00E6A9E1 /* Couchbase_ServerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD361133DA58D00E6A9E1 /* Couchbase_ServerTests.m */; };
+		DA3C66FA136BA741007C835A /* native-query.ini in Enable Native Query Server */ = {isa = PBXBuildFile; fileRef = DA3C66F7136BA6BC007C835A /* native-query.ini */; };
 		DAADFB01133DA61700B282D6 /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF7133DA61700B282D6 /* Importer.nib */; };
 		DAADFB02133DA61700B282D6 /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */; };
 		DAADFB03133DA61700B282D6 /* Couchbase.icns in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF9133DA61700B282D6 /* Couchbase.icns */; };
@@ -75,6 +76,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		DA3C66F9136BA714007C835A /* Enable Native Query Server */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "couchdbx-core/etc/couchdb/default.d";
+			dstSubfolderSpec = 7;
+			files = (
+				DA3C66FA136BA741007C835A /* native-query.ini in Enable Native Query Server */,
+			);
+			name = "Enable Native Query Server";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAADFB1A133DA70E00B282D6 /* Install Sparkle */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,6 +150,7 @@
 		DA1AD35E133DA58D00E6A9E1 /* Couchbase ServerTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Couchbase ServerTests-Prefix.pch"; sourceTree = "<group>"; };
 		DA1AD35F133DA58D00E6A9E1 /* Couchbase_ServerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Couchbase_ServerTests.h; sourceTree = "<group>"; };
 		DA1AD361133DA58D00E6A9E1 /* Couchbase_ServerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Couchbase_ServerTests.m; sourceTree = "<group>"; };
+		DA3C66F7136BA6BC007C835A /* native-query.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = "native-query.ini"; sourceTree = "<group>"; };
 		DAADFAF7133DA61700B282D6 /* Importer.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Importer.nib; sourceTree = "<group>"; };
 		DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
 		DAADFAF9133DA61700B282D6 /* Couchbase.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Couchbase.icns; sourceTree = "<group>"; };
@@ -251,6 +264,7 @@
 		DA1AD33E133DA58D00E6A9E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DA3C66F7136BA6BC007C835A /* native-query.ini */,
 				DAAEC781133DBD0700EE9189 /* dsa_pub.pem */,
 				DAADFB37133DA84400B282D6 /* erl */,
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
@@ -320,6 +334,7 @@
 				DAADFB1C133DA72C00B282D6 /* Install Core */,
 				DAADFB34133DA78D00B282D6 /* Fixup Paths */,
 				DAADFB36133DA7E800B282D6 /* Install Proper erl start thing */,
+				DA3C66F9136BA714007C835A /* Enable Native Query Server */,
 			);
 			buildRules = (
 			);
@@ -355,6 +370,7 @@
 		DA1AD32A133DA58D00E6A9E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = NorthScale;
 			};
 			buildConfigurationList = DA1AD32D133DA58D00E6A9E1 /* Build configuration list for PBXProject "Couchbase Server" */;
@@ -519,7 +535,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -533,7 +549,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
