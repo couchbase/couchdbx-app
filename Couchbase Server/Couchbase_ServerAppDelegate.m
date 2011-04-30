@@ -31,6 +31,12 @@
     [[NSApplication sharedApplication] orderFrontStandardAboutPanel:sender];
 }
 
+-(void)logMessage:(NSString*)msg {
+    const char *str = [msg cStringUsingEncoding:NSUTF8StringEncoding];
+    fwrite(str, strlen(str), 1, logFile);
+    fflush(logFile);
+}
+
 -(void)ensureFullCommit
 {
 	// find couch.uri file
@@ -61,10 +67,36 @@
 	// yay!
 }
 
+- (NSString *)logFilePath:(NSString*)logName {
+    NSString *logDir = nil;
+    FSRef foundRef;
+    OSErr err = FSFindFolder(kUserDomain, kLogsFolderType, kDontCreateFolder, &foundRef);
+    if (err == noErr) {
+        unsigned char path[PATH_MAX];
+        OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
+        if (validPath == noErr) {
+            logDir = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
+                                                                                 length:(NSUInteger)strlen((char*)path)];
+        }
+    }
+	logDir = [logDir stringByAppendingPathComponent:logName];
+    return logDir;
+}
+
 -(void)awakeFromNib
 {
     hasSeenStart = NO;
-    
+
+    logPath = [[self logFilePath:@"Couchbase.log"] retain];
+    const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
+
+    NSString *oldLogFileString = [self logFilePath:@"Couchbase.log.old"];
+    const char *oldLogPath = [oldLogFileString cStringUsingEncoding:NSUTF8StringEncoding];
+    rename(logPathC, oldLogPath); // This will fail the first time.
+
+    // Now our logs go to a private file.
+    logFile = fopen(logPathC, "w");
+
     [[NSUserDefaults standardUserDefaults]
      registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSNumber numberWithBool:YES], @"browseAtStart",
@@ -154,7 +186,6 @@
 	NSMutableString *iniFile = [[NSMutableString alloc] init];
 	[iniFile appendString:[[NSBundle mainBundle] resourcePath]];
 	[iniFile appendString:@"/couchdbx-core/etc/couchdb/local.ini"];
-    NSLog(@"Loading stuff from %@", iniFile);
 	NSString *ini = [NSString stringWithContentsOfFile:iniFile encoding:NSUTF8StringEncoding error:NULL];
     assert(ini);
 	NSRange found = [ini rangeOfString:dataDir];
@@ -192,7 +223,7 @@
 	[task setCurrentDirectoryPath:launchPath];
     
 	[launchPath appendString:@"/bin/couchdb"];
-    NSLog(@"Launching '%@'", launchPath);
+    [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
 	[task setLaunchPath:launchPath];
 	NSArray *args = [[NSArray alloc] initWithObjects:@"-i", nil];
 	[task setArguments:args];
@@ -220,7 +251,8 @@
 -(void)taskTerminated:(NSNotification *)note
 {
     [self cleanup];
-    NSLog(@"Terminated with status %d", [[note object] terminationStatus]);
+    [self logMessage: [NSString stringWithFormat:@"Terminated with status %d\n",
+                       [[note object] terminationStatus]]];
     
     time_t now = time(NULL);
     if (now - startTime < MIN_LIFETIME) {
@@ -279,8 +311,8 @@
             hasSeenStart = YES;
         }
     }
-    
-    NSLog(@"%@", s);
+    [self logMessage:s];
+    [s release];
 }
 
 - (void)dataReady:(NSNotification *)n
@@ -329,7 +361,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSLog(@"Starting import");
+    [self logMessage:@"Starting import"];
     [NSApp activateIgnoringOtherApps:YES];
     
     ImportController *controller = [[ImportController alloc]
@@ -346,6 +378,24 @@
     NSURL *url=[NSURL URLWithString:homePage];
     [[NSWorkspace sharedWorkspace] openURL:url];
     
+}
+
+-(IBAction)showLogs:(id)sender {
+    FSRef ref;
+
+    if (FSPathMakeRef((const UInt8 *)[logPath cStringUsingEncoding:NSUTF8StringEncoding],
+                      &ref, NULL) != noErr) {
+        NSRunAlertPanel(@"Cannot Find Logfile",
+                        @"I've been looking for logs in all the wrong places.", nil, nil, nil);
+        return;
+    }
+
+    LSLaunchFSRefSpec params = {NULL, 1, &ref, NULL, kLSLaunchDefaults, NULL};
+
+    if (LSOpenFromRefSpec(&params, NULL) != noErr) {
+        NSRunAlertPanel(@"Cannot View Logfile",
+                        @"Error launching log viewer.", nil, nil, nil);
+    }
 }
 
 @end

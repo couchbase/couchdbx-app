@@ -21,6 +21,9 @@
     
     BOOL hasSeenStart;
     time_t startTime;
+
+    NSString *logPath;
+    FILE *logFile;
 }
 
 -(IBAction)start:(id)sender;
@@ -40,6 +43,7 @@
 -(IBAction)changeLoginItems:(id)sender;
 
 -(IBAction)showAboutPanel:(id)sender;
+-(IBAction)showLogs:(id)sender;
 -(IBAction)showImportWindow:(id)sender;
 -(IBAction)showTechSupport:(id)sender;
 
