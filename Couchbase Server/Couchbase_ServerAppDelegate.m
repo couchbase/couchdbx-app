@@ -34,6 +34,9 @@
 -(void)logMessage:(NSString*)msg {
     const char *str = [msg cStringUsingEncoding:NSUTF8StringEncoding];
     fwrite(str, strlen(str), 1, logFile);
+}
+
+-(void)flushLog {
     fflush(logFile);
 }
 
@@ -96,6 +99,11 @@
 
     // Now our logs go to a private file.
     logFile = fopen(logPathC, "w");
+
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self selector:@selector(flushLog)
+                                   userInfo:nil
+                                    repeats:YES];
 
     [[NSUserDefaults standardUserDefaults]
      registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
