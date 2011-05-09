@@ -70,6 +70,22 @@
 	// yay!
 }
 
+- (NSString *)finalConfigPath {
+    NSString *confFile = nil;
+    FSRef foundRef;
+    OSErr err = FSFindFolder(kUserDomain, kPreferencesFolderType, kDontCreateFolder, &foundRef);
+    if (err == noErr) {
+        unsigned char path[PATH_MAX];
+        OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
+        if (validPath == noErr) {
+            confFile = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
+                                                                                   length:(NSUInteger)strlen((char*)path)];
+        }
+    }
+    confFile = [confFile stringByAppendingPathComponent:@"couchbase-server.ini"];
+    return confFile;
+}
+
 - (NSString *)logFilePath:(NSString*)logName {
     NSString *logDir = nil;
     FSRef foundRef;
@@ -191,11 +207,11 @@
 	}
     
 	// if data dirs are not set in local.ini
-	NSMutableString *iniFile = [[NSMutableString alloc] init];
-	[iniFile appendString:[[NSBundle mainBundle] resourcePath]];
-	[iniFile appendString:@"/couchdbx-core/etc/couchdb/local.ini"];
+	NSString *iniFile = [self finalConfigPath];
 	NSString *ini = [NSString stringWithContentsOfFile:iniFile encoding:NSUTF8StringEncoding error:NULL];
-    assert(ini);
+    if (!ini) {
+        ini = @"";
+    }
 	NSRange found = [ini rangeOfString:dataDir];
 	if(found.length == 0) {
 		//   set them
@@ -207,11 +223,10 @@
 		[newIni appendString:@"\nview_index_dir = "];
 		[newIni appendString:dataDir];
 		[newIni appendString:@"\n\n"];
-		[newIni appendString:@"[query_servers]\njavascript = bin/couchjs share/couchdb/server/main.js"];
+		[newIni appendString:@"[query_servers]\njavascript = bin/couchjs share/couchdb/server/main.js\n"];
 		[newIni writeToFile:iniFile atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 		[newIni release];
 	}
-	[iniFile release];
 	// done
 }
 
@@ -229,6 +244,13 @@
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
 	[launchPath appendString:@"/couchdbx-core"];
 	[task setCurrentDirectoryPath:launchPath];
+
+    NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
+                         @"./bin:/bin:/usr/bin", @"PATH",
+                         NSHomeDirectory(), @"HOME",
+                         [self finalConfigPath], @"COUCHDB_ADDITIONAL_CONFIG_FILE",
+                         nil, nil];
+    [task setEnvironment:env];
     
 	[launchPath appendString:@"/bin/couchdb"];
     [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
