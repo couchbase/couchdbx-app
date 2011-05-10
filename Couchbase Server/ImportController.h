@@ -28,6 +28,8 @@
 
 -(void)setPaths:(NSString *)dest from:(NSString *)src;
 
+-(BOOL)hasImportableDBs;
+
 -(IBAction)doImport:(id)sender;
 
 @end

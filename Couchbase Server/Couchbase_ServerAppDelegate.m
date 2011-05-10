@@ -146,8 +146,15 @@
     [statusBar setEnabled:YES];
     [statusBar setHighlightMode:YES];
     [statusBar retain];
-    
-    
+
+    // Fix up the masks for all the alt items.
+    for (int i = 0; i < [statusMenu numberOfItems]; ++i) {
+        NSMenuItem *itm = [statusMenu itemAtIndex:i];
+        if ([itm isAlternate]) {
+            [itm setKeyEquivalentModifierMask:NSAlternateKeyMask];
+        }
+    }
+
     [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
     [self updateAddItemButtonState];
     
@@ -403,6 +410,11 @@
     [controller setPaths:[self applicationSupportFolder]
                     from:[self applicationSupportFolder:@"CouchDBX"]];
     [controller loadWindow];
+
+    if (sender != nil && ![controller hasImportableDBs]) {
+        NSRunAlertPanel(@"No Importable Databases",
+                        @"No databases can be imported from CouchDBX.", nil, nil, nil);
+    }
 }
 
 -(IBAction)showTechSupport:(id)sender {

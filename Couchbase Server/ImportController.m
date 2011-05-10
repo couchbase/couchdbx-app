@@ -27,6 +27,10 @@
     [super dealloc];
 }
 
+-(BOOL)hasImportableDBs {
+    return [[arrayController arrangedObjects] count] > 0;
+}
+
 -(void)awakeFromNib {
     NSLog(@"Looking for imports from %@ to %@", src, dest);
 
@@ -53,7 +57,7 @@
 
     NSLog(@"Content from %@:  %@", arrayController, [arrayController arrangedObjects]);
 
-    if ([[arrayController arrangedObjects] count] > 0) {
+    if ([self hasImportableDBs]) {
         [[self window] orderFront:self];
     }
 }
