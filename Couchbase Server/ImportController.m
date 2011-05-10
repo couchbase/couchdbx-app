@@ -96,16 +96,20 @@
     [progressIndicator displayIfNeeded];
 }
 
+-(void)completedAll {
+    [progressIndicator setHidden:YES];
+    [label setStringValue:@"Import complete.  Please remember to reresh Futon."];
+    [label setHidden:NO];
+    [importButton setTitle:@"Done"];
+    [importButton setEnabled:YES];
+    [importButton setAction:@selector(orderOut:)];
+    [importButton setTarget:[self window]];
+}
+
 -(void)completedFile {
     NSLog(@"Completed a file, %d more to go.", numFiles-1);
     if (--numFiles == 0) {
-        [progressIndicator setHidden:YES];
-        [label setStringValue:@"Import complete.  Please remember to reresh Futon."];
-        [label setHidden:NO];
-        [importButton setTitle:@"Done"];
-        [importButton setEnabled:YES];
-        [importButton setAction:@selector(orderOut:)];
-        [importButton setTarget:[self window]];
+        [self completedAll];
     }
 }
 
@@ -231,6 +235,10 @@ static void statusCallback(FSFileOperationRef fileOp,
         if ([db shouldImport]) {
             [self importFile: db];
         }
+    }
+
+    if (numFiles == 0) {
+        [self completedAll];
     }
 }
 
