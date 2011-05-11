@@ -6,19 +6,32 @@ builddir="${instdir}build/"
 dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchdbx-core"
 
 clean_lib() {
+    echo "Cleaning $1"
     while read something
     do
-        install_name_tool -change "$instdir$something" "$something" "$1"
-        install_name_tool -change "$builddir$something" "$something" "$1"
+        base=${something##*/}
+        echo "  Fixing $something -> lib/$base"
+        test -f "$dest/lib/$base" || cp "$something" "$dest/lib/$base"
+        chmod 755 "$dest/lib/$base"
+        install_name_tool -change "$something" "lib/$base" "$1"
     done
 }
 
+# The wrong mozjs is installed.  We require homebrew's spidermonkey to
+# build, and we link against it, but we've built our own.  This is a
+# kind of ugly build hack, but it's why we test.
+rm "$dest/lib/libmozjs.dylib"
+
 # Find and cleanup all libs.
-for l in "$dest/lib/"*.dylib "$dest/lib/couchdb/bin/couchjs" \
-    "$dest/lib/couchdb/erlang/lib/"couch-*/priv/lib/couch_icu_driver.so
+# Do this twice so it picks up libs that got pulled in.
+for i in 1 2 3
 do
-    otool -L "$l" | grep "$instdir" \
-        | sed -e 's/(\(.*\))//g' -e "s,${instdir}build/,," | clean_lib "$l"
+    for fn in "$dest/lib/"*.dylib "$dest/lib/couchdb/bin/couchjs" \
+	"$dest/lib/couchdb/erlang/lib/"couch-*/priv/lib/couch_icu_driver.so
+    do
+	otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
+            | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
+    done
 done
 
 absolutize() {
