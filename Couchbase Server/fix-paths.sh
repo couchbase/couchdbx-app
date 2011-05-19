@@ -87,7 +87,6 @@ rm -rf \
     observer-*/ \
     odbc-*/ \
     orber-*/ \
-    os_mon-*/ \
     otp_mibs-*/ \
     parsetools-*/ \
     percept-*/ \
