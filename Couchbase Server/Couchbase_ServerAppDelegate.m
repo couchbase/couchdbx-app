@@ -140,7 +140,7 @@
     }
     
     statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 26.0];
-    NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status.png"];
+    NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status-bw.png"];
     [statusBar setImage: statusIcon];
     [statusBar setMenu: statusMenu];
     [statusBar setEnabled:YES];

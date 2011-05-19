@@ -31,6 +31,7 @@
 		DA1AD360133DA58D00E6A9E1 /* Couchbase_ServerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD35F133DA58D00E6A9E1 /* Couchbase_ServerTests.h */; };
 		DA1AD362133DA58D00E6A9E1 /* Couchbase_ServerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD361133DA58D00E6A9E1 /* Couchbase_ServerTests.m */; };
 		DA3C66FA136BA741007C835A /* native-query.ini in Enable Native Query Server */ = {isa = PBXBuildFile; fileRef = DA3C66F7136BA6BC007C835A /* native-query.ini */; };
+		DA45A4391384EF0300DF68ED /* Couchbase-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */; };
 		DAADFB01133DA61700B282D6 /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF7133DA61700B282D6 /* Importer.nib */; };
 		DAADFB02133DA61700B282D6 /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */; };
 		DAADFB03133DA61700B282D6 /* Couchbase.icns in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF9133DA61700B282D6 /* Couchbase.icns */; };
@@ -151,6 +152,7 @@
 		DA1AD35F133DA58D00E6A9E1 /* Couchbase_ServerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Couchbase_ServerTests.h; sourceTree = "<group>"; };
 		DA1AD361133DA58D00E6A9E1 /* Couchbase_ServerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Couchbase_ServerTests.m; sourceTree = "<group>"; };
 		DA3C66F7136BA6BC007C835A /* native-query.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = "native-query.ini"; sourceTree = "<group>"; };
+		DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status-bw.png"; sourceTree = "<group>"; };
 		DAADFAF7133DA61700B282D6 /* Importer.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Importer.nib; sourceTree = "<group>"; };
 		DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
 		DAADFAF9133DA61700B282D6 /* Couchbase.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Couchbase.icns; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
 				DAADFAF7133DA61700B282D6 /* Importer.nib */,
 				DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */,
+				DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */,
 				DAADFAF9133DA61700B282D6 /* Couchbase.icns */,
 				DAADFAFA133DA61700B282D6 /* Credits.html */,
 				DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */,
@@ -405,6 +408,7 @@
 				DAAEC783133DBD1E00EE9189 /* dsa_pub.pem in Resources */,
 				DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */,
 				DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */,
+				DA45A4391384EF0300DF68ED /* Couchbase-Status-bw.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
