@@ -33,7 +33,9 @@
 
 -(void)logMessage:(NSString*)msg {
     const char *str = [msg cStringUsingEncoding:NSUTF8StringEncoding];
-    fwrite(str, strlen(str), 1, logFile);
+    if (str) {
+        fwrite(str, strlen(str), 1, logFile);
+    }
 }
 
 -(void)flushLog {
