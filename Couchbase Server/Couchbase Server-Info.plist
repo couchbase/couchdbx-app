@@ -23,7 +23,7 @@
 	<key>CFBundleURLTypes</key>
 	<array/>
 	<key>CFBundleVersion</key>
-	<string>1.2.0.a14</string>
+	<string>1.2.0.a15</string>
 	<key>HomePage</key>
 	<string>http://127.0.0.1:5984/_utils/</string>
 	<key>LSApplicationCategoryType</key>
