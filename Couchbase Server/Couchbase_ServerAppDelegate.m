@@ -233,6 +233,7 @@
 		[newIni appendString:dataDir];
 		[newIni appendString:@"\n\n"];
 		[newIni appendString:@"[query_servers]\njavascript = bin/couchjs share/couchdb/server/main.js\n"];
+		[newIni appendString:@"coffeescript = bin/couchjs share/couchdb/server/main-coffee.js\n"];
 		[newIni writeToFile:iniFile atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 		[newIni release];
 	}
