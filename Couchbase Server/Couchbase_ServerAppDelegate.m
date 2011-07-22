@@ -234,6 +234,8 @@
 		[newIni appendString:@"\n\n"];
 		[newIni appendString:@"[query_servers]\njavascript = bin/couchjs share/couchdb/server/main.js\n"];
 		[newIni appendString:@"coffeescript = bin/couchjs share/couchdb/server/main-coffee.js\n"];
+		[newIni appendString:@"\n"];
+		[newIni appendString:@"[product]\ntitle = Couchbase Single Server\nversion = 2.0.0r\nlicense = community\n"];
 		[newIni writeToFile:iniFile atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 		[newIni release];
 	}
