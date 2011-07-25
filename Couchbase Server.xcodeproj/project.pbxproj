@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
+		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
 		DA1AD338133DA58D00E6A9E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
 		DA1AD342133DA58D00E6A9E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD340133DA58D00E6A9E1 /* InfoPlist.strings */; };
 		DA1AD345133DA58D00E6A9E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD344133DA58D00E6A9E1 /* main.m */; };
@@ -134,6 +136,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
+		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
+		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
+		DA0E692313DD364400CDAC6D /* iniparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iniparser.h; sourceTree = "<group>"; };
 		DA1AD333133DA58D00E6A9E1 /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DA1AD33A133DA58D00E6A9E1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -266,6 +272,10 @@
 		DA1AD33E133DA58D00E6A9E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DA0E692013DD364400CDAC6D /* dictionary.c */,
+				DA0E692113DD364400CDAC6D /* dictionary.h */,
+				DA0E692213DD364400CDAC6D /* iniparser.c */,
+				DA0E692313DD364400CDAC6D /* iniparser.h */,
 				DA3C66F7136BA6BC007C835A /* couchx.ini */,
 				DAAEC781133DBD0700EE9189 /* dsa_pub.pem */,
 				DAADFB37133DA84400B282D6 /* erl */,
@@ -479,6 +489,8 @@
 				DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */,
 				DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */,
 				DAADFB16133DA68B00B282D6 /* SUUpdaterDelegate.m in Sources */,
+				DA0E692413DD364400CDAC6D /* dictionary.c in Sources */,
+				DA0E692513DD364400CDAC6D /* iniparser.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

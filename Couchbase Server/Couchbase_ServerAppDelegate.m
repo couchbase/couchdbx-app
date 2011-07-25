@@ -7,6 +7,8 @@
 #import "Sparkle/Sparkle.h"
 #import "SUUpdaterDelegate.h"
 
+#import "iniparser.h"
+
 @implementation Couchbase_ServerAppDelegate
 
 -(void)applicationWillTerminate:(NSNotification *)notification
@@ -206,7 +208,7 @@
     return [self applicationSupportFolder:@"CouchbaseServer"];
 }
 
--(void)maybeSetDataDirs
+-(void)setInitParams
 {
 	// determine data dir
 	NSString *dataDir = [self applicationSupportFolder];
@@ -214,37 +216,45 @@
 	if(![[NSFileManager defaultManager] fileExistsAtPath:dataDir]) {
 		[[NSFileManager defaultManager] createDirectoryAtPath:dataDir withIntermediateDirectories:YES attributes:nil error:NULL];
 	}
-    
-	// if data dirs are not set in local.ini
-	NSString *iniFile = [self finalConfigPath];
-	NSString *ini = [NSString stringWithContentsOfFile:iniFile encoding:NSUTF8StringEncoding error:NULL];
-    if (!ini) {
-        ini = @"";
+
+    dictionary* iniDict = iniparser_load([[self finalConfigPath] UTF8String]);
+    if (iniDict == NULL) {
+        iniDict = dictionary_new(0);
+        assert(iniDict);
     }
-	NSRange found = [ini rangeOfString:dataDir];
-	if(found.length == 0) {
-		//   set them
-		NSMutableString *newIni = [[NSMutableString alloc] init];
-        assert(newIni);
-		[newIni appendString: ini];
-		[newIni appendString:@"[couchdb]\ndatabase_dir = "];
-		[newIni appendString:dataDir];
-		[newIni appendString:@"\nview_index_dir = "];
-		[newIni appendString:dataDir];
-		[newIni appendString:@"\n\n"];
-		[newIni appendString:@"[query_servers]\njavascript = bin/couchjs share/couchdb/server/main.js\n"];
-		[newIni appendString:@"coffeescript = bin/couchjs share/couchdb/server/main-coffee.js\n"];
-		[newIni appendString:@"\n"];
-		[newIni appendString:@"[product]\ntitle = Couchbase Single Server\nversion = 2.0.0r\nlicense = community\n"];
-		[newIni writeToFile:iniFile atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-		[newIni release];
-	}
-	// done
+
+    dictionary_set(iniDict, "couchdb", NULL);
+    if (iniparser_getstring(iniDict, "couchdb:database_dir", NULL) == NULL) {
+        dictionary_set(iniDict, "couchdb:database_dir", [dataDir UTF8String]);
+    }
+    if (iniparser_getstring(iniDict, "couchdb:view_index_dir", NULL) == NULL) {
+        dictionary_set(iniDict, "couchdb:view_index_dir", [dataDir UTF8String]);
+    }
+    
+    dictionary_set(iniDict, "query_servers", NULL);
+    dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
+    dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
+
+    dictionary_set(iniDict, "product", NULL);
+    NSString *vstr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    dictionary_set(iniDict, "product:title", [vstr UTF8String]);
+
+    NSString *tmpfile = [NSString stringWithFormat:@"%@.tmp", [self finalConfigPath]];
+    FILE *f = fopen([tmpfile UTF8String], "w");
+    if (f) {
+        iniparser_dump_ini(iniDict, f);
+        fclose(f);
+        rename([tmpfile UTF8String], [[self finalConfigPath] UTF8String]);
+    } else {
+        NSLog(@"Can't write to temporary config file:  %@:  %s\n", tmpfile, strerror(errno));
+    }
+
+    iniparser_freedict(iniDict);
 }
 
 -(void)launchCouchDB
 {
-	[self maybeSetDataDirs];
+	[self setInitParams];
     
 	in = [[NSPipe alloc] init];
 	out = [[NSPipe alloc] init];
