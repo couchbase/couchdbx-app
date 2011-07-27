@@ -5,7 +5,7 @@ all: cb.plist
 
 cb.plist: cb.plist.tmpl
 	sed s/@VERSION@/$(VERSION)/g $< > $@
-	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
+	cp cb.plist "Couchbase Server/Couchbase Single Server-Info.plist"
 
 clean:
-	rm -rf build cb.plist "Couchbase Server/Couchbase Server-Info.plist"
+	rm -rf build cb.plist "Couchbase Server/Couchbase Single Server-Info.plist"

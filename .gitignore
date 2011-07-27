@@ -1,6 +1,6 @@
 *~
 .DS_Store
-/Couchbase Server/Couchbase Server-Info.plist
+/Couchbase Server/Couchbase Single Server-Info.plist
 /build
 /cb.plist
 project.xcworkspace
