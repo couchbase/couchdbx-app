@@ -233,7 +233,6 @@
     
     dictionary_set(iniDict, "query_servers", NULL);
     dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
-    dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
 
     dictionary_set(iniDict, "product", NULL);
     NSString *vstr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
