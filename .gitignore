@@ -3,5 +3,6 @@
 /Couchbase Server/Couchbase Server-Info.plist
 /build
 /cb.plist
+erlang*.tgz
 project.xcworkspace
 xcuserdata

@@ -29,7 +29,9 @@
 -(IBAction)start:(id)sender;
 -(IBAction)browse:(id)sender;
 
--(void)launchCouchDB;
+-(BOOL)isSingle;
+
+-(void)launchServer;
 -(void)stop;
 -(void)openFuton;
 -(void)taskTerminated:(NSNotification *)note;

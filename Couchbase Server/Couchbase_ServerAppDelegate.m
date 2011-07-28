@@ -11,6 +11,16 @@
 
 @implementation Couchbase_ServerAppDelegate
 
+-(BOOL)isSingle
+{
+    return
+#ifdef COUCHBASE_SINGLE
+    YES;
+#else
+    NO;
+#endif
+}
+
 -(void)applicationWillTerminate:(NSNotification *)notification
 {
 	[self ensureFullCommit];
@@ -46,6 +56,10 @@
 
 -(void)ensureFullCommit
 {
+    if (![self isSingle]) {
+        return;
+    }
+
 	// find couch.uri file
 	NSMutableString *urifile = [[NSMutableString alloc] init];
 	[urifile appendString: [task currentDirectoryPath]]; // couchdbx-core
@@ -162,7 +176,7 @@
     [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
     [self updateAddItemButtonState];
     
-	[self launchCouchDB];
+	[self launchServer];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"runImport"]) {
         [self showImportWindow:nil];
@@ -176,7 +190,7 @@
         return;
     } 
     
-    [self launchCouchDB];
+    [self launchServer];
 }
 
 -(void)stop
@@ -210,6 +224,11 @@
 
 -(void)setInitParams
 {
+
+    if (![self isSingle]) {
+        return;
+    }
+
 	// determine data dir
 	NSString *dataDir = [self applicationSupportFolder];
 	// create if it doesn't exist
@@ -252,7 +271,7 @@
     iniparser_freedict(iniDict);
 }
 
--(void)launchCouchDB
+-(void)launchServer
 {
 	[self setInitParams];
     
@@ -264,21 +283,18 @@
     
 	NSMutableString *launchPath = [[NSMutableString alloc] init];
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
-	[launchPath appendString:@"/couchdbx-core"];
 	[task setCurrentDirectoryPath:launchPath];
 
+    [launchPath appendString:@"/start-server.sh"];
+
     NSDictionary *env = [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"./bin:/bin:/usr/bin", @"PATH",
                          NSHomeDirectory(), @"HOME",
                          [self finalConfigPath], @"COUCHDB_ADDITIONAL_CONFIG_FILE",
                          nil, nil];
     [task setEnvironment:env];
     
-	[launchPath appendString:@"/bin/couchdb"];
     [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
 	[task setLaunchPath:launchPath];
-	NSArray *args = [[NSArray alloc] initWithObjects:@"-i", nil];
-	[task setArguments:args];
 	[task setStandardInput:in];
 	[task setStandardOutput:out];
     
@@ -317,7 +333,7 @@
     }
     
     [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self selector:@selector(launchCouchDB)
+                                     target:self selector:@selector(launchServer)
                                    userInfo:nil
                                     repeats:NO];
 }
@@ -355,7 +371,7 @@
                                         encoding: NSUTF8StringEncoding];
     
     if (!hasSeenStart) {
-        if ([s hasPrefix:@"Apache CouchDB has started"]) {
+        if ([s rangeOfString:@"Membase Server has started on web port 8091"].location != NSNotFound) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"browseAtStart"]) {
                 [self openFuton];
