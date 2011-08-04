@@ -50,6 +50,7 @@ for f in bin/*
 do
     fn="$dest/$f"
     otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
+        | grep -v /System \
         | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
 done
 
@@ -59,6 +60,7 @@ do
     for fn in `find * -name '*.dylib'` `find * -name '*.so'`
     do
         otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
+            | grep -v /System \
             | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
     done
 done
