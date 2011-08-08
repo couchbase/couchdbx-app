@@ -11,11 +11,7 @@ echo DYLD_LIBRARY_PATH is "$DYLD_LIBRARY_PATH"
 PATH="$MEMBASE_TOP:$MEMBASE_TOP/bin":/bin:/usr/bin
 export PATH
 
-erl -noshell -setcookie nocookie -sname init -run init stop 2>&1 > /dev/null
-if [ $? -ne 0 ]
-then
-    exit 1
-fi
+epmd -daemon
 
 couch_start_arguments=""
 
@@ -72,6 +68,7 @@ file = @HOME@/Library/Logs/couchbase-server.log
 EOF
 
 touch "$CUSTOM_CONFIG_FILE"
+touch "$HOME/Library/Preferences/couchbase-server.ini"
 
 sed "s,@APP_DIR@,$MEMBASE_TOP,g" < "$MEMBASE_TOP/bin/couchjs.tpl" > "$MEMBASE_TOP/bin/couchjs"
 
