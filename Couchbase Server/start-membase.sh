@@ -65,6 +65,11 @@ coffeescript = "@APP_PATH@/bin/couchjs" "@APP_PATH@/share/couchdb/server/main-co
 
 [log]
 file = @HOME@/Library/Logs/couchbase-server.log
+
+[access_log]
+enable = false
+format = extended
+file = @HOME@/Library/Logs/couch_access.log
 EOF
 
 touch "$CUSTOM_CONFIG_FILE"
