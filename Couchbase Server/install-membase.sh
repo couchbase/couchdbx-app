@@ -46,7 +46,7 @@ cp "$topdir/ns_server/priv/init.sql" \
 cd "$dest"
 
 # Fun with libraries
-for f in bin/*
+for f in bin/* lib/couchdb/bin/*
 do
     fn="$dest/$f"
     otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
