@@ -76,6 +76,7 @@ touch "$CUSTOM_CONFIG_FILE"
 touch "$HOME/Library/Preferences/couchbase-server.ini"
 
 sed "s,@APP_DIR@,$MEMBASE_TOP,g" < "$MEMBASE_TOP/bin/couchjs.tpl" > "$MEMBASE_TOP/bin/couchjs"
+chmod 755 "$MEMBASE_TOP/bin/couchjs"
 
 mkdir -p "$datadir/var/lib/membase/logs"
 cd "$datadir"
