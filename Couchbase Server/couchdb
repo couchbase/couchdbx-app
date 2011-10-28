@@ -17,7 +17,7 @@ DEFAULT_CONFIG_DIR=`pwd`/etc/couchdb/default.d
 DEFAULT_CONFIG_FILE=`pwd`/etc/couchdb/default.ini
 ERL_START_OPTIONS="-sasl errlog_type error +K true +A 4"
 HEART_BEAT_TIMEOUT=11
-HEART_COMMAND="`pwd`/bin/couchdb -k"
+HEART_COMMAND="'`pwd`/bin/couchdb' -k"
 INTERACTIVE=false
 KILL=false
 LOCAL_CONFIG_DIR=`pwd`/etc/couchdb/local.d
@@ -124,8 +124,8 @@ $1
 EOF
 `"
     fi
-    start_arguments="$start_arguments \"$1\""
-    background_start_arguments="$background_start_arguments -a $1"
+    start_arguments="$start_arguments '$1'"
+    background_start_arguments="$background_start_arguments -a '$1'"
 }
 
 _add_config_dir () {
@@ -141,6 +141,10 @@ _load_config () {
     _add_config_dir "$DEFAULT_CONFIG_DIR"
     _add_config_file "$LOCAL_CONFIG_FILE"
     _add_config_dir "$LOCAL_CONFIG_DIR"
+    if [ "$COUCHDB_ADDITIONAL_CONFIG_FILE" != '' ]
+    then
+        _add_config_file "$COUCHDB_ADDITIONAL_CONFIG_FILE"
+    fi
 }
 
 _reset_config () {
@@ -222,6 +226,8 @@ start_couchdb () {
         touch $PID_FILE
         interactive_option="+Bd -noinput"
     fi
+    command="'`pwd`/bin/erl' -sname couchdb $interactive_option $ERL_START_OPTIONS \
+        -env ERL_LIBS '`pwd`/lib/couchdb/erlang/lib' -couch_ini $start_arguments -s couch"
 
     # Find plugins and add them to the Erlang path.
     if test -d "`pwd`/lib/couchdb/erlang/lib/../../plugins"; then
@@ -239,8 +245,6 @@ start_couchdb () {
         export ERL_ZFLAGS
     fi
 
-    command="\"`pwd`/bin/erl\" $interactive_option $ERL_START_OPTIONS \
-        -env ERL_LIBS "\"`pwd`/lib/couchdb/erlang/lib\"" -couch_ini $start_arguments -s couch"
     if test "$BACKGROUND" = "true" -a "$RECURSED" = "false"; then
         $0 $background_start_arguments -b -r $RESPAWN_TIMEOUT -p $PID_FILE \
             -o $STDOUT_FILE -e $STDERR_FILE -R &
@@ -272,8 +276,7 @@ EOF
                 sleep $RESPAWN_TIMEOUT
             done
         else
-            echo "starting:  exec $command"
-            eval exec $command
+            eval exec "$command"
         fi
     fi
 }
