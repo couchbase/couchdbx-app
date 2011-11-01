@@ -226,7 +226,7 @@ start_couchdb () {
         touch $PID_FILE
         interactive_option="+Bd -noinput"
     fi
-    command="'`pwd`/bin/erl' -sname couchdb $interactive_option $ERL_START_OPTIONS \
+    command="'`pwd`/bin/erl' $interactive_option $ERL_START_OPTIONS \
         -env ERL_LIBS '`pwd`/lib/couchdb/erlang/lib' -couch_ini $start_arguments -s couch"
 
     # Find plugins and add them to the Erlang path.
