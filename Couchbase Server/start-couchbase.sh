@@ -1,14 +1,14 @@
 #!/bin/sh -e
 
-MEMBASE_TOP=`pwd`/membase-core
-export MEMBASE_TOP
+COUCHBASE_TOP=`pwd`/couchbase-core
+export COUCHBASE_TOP
 
-DYLD_LIBRARY_PATH="$MEMBASE_TOP:$MEMBASE_TOP/lib"
+DYLD_LIBRARY_PATH="$COUCHBASE_TOP:$COUCHBASE_TOP/lib"
 export DYLD_LIBRARY_PATH
 
 echo DYLD_LIBRARY_PATH is "$DYLD_LIBRARY_PATH"
 
-PATH="$MEMBASE_TOP:$MEMBASE_TOP/bin":/bin:/usr/bin
+PATH="$COUCHBASE_TOP:$COUCHBASE_TOP/bin":/bin:/usr/bin
 export PATH
 
 epmd -daemon
@@ -38,20 +38,20 @@ _load_config () {
     fi
 }
 
-datadir="$HOME/Library/Application Support/Membase"
+datadir="$HOME/Library/Application Support/Couchbase"
 
-DEFAULT_CONFIG_DIR="$MEMBASE_TOP/etc/couchdb/default.d"
-DEFAULT_CONFIG_FILE="$MEMBASE_TOP/etc/couchdb/default.ini"
-LOCAL_CONFIG_DIR="$MEMBASE_TOP/etc/couchdb/local.d"
-LOCAL_CONFIG_FILE="$MEMBASE_TOP/etc/couchdb/local.ini"
+DEFAULT_CONFIG_DIR="$COUCHBASE_TOP/etc/couchdb/default.d"
+DEFAULT_CONFIG_FILE="$COUCHBASE_TOP/etc/couchdb/default.ini"
+LOCAL_CONFIG_DIR="$COUCHBASE_TOP/etc/couchdb/local.d"
+LOCAL_CONFIG_FILE="$COUCHBASE_TOP/etc/couchdb/local.ini"
 PLATFORM_CONFIG_FILE="$datadir/etc/couch-platform.ini"
 CUSTOM_CONFIG_FILE="$datadir/etc/couch-custom.ini"
 
 mkdir -p "$DEFAULT_CONFIG_DIR" "$LOCAL_CONFIG_DIR" "$datadir/etc"
 
-couchname=`basename "$MEMBASE_TOP/lib/couchdb/erlang/lib/"couch*/`
+couchname=`basename "$COUCHBASE_TOP/lib/couchdb/erlang/lib/"couch*/`
 
-sed -e "s,@APP_PATH@,$MEMBASE_TOP,g" -e "s,@DATADIR@,$datadir,g" \
+sed -e "s,@APP_PATH@,$COUCHBASE_TOP,g" -e "s,@DATADIR@,$datadir,g" \
     -e "s,@HOME@,$HOME,g" -e "s,@COUCHNAME@,$couchname,g" <<EOF > "$PLATFORM_CONFIG_FILE"
 [couchdb]
 database_dir = @DATADIR@/var/lib/couchdb
@@ -75,19 +75,19 @@ EOF
 touch "$CUSTOM_CONFIG_FILE"
 touch "$HOME/Library/Preferences/couchbase-server.ini"
 
-sed "s,@APP_DIR@,$MEMBASE_TOP,g" < "$MEMBASE_TOP/bin/couchjs.tpl" > "$MEMBASE_TOP/bin/couchjs"
-chmod 755 "$MEMBASE_TOP/bin/couchjs"
+sed "s,@APP_DIR@,$COUCHBASE_TOP,g" < "$COUCHBASE_TOP/bin/couchjs.tpl" > "$COUCHBASE_TOP/bin/couchjs"
+chmod 755 "$COUCHBASE_TOP/bin/couchjs"
 
-mkdir -p "$datadir/var/lib/membase/logs"
+mkdir -p "$datadir/var/lib/couchbase/logs"
 cd "$datadir"
 
-ERL_LIBS="$MEMBASE_TOP/lib/couchdb/erlang/lib:$MEMBASE_TOP/lib/ns_server/erlang/lib:$MEMBASE_TOP/lib/couchdb/plugins"
+ERL_LIBS="$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
 export ERL_LIBS
 
-mkdir -p "$datadir/etc/membase"
+mkdir -p "$datadir/etc/couchbase"
 
-sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$MEMBASE_TOP|g" \
-    "$MEMBASE_TOP/etc/membase/static_config.in" > "$datadir/etc/membase/static_config"
+sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
+    "$COUCHBASE_TOP/etc/couchbase/static_config.in" > "$datadir/etc/couchbase/static_config"
 
 _load_config
 _add_config_file "$PLATFORM_CONFIG_FILE"
@@ -100,6 +100,6 @@ eval exec erl \
     $* \
     -run ns_bootstrap -- \
     -couch_ini $couch_start_arguments \
-    -ns_server config_path "\"\\\"$datadir/etc/membase/static_config\\\"\"" \
-    -ns_server pidfile "\"\\\"$datadir/membase-server.pid\\\"\"" \
+    -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
+    -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
     -ns_server dont_suppress_stderr_logger true

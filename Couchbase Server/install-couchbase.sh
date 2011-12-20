@@ -2,7 +2,7 @@
 
 topdir="$PROJECT_DIR/.."
 
-dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/membase-core"
+dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core"
 
 clean_lib() {
     while read something
@@ -35,9 +35,9 @@ rm "$dest/bin/couchjs"
 cp "$PROJECT_DIR/Couchbase Server/erl" "$dest/bin/erl"
 cp "$PROJECT_DIR/Couchbase Server/couchjs.tpl" "$dest/bin/couchjs.tpl"
 cp "$PROJECT_DIR/Couchbase Server/erl" "$dest/lib/erlang/bin/erl"
-cp "$PROJECT_DIR/Couchbase Server/start-membase.sh" "$dest/../start-server.sh"
-rm "$dest/etc/membase/static_config"
-cp "$topdir/ns_server/etc/static_config.in" "$dest/etc/membase/static_config.in"
+cp "$PROJECT_DIR/Couchbase Server/start-couchbase.sh" "$dest/../start-server.sh"
+rm "$dest/etc/couchbase/static_config"
+cp "$topdir/ns_server/etc/static_config.in" "$dest/etc/couchbase/static_config.in"
 
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 cp "$topdir/ns_server/priv/init.sql" \

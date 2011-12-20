@@ -190,7 +190,7 @@
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
 		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
 		DA0E692313DD364400CDAC6D /* iniparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iniparser.h; sourceTree = "<group>"; };
-		DA1AD333133DA58D00E6A9E1 /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA1AD333133DA58D00E6A9E1 /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Couchbase Server.app"; path = "Couchbase Single Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DA1AD33A133DA58D00E6A9E1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DA1AD33B133DA58D00E6A9E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -210,8 +210,8 @@
 		DA3C66F7136BA6BC007C835A /* couchx.ini */ = {isa = PBXFileReference; lastKnownFileType = text; path = couchx.ini; sourceTree = "<group>"; };
 		DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status-bw.png"; sourceTree = "<group>"; };
 		DA638E2313E1F7BA005E6A5B /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA638E3613E1F99D005E6A5B /* install-membase.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-membase.sh"; sourceTree = "<group>"; };
-		DA638E3713E1FA08005E6A5B /* start-membase.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-membase.sh"; sourceTree = "<group>"; };
+		DA638E3613E1F99D005E6A5B /* install-couchbase.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-couchbase.sh"; sourceTree = "<group>"; };
+		DA638E3713E1FA08005E6A5B /* start-couchbase.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-couchbase.sh"; sourceTree = "<group>"; };
 		DAADFAF7133DA61700B282D6 /* Importer.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Importer.nib; sourceTree = "<group>"; };
 		DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
 		DAADFAF9133DA61700B282D6 /* Couchbase.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Couchbase.icns; sourceTree = "<group>"; };
@@ -338,10 +338,10 @@
 				DA0E692013DD364400CDAC6D /* dictionary.c */,
 				DA0E692113DD364400CDAC6D /* dictionary.h */,
 				DA0E692213DD364400CDAC6D /* iniparser.c */,
-				DA638E3713E1FA08005E6A5B /* start-membase.sh */,
+				DA638E3713E1FA08005E6A5B /* start-couchbase.sh */,
 				DA0E692313DD364400CDAC6D /* iniparser.h */,
 				DA3C66F7136BA6BC007C835A /* couchx.ini */,
-				DA638E3613E1F99D005E6A5B /* install-membase.sh */,
+				DA638E3613E1F99D005E6A5B /* install-couchbase.sh */,
 				DAAEC781133DBD0700EE9189 /* dsa_pub.pem */,
 				DAADFB37133DA84400B282D6 /* erl */,
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
@@ -468,7 +468,7 @@
 		DA1AD32A133DA58D00E6A9E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = NorthScale;
 			};
 			buildConfigurationList = DA1AD32D133DA58D00E6A9E1 /* Build configuration list for PBXProject "Couchbase Server" */;
@@ -556,7 +556,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Couchbase Server/install-membase.sh",
+				"$(SRCROOT)/Couchbase Server/install-couchbase.sh",
 			);
 			name = "Install Core";
 			outputPaths = (
@@ -591,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "VER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/membase-core\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
+			shellScript = "VER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
 		};
 		DAADFB34133DA78D00B282D6 /* Fixup Paths */ = {
 			isa = PBXShellScriptBuildPhase;

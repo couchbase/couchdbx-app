@@ -371,7 +371,7 @@
                                         encoding: NSUTF8StringEncoding];
     
     if (!hasSeenStart) {
-        if ([s rangeOfString:@"Membase Server has started on web port 8091"].location != NSNotFound) {
+        if ([s rangeOfString:@"Couchbase Server has started on web port 8091"].location != NSNotFound) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"browseAtStart"]) {
                 [self openFuton];
