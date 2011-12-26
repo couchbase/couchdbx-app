@@ -12,6 +12,7 @@
 			buildConfigurationList = DA638E2913E1F7C9005E6A5B /* Build configuration list for PBXAggregateTarget "Couchbase Server Zip" */;
 			buildPhases = (
 				DA638E2813E1F7C9005E6A5B /* Zip it up */,
+				E867F93014A8CD0800F64EC8 /* Create a dmg */,
 			);
 			dependencies = (
 				DA638E2D13E1F810005E6A5B /* PBXTargetDependency */,
@@ -621,6 +622,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"$PROJECT_NAME.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$PROJECT_NAME-$V.zip\"";
+		};
+		E867F93014A8CD0800F64EC8 /* Create a dmg */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create a dmg";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nhdiutil create \"$PROJECT_NAME-$V.dmg\" -srcfolder \"$PROJECT_NAME.app\" -ov";
 		};
 /* End PBXShellScriptBuildPhase section */
 
