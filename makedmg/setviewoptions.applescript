@@ -8,7 +8,7 @@ on run (volumeName)
                         set the bounds of container window to {400, 100, 885, 430}
                         set theViewOptions to the icon view options of container window
                         set arrangement of theViewOptions to not arranged
-                        set background picture of theViewOptions to file ".background:welcome-background.png"
+                        set background picture of theViewOptions to file ".background:dmg-background.png"
                         set icon size of theViewOptions to 72
                         set dsStore to "\"" & "/Volumes/" & volumeName & "/" & ".DS_STORE\""
                         make new alias file at container window to POSIX file "/Applications" with properties {name:"Applications"}
