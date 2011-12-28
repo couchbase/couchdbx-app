@@ -635,7 +635,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nhdiutil create \"$PROJECT_NAME-$V.dmg\" -srcfolder \"$PROJECT_NAME.app\" -ov";
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp -rf ../../makedmg/* .\ncp -f \"../../Couchbase Server/Couchbase.icns\" .\ncp -f  \"../../../ns_server/priv/public/images/welcome-background.png\" .\n./makedmg.sh \"$PROJECT_NAME-$V.dmg\" \"Couchbase Server.app\" \"Couchbase Server\" welcome-background.png Couchbase.icns";
 		};
 /* End PBXShellScriptBuildPhase section */
 
