@@ -64,3 +64,27 @@ do
             | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
     done
 done
+
+cd "$topdir/install"
+install_absolute_path=`pwd`
+echo `pwd`
+
+cd "$dest"
+# fix cli paths
+echo "fixing path for cb* commands"
+echo "$install_absolute_path"
+sed -ie "s,$install_absolute_path,../,g" bin/couchbase-cli
+sed -ie "s,$install_absolute_path,../,g" bin/cbstats
+sed -ie "s,$install_absolute_path,../,g" bin/cbflushctl
+sed -ie "s,$install_absolute_path,../,g" bin/cbadm-online-restore
+sed -ie "s,$install_absolute_path,../,g" bin/cbadm-online-update
+sed -ie "s,$install_absolute_path,../,g" bin/cbadm-tap-registration
+sed -ie "s,$install_absolute_path,../,g" bin/cbbackup
+sed -ie "s,$install_absolute_path,../,g" bin/cbbackup-incremental
+sed -ie "s,$install_absolute_path,../,g" bin/cbbackup-merge-incremental
+sed -ie "s,$install_absolute_path,../,g" bin/cbdbconvert
+sed -ie "s,$install_absolute_path,../,g" bin/cbdbmaint
+sed -ie "s,$install_absolute_path,../,g" bin/cbdbupgrade
+sed -ie "s,$install_absolute_path,../,g" bin/cbrestore
+sed -ie "s,$install_absolute_path,../,g" bin/cbworkloadgen
+
