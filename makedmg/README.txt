@@ -12,3 +12,5 @@ installation from "~/Library/Application Support/Couchbase" and
 2- The application will not start if you attempt to run the server without
 copying to a writeable disk. The dmg file which contains "Couchbase Server.app"
 is a read-only format and the server needs to be deployed on a writable volume.
+3- Couchbase CLI tools (cbstats,cbrestore,cbworkloadgen) are available here:
+/Applications/Couchbase\ Server.app/Contents/Resources/couchbase-core/bin
