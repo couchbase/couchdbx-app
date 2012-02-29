@@ -92,6 +92,7 @@
 		DAADFB32133DA75F00B282D6 /* var in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB27133DA75F00B282D6 /* var */; };
 		DAADFB3B133DA84E00B282D6 /* erl in Install Proper erl start thing */ = {isa = PBXBuildFile; fileRef = DAADFB37133DA84400B282D6 /* erl */; };
 		DAAEC783133DBD1E00EE9189 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = DAAEC781133DBD0700EE9189 /* dsa_pub.pem */; };
+		E802C02A14FEDCD100A54EC8 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = E802C02414FEDB9500A54EC8 /* LICENSE.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +243,11 @@
 		DAADFB37133DA84400B282D6 /* erl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = erl; sourceTree = "<group>"; };
 		DAADFB38133DA84400B282D6 /* fix-paths.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fix-paths.sh"; sourceTree = "<group>"; };
 		DAAEC781133DBD0700EE9189 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = SOURCE_ROOT; };
+		E802C02414FEDB9500A54EC8 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = makedmg/LICENSE.txt; sourceTree = SOURCE_ROOT; };
+		E802C02614FEDBDB00A54EC8 /* dmg-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dmg-background.png"; path = "makedmg/dmg-background.png"; sourceTree = SOURCE_ROOT; };
+		E802C02714FEDBDB00A54EC8 /* makedmg.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = makedmg.sh; path = makedmg/makedmg.sh; sourceTree = SOURCE_ROOT; };
+		E802C02814FEDBDB00A54EC8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = makedmg/README.txt; sourceTree = SOURCE_ROOT; };
+		E802C02914FEDBDB00A54EC8 /* setviewoptions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = setviewoptions.applescript; path = makedmg/setviewoptions.applescript; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +342,11 @@
 		DA1AD33E133DA58D00E6A9E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E802C02614FEDBDB00A54EC8 /* dmg-background.png */,
+				E802C02714FEDBDB00A54EC8 /* makedmg.sh */,
+				E802C02814FEDBDB00A54EC8 /* README.txt */,
+				E802C02914FEDBDB00A54EC8 /* setviewoptions.applescript */,
+				E802C02414FEDB9500A54EC8 /* LICENSE.txt */,
 				DA0E692013DD364400CDAC6D /* dictionary.c */,
 				DA0E692113DD364400CDAC6D /* dictionary.h */,
 				DA0E692213DD364400CDAC6D /* iniparser.c */,
@@ -523,6 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E802C02A14FEDCD100A54EC8 /* LICENSE.txt in Resources */,
 				DA638E0413E1F7BA005E6A5B /* InfoPlist.strings in Resources */,
 				DA638E0513E1F7BA005E6A5B /* Importer.nib in Resources */,
 				DA638E0613E1F7BA005E6A5B /* Couchbase-Status.png in Resources */,
