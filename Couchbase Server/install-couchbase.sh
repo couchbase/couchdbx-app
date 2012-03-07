@@ -73,18 +73,19 @@ cd "$dest"
 # fix cli paths
 echo "fixing path for cb* commands"
 echo "$install_absolute_path"
-sed -ie "s,$install_absolute_path,../,g" bin/couchbase-cli
-sed -ie "s,$install_absolute_path,../,g" bin/cbstats
-sed -ie "s,$install_absolute_path,../,g" bin/cbflushctl
-sed -ie "s,$install_absolute_path,../,g" bin/cbadm-online-restore
-sed -ie "s,$install_absolute_path,../,g" bin/cbadm-online-update
-sed -ie "s,$install_absolute_path,../,g" bin/cbadm-tap-registration
-sed -ie "s,$install_absolute_path,../,g" bin/cbbackup
-sed -ie "s,$install_absolute_path,../,g" bin/cbbackup-incremental
-sed -ie "s,$install_absolute_path,../,g" bin/cbbackup-merge-incremental
-sed -ie "s,$install_absolute_path,../,g" bin/cbdbconvert
-sed -ie "s,$install_absolute_path,../,g" bin/cbdbmaint
-sed -ie "s,$install_absolute_path,../,g" bin/cbdbupgrade
-sed -ie "s,$install_absolute_path,../,g" bin/cbrestore
-sed -ie "s,$install_absolute_path,../,g" bin/cbworkloadgen
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/couchbase-cli
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbstats
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbflushctl
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-restore
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-update
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/docloader
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-tap-registration
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup-incremental
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup-merge-incremental
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbconvert
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbmaint
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbupgrade
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbrestore
+sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbworkloadgen
 
