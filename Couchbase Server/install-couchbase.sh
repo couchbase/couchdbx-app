@@ -4,31 +4,6 @@ topdir="$PROJECT_DIR/.."
 
 dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core"
 
-clean_lib() {
-    while read something
-    do
-        base=${something##*/}
-        echo "Fixing $1 $something -> $dest/lib/$base"
-        if [ -f "$dest/lib/$base" ]
-        then
-            :
-        else
-            if [ -f "$something" ]
-            then
-                cp "$something" "$dest/lib/$base"
-            elif [ -f "/usr/local/lib/$base" ]
-            then
-                cp "/usr/local/lib/$base" "$dest/lib/$base"
-            else
-                echo "Can't resolve $base"
-                exit 1
-            fi
-        fi
-        chmod 755 "$dest/lib/$base"
-        install_name_tool -change "$something" "lib/$base" "$1"
-    done
-}
-
 # ns_server bits
 rsync -a "$topdir/install/" "$dest/"
 rm "$dest/bin/couchjs"
@@ -43,27 +18,9 @@ mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 cp "$topdir/ns_server/priv/init.sql" \
     "$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/init.sql"
 
+echo "Installing and fixing up libraries:"
 cd "$dest"
-
-# Fun with libraries
-for f in bin/* lib/couchdb/bin/*
-do
-    fn="$dest/$f"
-    otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
-        | grep -v /System \
-        | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
-done
-
-# Fun with libraries
-for i in 1 2
-do
-    for fn in `find * -name '*.dylib'` `find * -name '*.so'`
-    do
-        otool -L "$fn" | egrep -v "^[/a-z]" | grep -v /usr/lib \
-            | grep -v /System \
-            | sed -e 's/(\(.*\))//g' | clean_lib "$fn"
-    done
-done
+ruby "$PROJECT_DIR/Couchbase Server/install_libraries.rb"
 
 cd "$topdir/install"
 install_absolute_path=`pwd`

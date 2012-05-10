@@ -188,6 +188,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27A22360155B2EEC0076D8BC /* install_libraries.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = install_libraries.rb; sourceTree = "<group>"; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
 		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
@@ -354,6 +355,7 @@
 				DA0E692313DD364400CDAC6D /* iniparser.h */,
 				DA3C66F7136BA6BC007C835A /* couchx.ini */,
 				DA638E3613E1F99D005E6A5B /* install-couchbase.sh */,
+				27A22360155B2EEC0076D8BC /* install_libraries.rb */,
 				DAAEC781133DBD0700EE9189 /* dsa_pub.pem */,
 				DAADFB37133DA84400B282D6 /* erl */,
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
@@ -606,7 +608,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
+			shellScript = "# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nrm -rf \"$dest\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
 			showEnvVarsInLog = 0;
 		};
 		DAADFB34133DA78D00B282D6 /* Fixup Paths */ = {
