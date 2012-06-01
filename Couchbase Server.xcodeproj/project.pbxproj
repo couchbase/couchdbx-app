@@ -577,6 +577,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "exec \"$SCRIPT_INPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
 		};
 		DA638E2813E1F7C9005E6A5B /* Zip it up */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -591,6 +592,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nditto -ck --keepParent \"Couchbase Server.app\" \"Couchbase Server-$V.zip\"";
+			showEnvVarsInLog = 0;
 		};
 		DA638E4113E1FF1E005E6A5B /* Install Erlang */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -604,7 +606,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "VER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
+			shellScript = "# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
+			showEnvVarsInLog = 0;
 		};
 		DAADFB34133DA78D00B282D6 /* Fixup Paths */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -647,7 +650,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp -rf ../../makedmg/* .\ncp -f \"../../Couchbase Server/Couchbase.icns\" .\n./makedmg.sh \"$PROJECT_NAME-$V.dmg\" \"Couchbase Server.app\" \"Couchbase Server\" dmg-background.png Couchbase.icns";
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp -rf \"$PROJECT_DIR\"/makedmg/* .\ncp -f \"$PROJECT_DIR/Couchbase Server/Couchbase.icns\" .\n./makedmg.sh \"$PROJECT_NAME-$V.dmg\" \"Couchbase Server.app\" \"Couchbase Server\" dmg-background.png Couchbase.icns";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
