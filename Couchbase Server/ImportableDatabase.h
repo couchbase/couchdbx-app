@@ -3,7 +3,7 @@
 //
 //
 //  Created by Dustin Sallings on 3/19/11.
-//  Copyright 2011 NorthScale. All rights reserved.
+//  Copyright 2011 Couchbase, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
