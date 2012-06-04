@@ -1,4 +1,4 @@
-VERSION=`git describe`
+PRODUCT_VERSION := $(shell git describe)
 
 all: couchbase-server
 
@@ -9,7 +9,7 @@ couchbase-server-zip: cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 cb.plist: cb.plist.tmpl
-	sed s/@VERSION@/$(VERSION)/g $< > $@
+	sed s/@VERSION@/$(PRODUCT_VERSION)/g $< > $@
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
 
 clean:
