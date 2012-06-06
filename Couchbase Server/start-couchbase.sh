@@ -49,7 +49,7 @@ CUSTOM_CONFIG_FILE="$datadir/etc/couch-custom.ini"
 
 mkdir -p "$DEFAULT_CONFIG_DIR" "$LOCAL_CONFIG_DIR" "$datadir/etc"
 
-couchname=`basename "$COUCHBASE_TOP/lib/couchdb/erlang/lib/"couch*/`
+couchname=`basename "$COUCHBASE_TOP/lib/couchdb/erlang/lib/"couch-*/`
 
 sed -e "s,@APP_PATH@,$COUCHBASE_TOP,g" -e "s,@DATADIR@,$datadir,g" \
     -e "s,@HOME@,$HOME,g" -e "s,@COUCHNAME@,$couchname,g" <<EOF > "$PLATFORM_CONFIG_FILE"
