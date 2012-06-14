@@ -48,6 +48,7 @@
 -(IBAction)showLogs:(id)sender;
 -(IBAction)showImportWindow:(id)sender;
 -(IBAction)showTechSupport:(id)sender;
+-(IBAction)showToolInstaller:(id)sender;
 
 
 @end

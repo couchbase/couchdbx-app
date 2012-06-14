@@ -35,6 +35,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2725AADE158A46E800CCC0B9 /* ToolInstallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AADC158A46E800CCC0B9 /* ToolInstallController.m */; };
+		2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */; };
+		2725AAE8158A84BD00CCC0B9 /* PrivilegedInstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */; };
+		2725AAEF158A93CF00CCC0B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2725AAEE158A93CF00CCC0B9 /* Security.framework */; };
 		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
 		DA1AD338133DA58D00E6A9E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
@@ -188,6 +192,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2725AADB158A46E800CCC0B9 /* ToolInstallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolInstallController.h; sourceTree = "<group>"; };
+		2725AADC158A46E800CCC0B9 /* ToolInstallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolInstallController.m; sourceTree = "<group>"; };
+		2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolInstallController.xib; sourceTree = "<group>"; };
+		2725AAE6158A84BC00CCC0B9 /* PrivilegedInstall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivilegedInstall.h; sourceTree = "<group>"; };
+		2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedInstall.m; sourceTree = "<group>"; };
+		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		27A22360155B2EEC0076D8BC /* install_libraries.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = install_libraries.rb; sourceTree = "<group>"; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
@@ -273,6 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2725AAEF158A93CF00CCC0B9 /* Security.framework in Frameworks */,
 				DA638E0113E1F7BA005E6A5B /* Cocoa.framework in Frameworks */,
 				DA638E0213E1F7BA005E6A5B /* Sparkle.framework in Frameworks */,
 			);
@@ -306,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */,
+				2725AAEE158A93CF00CCC0B9 /* Security.framework */,
 				DA1AD339133DA58D00E6A9E1 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -335,6 +347,10 @@
 				DAADFB12133DA68B00B282D6 /* SUUpdaterDelegate.m */,
 				DA1AD349133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.h */,
 				DA1AD34A133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m */,
+				2725AADB158A46E800CCC0B9 /* ToolInstallController.h */,
+				2725AADC158A46E800CCC0B9 /* ToolInstallController.m */,
+				2725AAE6158A84BC00CCC0B9 /* PrivilegedInstall.h */,
+				2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */,
 				DA1AD33E133DA58D00E6A9E1 /* Supporting Files */,
 			);
 			path = "Couchbase Server";
@@ -360,6 +376,7 @@
 				DAADFB37133DA84400B282D6 /* erl */,
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
 				DAADFAF7133DA61700B282D6 /* Importer.nib */,
+				2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */,
 				DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */,
 				DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */,
 				DAADFAF9133DA61700B282D6 /* Couchbase.icns */,
@@ -546,6 +563,7 @@
 				DA638E0A13E1F7BA005E6A5B /* ensure_full_commit.sh in Resources */,
 				DA638E0B13E1F7BA005E6A5B /* MainMenu.nib in Resources */,
 				DA638E0C13E1F7BA005E6A5B /* Couchbase-Status-bw.png in Resources */,
+				2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +711,8 @@
 				DA638DFD13E1F7BA005E6A5B /* SUUpdaterDelegate.m in Sources */,
 				DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */,
 				DA638DFF13E1F7BA005E6A5B /* iniparser.c in Sources */,
+				2725AADE158A46E800CCC0B9 /* ToolInstallController.m in Sources */,
+				2725AAE8158A84BD00CCC0B9 /* PrivilegedInstall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

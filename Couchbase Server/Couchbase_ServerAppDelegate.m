@@ -6,6 +6,7 @@
 #import "ImportController.h"
 #import "Sparkle/Sparkle.h"
 #import "SUUpdaterDelegate.h"
+#import "ToolInstallController.h"
 
 #import "iniparser.h"
 
@@ -26,7 +27,7 @@
 	[self ensureFullCommit];
 }
 
-- (void)windowWillClose:(NSNotification *)aNotification 
+- (void)windowWillClose:(NSNotification *)aNotification
 {
     [self stop];
 }
@@ -64,27 +65,27 @@
 	NSMutableString *urifile = [[NSMutableString alloc] init];
 	[urifile appendString: [task currentDirectoryPath]]; // couchdbx-core
 	[urifile appendString: @"/var/lib/couchdb/couch.uri"];
-    
+
 	// get couch uri
 	NSString *uri = [NSString stringWithContentsOfFile:urifile encoding:NSUTF8StringEncoding error:NULL];
-    
+
 	// TODO: maybe parse out \n
-    
+
 	// get database dir
 	NSString *databaseDir = [self applicationSupportFolder];
-    
+
 	// get ensure_full_commit.sh
 	NSMutableString *ensure_full_commit_script = [[NSMutableString alloc] init];
 	[ensure_full_commit_script appendString: [[NSBundle mainBundle] resourcePath]];
 	[ensure_full_commit_script appendString: @"/ensure_full_commit.sh"];
-    
+
 	// exec ensure_full_commit.sh database_dir couch.uri
 	NSArray *args = [[NSArray alloc] initWithObjects:databaseDir, uri, nil];
 	NSTask *commitTask = [[NSTask alloc] init];
 	[commitTask setArguments: args];
 	[commitTask launch];
 	[commitTask waitUntilExit];
-    
+
 	// yay!
 }
 
@@ -156,7 +157,7 @@
 
         [uuidString release];
     }
-    
+
     statusBar=[[NSStatusBar systemStatusBar] statusItemWithLength: 26.0];
     NSImage *statusIcon = [NSImage imageNamed:@"Couchbase-Status-bw.png"];
     [statusBar setImage: statusIcon];
@@ -175,9 +176,11 @@
 
     [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
     [self updateAddItemButtonState];
-    
+
 	[self launchServer];
-    
+
+    [ToolInstallController showIfFirstRun];
+
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"runImport"]) {
         [self showImportWindow:nil];
     }
@@ -188,8 +191,8 @@
     if([task isRunning]) {
         [self stop];
         return;
-    } 
-    
+    }
+
     [self launchServer];
 }
 
@@ -249,7 +252,7 @@
     if (iniparser_getstring(iniDict, "couchdb:view_index_dir", NULL) == NULL) {
         dictionary_set(iniDict, "couchdb:view_index_dir", [dataDir UTF8String]);
     }
-    
+
     dictionary_set(iniDict, "query_servers", NULL);
     dictionary_set(iniDict, "query_servers:javascript", "bin/couchjs share/couchdb/server/main.js");
     dictionary_set(iniDict, "query_servers:coffeescript", "bin/couchjs share/couchdb/server/main-coffee.js");
@@ -274,13 +277,13 @@
 -(void)launchServer
 {
 	[self setInitParams];
-    
+
 	in = [[NSPipe alloc] init];
 	out = [[NSPipe alloc] init];
 	task = [[NSTask alloc] init];
-    
+
     startTime = time(NULL);
-    
+
 	NSMutableString *launchPath = [[NSMutableString alloc] init];
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
 	[task setCurrentDirectoryPath:launchPath];
@@ -292,26 +295,26 @@
                          [self finalConfigPath], @"COUCHDB_ADDITIONAL_CONFIG_FILE",
                          nil, nil];
     [task setEnvironment:env];
-    
+
     [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
 	[task setLaunchPath:launchPath];
 	[task setStandardInput:in];
 	[task setStandardOutput:out];
-    
+
 	NSFileHandle *fh = [out fileHandleForReading];
 	NSNotificationCenter *nc;
 	nc = [NSNotificationCenter defaultCenter];
-    
+
 	[nc addObserver:self
            selector:@selector(dataReady:)
                name:NSFileHandleReadCompletionNotification
              object:fh];
-	
+
 	[nc addObserver:self
            selector:@selector(taskTerminated:)
                name:NSTaskDidTerminateNotification
              object:task];
-    
+
   	[task launch];
   	[fh readInBackgroundAndNotify];
 }
@@ -321,7 +324,7 @@
     [self cleanup];
     [self logMessage: [NSString stringWithFormat:@"Terminated with status %d\n",
                        [[note object] terminationStatus]]];
-    
+
     time_t now = time(NULL);
     if (now - startTime < MIN_LIFETIME) {
         NSInteger b = NSRunAlertPanel(@"Problem Running Couchbase",
@@ -331,7 +334,7 @@
             [NSApp terminate:self];
         }
     }
-    
+
     [NSTimer scheduledTimerWithTimeInterval:1.0
                                      target:self selector:@selector(launchServer)
                                    userInfo:nil
@@ -342,12 +345,12 @@
 {
     [task release];
     task = nil;
-    
+
     [in release];
     in = nil;
     [out release];
     out = nil;
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -369,7 +372,7 @@
 {
     NSString *s = [[NSString alloc] initWithData: d
                                         encoding: NSUTF8StringEncoding];
-    
+
     if (!hasSeenStart) {
         if ([s rangeOfString:@"Couchbase Server has started on web port 8091"].location != NSNotFound) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -398,19 +401,19 @@
 }
 
 -(IBAction)setLaunchPref:(id)sender {
-    
+
     NSCellStateValue stateVal = [sender state];
     stateVal = (stateVal == NSOnState) ? NSOffState : NSOnState;
-    
+
     NSLog(@"Setting launch pref to %s", stateVal == NSOnState ? "on" : "off");
-    
+
     [[NSUserDefaults standardUserDefaults]
      setBool:(stateVal == NSOnState)
      forKey:@"browseAtStart"];
-    
+
     [launchBrowserItem setState:([[NSUserDefaults standardUserDefaults]
                                   boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
-    
+
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -431,13 +434,13 @@
 {
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+
     [self logMessage:@"Starting import"];
     [NSApp activateIgnoringOtherApps:YES];
-    
+
     ImportController *controller = [[ImportController alloc]
                                     initWithWindowNibName:@"Importer"];
-    
+
     [controller setPaths:[self applicationSupportFolder]
                     from:[self applicationSupportFolder:@"CouchDBX"]];
     [controller loadWindow];
@@ -453,7 +456,7 @@
 	NSString *homePage = [info objectForKey:@"SupportPage"];
     NSURL *url=[NSURL URLWithString:homePage];
     [[NSWorkspace sharedWorkspace] openURL:url];
-    
+
 }
 
 -(IBAction)showLogs:(id)sender {
@@ -472,6 +475,10 @@
         NSRunAlertPanel(@"Cannot View Logfile",
                         @"Error launching log viewer.", nil, nil, nil);
     }
+}
+
+-(IBAction)showToolInstaller:(id)sender {
+    [ToolInstallController show];
 }
 
 @end
