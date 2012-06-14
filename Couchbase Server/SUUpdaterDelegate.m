@@ -4,13 +4,14 @@
  */
 
 #import "SUUpdaterDelegate.h"
+#import "Couchbase_ServerAppDelegate.h"
 #import "Sparkle/Sparkle.h"
 
 @implementation SUUpdaterDelegate
 
 -(void)willInstallUpdate:(SUAppcastItem *)update
 {
-	[[[NSApplication sharedApplication] delegate] ensureFullCommit];
+	[(Couchbase_ServerAppDelegate*)[[NSApplication sharedApplication] delegate] ensureFullCommit];
 }
 
 // Place our UUID into each request.

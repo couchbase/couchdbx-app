@@ -64,7 +64,7 @@ static void * mem_double(void * ptr, int size)
   for systems that do not have it.
  */
 /*--------------------------------------------------------------------------*/
-static char * xstrdup(char * s)
+static char * xstrdup(const char * s)
 {
     char * t ;
     if (!s)
@@ -91,11 +91,11 @@ static char * xstrdup(char * s)
   by comparing the key itself in last resort.
  */
 /*--------------------------------------------------------------------------*/
-unsigned dictionary_hash(char * key)
+unsigned dictionary_hash(const char * key)
 {
-	int			len ;
+	size_t		len ;
 	unsigned	hash ;
-	int			i ;
+	size_t		i ;
 
 	len = strlen(key);
 	for (hash=0, i=0 ; i<len ; i++) {

@@ -72,7 +72,7 @@ typedef struct _dictionary_ {
   by comparing the key itself in last resort.
  */
 /*--------------------------------------------------------------------------*/
-unsigned dictionary_hash(char * key);
+unsigned dictionary_hash(const char * key);
 
 /*-------------------------------------------------------------------------*/
 /**

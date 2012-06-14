@@ -44,9 +44,9 @@
            ![fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", dest, file]
                               isDirectory:&isDirectory]) {
                NSLog(@"Missing file:  %@", file);
-               NSDictionary *srcAttr = [fileManager fileAttributesAtPath:[NSString stringWithFormat:@"%@/%@",
+               NSDictionary *srcAttr = [fileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@",
                                                                           src, file]
-                                                            traverseLink:YES];
+                                                                     error:nil];
                NSNumber *fileSize = [srcAttr objectForKey:NSFileSize];
                if (fileSize > 0) {
                    [arrayController addObject:[[ImportableDatabase alloc] initWithName:file
@@ -172,7 +172,7 @@ static void statusCallback(FSFileOperationRef fileOp,
 
     OSStatus status = FSFileOperationScheduleWithRunLoop(fileOp, runLoop, kCFRunLoopDefaultMode);
     if (status) {
-        NSLog(@"Failed to schedule operation with run loop: %ld", status);
+        NSLog(@"Failed to schedule operation with run loop: %d", status);
         return;
     }
 
