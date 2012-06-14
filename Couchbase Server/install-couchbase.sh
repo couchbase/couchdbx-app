@@ -5,7 +5,7 @@ topdir="$PROJECT_DIR/.."
 dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core"
 
 # ns_server bits
-rsync -a "$topdir/install/" "$dest/"
+rsync -a --delete "$topdir/install/" "$dest/"
 rm "$dest/bin/couchjs"
 cp "$PROJECT_DIR/Couchbase Server/erl" "$dest/bin/erl"
 cp "$PROJECT_DIR/Couchbase Server/couchjs.tpl" "$dest/bin/couchjs.tpl"
