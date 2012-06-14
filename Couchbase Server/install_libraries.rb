@@ -12,6 +12,10 @@ require "pathname"
 LibraryDir = Pathname.new("lib")
 BinDir = Pathname.new("bin")
 
+def log (message)
+    #puts message       # Uncomment for verbose logging
+end
+
 # Returns the libraries imported by the binary at 'path', as an array of Pathnames.
 def get_imports (path)
   imports = []
@@ -30,7 +34,7 @@ end
 # Edits the binary at 'libpath' to change its import of 'import' to 'newimport'.
 def change_import (libpath, import, newimport)
   return  if newimport == import
-  puts "\tChange import #{import} to #{newimport}"
+  log "\tChange import #{import} to #{newimport}"
   unless system("install_name_tool", "-change", import, newimport, libpath)
     fail "install_name_tool failed"
   end
@@ -51,7 +55,7 @@ def copy_lib (src, loaded_from)
   end
   fail "bad path #{src}"  unless src.absolute?
 
-  puts "\tCopying #{src} --> #{dst}"
+  log "\tCopying #{src} --> #{dst}"
   unless system("cp", src, dst)
     fail "cp failed on #{src}"
   end
@@ -67,7 +71,7 @@ end
 # If 'original_path' is given, it is the path from which 'file' was copied; this is needed
 # for resolution of '@loader_path'-relative imports.
 def process (file, original_path =nil)
-  puts "-- #{file} ..."
+  log "-- #{file} ..."
   for import in get_imports(file) do
     path = import.to_s
     unless path.start_with?("/usr/lib/") || path.start_with?("/System/")
@@ -78,7 +82,7 @@ def process (file, original_path =nil)
       change_import(file, import, dst)
     end
   end
-  puts "\tend #{file}"
+  log "\tend #{file}"
 end
 
 
@@ -96,11 +100,14 @@ end
 
 ### OK, here's the main code:
 
+puts "Fixing library imports in #{BinDir} ..."
 BinDir.children.each do |file|
   if file.ftype == "file" && file.executable?
     process(file)
   end
 end
 
-puts ""
+puts "\nFixing library imports in #{LibraryDir} ..."
 process_libs_in_tree LibraryDir
+
+puts "\nDone fixing library imports!"
