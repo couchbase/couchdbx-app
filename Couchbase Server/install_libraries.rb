@@ -11,7 +11,6 @@ require "pathname"
 
 LibraryDir = Pathname.new("lib")
 BinDir = Pathname.new("bin")
-CouchDBBinDir = Pathname.new("lib/couchdb/bin")
 
 # Returns the libraries imported by the binary at 'path', as an array of Pathnames.
 def get_imports (path)
@@ -95,13 +94,6 @@ end
 ### OK, here's the main code:
 
 BinDir.children.each do |file|
-  if file.ftype == "file" && file.executable?
-    process(file)
-  end
-end
-
-puts ""
-CouchDBBinDir.children.each do |file|
   if file.ftype == "file" && file.executable?
     process(file)
   end

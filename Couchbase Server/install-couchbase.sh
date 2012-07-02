@@ -32,7 +32,6 @@ echo "fixing path for cb* commands"
 echo "$install_absolute_path"
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/couchbase-cli
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbstats
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbflushctl
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-restore
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-update
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/docloader
