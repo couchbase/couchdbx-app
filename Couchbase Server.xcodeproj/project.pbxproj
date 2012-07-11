@@ -596,7 +596,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "exec \"$SCRIPT_INPUT_FILE_0\"";
+			shellScript = "set -e\nexec \"$SCRIPT_INPUT_FILE_0\"";
 			showEnvVarsInLog = 0;
 		};
 		DA638E2813E1F7C9005E6A5B /* Zip it up */ = {
@@ -626,7 +626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nrm -rf \"$dest\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
+			shellScript = "set -e\n# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nrm -rf \"$dest\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
 			showEnvVarsInLog = 0;
 		};
 		DAADFB34133DA78D00B282D6 /* Fixup Paths */ = {

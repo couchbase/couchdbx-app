@@ -24,24 +24,19 @@ ruby "$PROJECT_DIR/Couchbase Server/install_libraries.rb"
 
 cd "$topdir/install"
 install_absolute_path=`pwd`
-echo `pwd`
 
 cd "$dest"
 # fix cli paths
-echo "fixing path for cb* commands"
-echo "$install_absolute_path"
+echo "fixing path for cb* commands in `pwd`"
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/couchbase-cli
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbstats
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-restore
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-update
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/docloader
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-tap-registration
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup-incremental
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup-merge-incremental
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbconvert
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbmaint
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbupgrade
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbrestore
 sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbworkloadgen
-
