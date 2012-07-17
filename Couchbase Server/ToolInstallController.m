@@ -82,7 +82,7 @@ static ToolInstallController* sController;
         NSString* path = [title stringByStandardizingPath];
         BOOL isDir;
         if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] || !isDir) {
-            [_destinationPopUp removeItemWithTitle:path];
+            [_destinationPopUp removeItemWithTitle:title];
         }
     }
     [_destinationPopUp selectItemAtIndex: 0];
@@ -116,7 +116,7 @@ static ToolInstallController* sController;
         NSRunCriticalAlertPanel(@"Failed To Install",
                                 @"Error %d copying tools into %@:\n\n%@",
                                 @"Sorry", nil, nil,
-                                error.code, destDir, error.localizedDescription);
+                                (int)error.code, destDir, error.localizedDescription);
     }
 }
 
