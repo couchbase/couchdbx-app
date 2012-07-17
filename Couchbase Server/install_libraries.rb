@@ -72,6 +72,9 @@ def process (file, original_path =nil)
     path = import.to_s
     unless path.start_with?("/usr/lib/") || path.start_with?("/System/")
       dst = copy_lib(import, (original_path || file))
+      unless dst.absolute?
+        dst = '@loader_path/' + dst.relative_path_from(file.dirname)
+      end
       change_import(file, import, dst)
     end
   end
