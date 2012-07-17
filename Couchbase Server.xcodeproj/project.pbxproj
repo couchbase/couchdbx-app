@@ -199,6 +199,7 @@
 		2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedInstall.m; sourceTree = "<group>"; };
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		27A22360155B2EEC0076D8BC /* install_libraries.rb */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = text.script.ruby; path = install_libraries.rb; sourceTree = "<group>"; };
+		27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = README_for_zip.txt; path = makedmg/README_for_zip.txt; sourceTree = SOURCE_ROOT; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
 		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
@@ -362,6 +363,7 @@
 				E802C02614FEDBDB00A54EC8 /* dmg-background.png */,
 				E802C02714FEDBDB00A54EC8 /* makedmg.sh */,
 				E802C02814FEDBDB00A54EC8 /* README.txt */,
+				27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */,
 				E802C02914FEDBDB00A54EC8 /* setviewoptions.applescript */,
 				E802C02414FEDB9500A54EC8 /* LICENSE.txt */,
 				DA0E692013DD364400CDAC6D /* dictionary.c */,
@@ -610,8 +612,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nditto -ck --keepParent \"Couchbase Server.app\" \"Couchbase Server-$V.zip\"";
+			shellPath = "/bin/sh -e";
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp \"$SRCROOT/makedmg/README_for_zip.txt\" \"README.txt\"\nrm -f \"Couchbase Server-$V.zip\"\nzip -r --symlinks --quiet -9 \"Couchbase Server-$V.zip\" \"Couchbase Server.app\" \"README.txt\"";
 			showEnvVarsInLog = 0;
 		};
 		DA638E4113E1FF1E005E6A5B /* Install Erlang */ = {
@@ -669,8 +671,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp -rf \"$PROJECT_DIR\"/makedmg/* .\ncp -f \"$PROJECT_DIR/Couchbase Server/Couchbase.icns\" .\n./makedmg.sh \"$PROJECT_NAME-$V.dmg\" \"Couchbase Server.app\" \"Couchbase Server\" dmg-background.png Couchbase.icns";
+			shellPath = "/bin/sh -e";
+			shellScript = "exit 0 # DISABLED DMG CREATION -- REMOVE THIS LINE TO RE-ENABLE\n\ncd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp -rf \"$PROJECT_DIR\"/makedmg/* .\ncp -f \"$PROJECT_DIR/Couchbase Server/Couchbase.icns\" .\n./makedmg.sh \"$PROJECT_NAME-$V.dmg\" \"Couchbase Server.app\" \"Couchbase Server\" dmg-background.png Couchbase.icns";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
