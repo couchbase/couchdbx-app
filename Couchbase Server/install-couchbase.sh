@@ -26,18 +26,32 @@ cd "$topdir/install"
 install_absolute_path=`pwd`
 
 cd "$dest"
-# fix cli paths
+
+# fix the path to lib/python in the Python scripts:
+
+_fix_python_path () {
+    echo "Fixing Python lib path in $1"
+    sed -i '~' -e "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" $1
+    rm "$1~"
+}
+
 echo "fixing path for cb* commands in `pwd`"
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/couchbase-cli
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbstats
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-restore
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-online-update
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbadm-tap-registration
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup-incremental
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbbackup-merge-incremental
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbepctl
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbmaint
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbdbupgrade
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbrestore
-sed -ie "s,\$root/\`basename \$0\`,\"\`dirname \"\$0\"\`\/..\/lib/python\"\/\`basename \"\$0\"\`,g" bin/cbworkloadgen
+_fix_python_path "bin/cbadm-online-restore"
+_fix_python_path "bin/cbadm-online-update"
+_fix_python_path "bin/cbadm-tap-registration"
+_fix_python_path "bin/cbbackup"
+_fix_python_path "bin/cbbackup-incremental"
+_fix_python_path "bin/cbbackup-merge-incremental"
+_fix_python_path "bin/cbclusterstats"
+_fix_python_path "bin/cbdbmaint"
+_fix_python_path "bin/cbdbupgrade"
+_fix_python_path "bin/cbdocloader"
+_fix_python_path "bin/cbepctl"
+_fix_python_path "bin/cbrestore"
+_fix_python_path "bin/cbstats"
+_fix_python_path "bin/cbtransfer"
+_fix_python_path "bin/cbvbucketctl"
+_fix_python_path "bin/cbworkloadgen"
+_fix_python_path "bin/collectd"
+_fix_python_path "bin/collectd_memcached_buckets"
+_fix_python_path "bin/couchbase-cli"
