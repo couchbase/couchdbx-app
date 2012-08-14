@@ -15,8 +15,6 @@ rm "$dest/etc/couchbase/static_config"
 cp "$topdir/ns_server/etc/static_config.in" "$dest/etc/couchbase/static_config.in"
 
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
-cp "$topdir/ns_server/priv/init.sql" \
-    "$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/init.sql"
 
 echo "Installing and fixing up libraries:"
 cd "$dest"
