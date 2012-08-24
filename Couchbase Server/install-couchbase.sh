@@ -47,6 +47,3 @@ _fix_python_path "bin/tools/cbanalyze-core"                         "../.."
 _fix_python_path "bin/tools/cbclusterstats"                         "../.."
 _fix_python_path "bin/tools/cbdocloader"                            "../.."
 _fix_python_path "bin/tools/cbworkloadgen"                          "../.."
-
-_fix_python_path "bin/tools/unsupported/collectd"                   "../../.."
-_fix_python_path "bin/tools/unsupported/collectd_memcached_buckets" "../../.."
