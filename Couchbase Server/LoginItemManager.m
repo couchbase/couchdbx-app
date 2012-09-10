@@ -28,9 +28,9 @@
 -(BOOL) inLoginItems {
     BOOL rv = NO;
 
-    NSMutableArray *loginItems=[[[[NSUserDefaults standardUserDefaults]
+    NSArray *loginItems=[[[NSUserDefaults standardUserDefaults]
                                   persistentDomainForName:@"loginwindow"]
-                                 objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
+                                 objectForKey:@"AutoLaunchedApplicationDictionary"];
 
     // Remove anything that looks like the current login item.
     NSString *myName=[[[NSBundle mainBundle] bundlePath] lastPathComponent];
@@ -66,7 +66,7 @@
     CFPreferencesSetValue((CFStringRef)@"AutoLaunchedApplicationDictionary",
                           loginItems, (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
     CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-
+    [loginItems release];
 }
 
 -(void)addToLoginItems:(id)sender {

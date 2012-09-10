@@ -32,7 +32,7 @@
 -(void)applicationWillFinishLaunching:(NSNotification *)notification
 {
 	SUUpdater *updater = [SUUpdater sharedUpdater];
-	SUUpdaterDelegate *updaterDelegate = [[SUUpdaterDelegate alloc] init];
+	SUUpdaterDelegate *updaterDelegate = [[[SUUpdaterDelegate alloc] init] autorelease];
 	[updater setDelegate: updaterDelegate];
 }
 
@@ -59,7 +59,7 @@
     }
 
 	// find couch.uri file
-	NSMutableString *urifile = [[NSMutableString alloc] init];
+	NSMutableString *urifile = [NSMutableString string];
 	[urifile appendString: [task currentDirectoryPath]]; // couchdbx-core
 	[urifile appendString: @"/var/lib/couchdb/couch.uri"];
 
@@ -72,13 +72,13 @@
 	NSString *databaseDir = [self applicationSupportFolder];
 
 	// get ensure_full_commit.sh
-	NSMutableString *ensure_full_commit_script = [[NSMutableString alloc] init];
+	NSMutableString *ensure_full_commit_script = [NSMutableString string];
 	[ensure_full_commit_script appendString: [[NSBundle mainBundle] resourcePath]];
 	[ensure_full_commit_script appendString: @"/ensure_full_commit.sh"];
 
 	// exec ensure_full_commit.sh database_dir couch.uri
-	NSArray *args = [[NSArray alloc] initWithObjects:databaseDir, uri, nil];
-	NSTask *commitTask = [[NSTask alloc] init];
+	NSArray *args = [NSArray arrayWithObjects:databaseDir, uri, nil];
+	NSTask *commitTask = [[[NSTask alloc] init] autorelease];
 	[commitTask setArguments: args];
 	[commitTask launch];
 	[commitTask waitUntilExit];
@@ -281,7 +281,7 @@
 
     startTime = time(NULL);
 
-	NSMutableString *launchPath = [[NSMutableString alloc] init];
+	NSMutableString *launchPath = [NSMutableString string];
 	[launchPath appendString:[[NSBundle mainBundle] resourcePath]];
 	[task setCurrentDirectoryPath:launchPath];
 
@@ -498,8 +498,8 @@
     [self logMessage:@"Starting import"];
     [NSApp activateIgnoringOtherApps:YES];
 
-    ImportController *controller = [[ImportController alloc]
-                                    initWithWindowNibName:@"Importer"];
+    ImportController *controller = [[[ImportController alloc]
+                                    initWithWindowNibName:@"Importer"] autorelease];
 
     [controller setPaths:[self applicationSupportFolder]
                     from:[self applicationSupportFolder:@"CouchDBX"]];

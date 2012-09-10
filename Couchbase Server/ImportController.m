@@ -49,8 +49,10 @@
                                                                      error:nil];
                NSNumber *fileSize = [srcAttr objectForKey:NSFileSize];
                if (fileSize > 0) {
-                   [arrayController addObject:[[ImportableDatabase alloc] initWithName:file
-                                                                                  size:fileSize]];
+                   ImportableDatabase* db = [[ImportableDatabase alloc] initWithName:file
+                                                                                size:fileSize];
+                   [arrayController addObject:db];
+                   [db release];
                }
         }
     }
