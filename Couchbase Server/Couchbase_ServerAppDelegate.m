@@ -10,6 +10,8 @@
 
 #import "iniparser.h"
 
+#define FORCEKILL_INTERVAL 15.0     // How long to wait for the server task to exit, on quit
+
 @implementation Couchbase_ServerAppDelegate
 
 -(BOOL)isSingle
@@ -20,11 +22,6 @@
 #else
     NO;
 #endif
-}
-
--(void)applicationWillTerminate:(NSNotification *)notification
-{
-	[self ensureFullCommit];
 }
 
 - (void)windowWillClose:(NSNotification *)aNotification
@@ -317,32 +314,90 @@
 
   	[task launch];
   	[fh readInBackgroundAndNotify];
+    NSLog(@"Launched server task -- pid = %d", task.processIdentifier);
+}
+
+
+#pragma mark - SHUTDOWN:
+
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+	[self ensureFullCommit];
+
+    BOOL isRunning = [task isRunning];
+    if (isRunning) {
+        [self stopTask];
+        terminatingApp = YES;
+        // Ideally we should return NSTerminateLater, but if we do so then neither -taskTerminated:
+        // nor -killTask will ever be called. I think this is because the runloop ends up in a
+        // weird waiting-to-terminate mode that doesn't process those notifications.
+        return NSTerminateCancel;
+    }
+    return NSTerminateNow;
+}
+
+-(void)applicationWillTerminate:(NSNotification *)notification
+{
+    NSLog(@"Terminating.");
+}
+
+- (void)stopTask
+{
+    if (taskKiller) {
+        return; // Already shutting down.
+    }
+    NSLog(@"Telling server task to stop...");
+    NSFileHandle *writer;
+    writer = [in fileHandleForWriting];
+    [writer writeData:[@"q().\n" dataUsingEncoding:NSASCIIStringEncoding]];
+    [writer closeFile];
+    taskKiller = [NSTimer scheduledTimerWithTimeInterval:FORCEKILL_INTERVAL
+                                                  target:self
+                                                selector:@selector(killTask)
+                                                userInfo:nil
+                                                 repeats:NO];
+}
+
+-(void)killTask {
+    NSLog(@"Force terminating task");
+    [task terminate];
 }
 
 -(void)taskTerminated:(NSNotification *)note
 {
+    int status = [[note object] terminationStatus];
+    NSLog(@"Task terminated with status %d", status);
     [self cleanup];
     [self logMessage: [NSString stringWithFormat:@"Terminated with status %d\n",
-                       [[note object] terminationStatus]]];
+                       status]];
 
-    time_t now = time(NULL);
-    if (now - startTime < MIN_LIFETIME) {
-        NSInteger b = NSRunAlertPanel(@"Problem Running Couchbase",
-                                      @"Couchbase Server doesn't seem to be operating properly.  "
-                                      @"Check Console logs for more details.", @"Retry", @"Quit", nil);
-        if (b == NSAlertAlternateReturn) {
-            [NSApp terminate:self];
+    if (terminatingApp) {
+        // I was just waiting for the task to exit before quitting
+        [NSApp stop: self];
+    } else {
+        time_t now = time(NULL);
+        if (now - startTime < MIN_LIFETIME) {
+            NSInteger b = NSRunAlertPanel(@"Problem Running Couchbase",
+                                          @"Couchbase Server doesn't seem to be operating properly.  "
+                                          @"Check Console logs for more details.", @"Retry", @"Quit", nil);
+            if (b == NSAlertAlternateReturn) {
+                [NSApp terminate:self];
+            }
         }
-    }
 
-    [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self selector:@selector(launchServer)
-                                   userInfo:nil
-                                    repeats:NO];
+        // Relaunch the server task...
+        [NSTimer scheduledTimerWithTimeInterval:1.0
+                                         target:self selector:@selector(launchServer)
+                                       userInfo:nil
+                                        repeats:NO];
+    }
 }
 
 -(void)cleanup
 {
+    [taskKiller invalidate];
+    taskKiller = nil;
+
     [task release];
     task = nil;
 
@@ -353,6 +408,11 @@
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+
+#pragma mark - COMMANDS:
+
 
 -(void)openFuton
 {

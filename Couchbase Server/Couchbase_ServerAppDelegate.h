@@ -22,6 +22,9 @@
     BOOL hasSeenStart;
     time_t startTime;
 
+    BOOL terminatingApp;
+    NSTimer *taskKiller;
+
     NSString *logPath;
     FILE *logFile;
 }
