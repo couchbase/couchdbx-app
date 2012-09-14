@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">12B19</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">2549</string>
+			<string key="NS.object.0">2840</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -75,14 +75,6 @@
 						<reference key="NSMenu" ref="54003695"/>
 						<bool key="NSIsAlternate">YES</bool>
 						<string key="NSTitle">Re-Run Importer</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="190466617"/>
-						<reference key="NSMixedImage" ref="358770894"/>
-					</object>
-					<object class="NSMenuItem" id="916019378">
-						<reference key="NSMenu" ref="54003695"/>
-						<string key="NSTitle">Install Command-Line Tools…</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="190466617"/>
@@ -275,14 +267,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">showToolInstaller:</string>
-						<reference key="source" ref="259954524"/>
-						<reference key="destination" ref="916019378"/>
-					</object>
-					<int key="connectionID">508</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">checkForUpdates:</string>
 						<reference key="source" ref="157747525"/>
 						<reference key="destination" ref="817844652"/>
@@ -350,7 +334,6 @@
 							<reference ref="817844652"/>
 							<reference ref="83921279"/>
 							<reference ref="207377944"/>
-							<reference ref="916019378"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -419,11 +402,6 @@
 						<reference key="object" ref="207377944"/>
 						<reference key="parent" ref="54003695"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">506</int>
-						<reference key="object" ref="916019378"/>
-						<reference key="parent" ref="54003695"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -450,11 +428,9 @@
 					<string>500.IBPluginDependency</string>
 					<string>502.IBPluginDependency</string>
 					<string>504.IBPluginDependency</string>
-					<string>506.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
