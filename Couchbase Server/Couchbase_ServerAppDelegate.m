@@ -5,7 +5,6 @@
 #import "Couchbase_ServerAppDelegate.h"
 #import "ImportController.h"
 #import "Sparkle/Sparkle.h"
-#import "SUUpdaterDelegate.h"
 #import "ToolInstallController.h"
 
 #import "iniparser.h"
@@ -31,9 +30,28 @@
 
 -(void)applicationWillFinishLaunching:(NSNotification *)notification
 {
-	SUUpdater *updater = [SUUpdater sharedUpdater];
-	SUUpdaterDelegate *updaterDelegate = [[[SUUpdaterDelegate alloc] init] autorelease];
-	[updater setDelegate: updaterDelegate];
+	[[SUUpdater sharedUpdater] setDelegate: self];
+}
+
+-(void)willInstallUpdate:(SUAppcastItem *)update
+{
+	[self ensureFullCommit];
+}
+
+- (NSArray *)feedParametersForUpdater:(SUUpdater *)updater
+                 sendingSystemProfile:(BOOL)sendingProfile
+{
+    // Place our UUID into each software update request.
+    NSString *uuid = [[NSUserDefaults standardUserDefaults] valueForKey:@"uniqueness"];
+
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                uuid, @"value",
+                                @"uuid", @"key",
+                                uuid, @"displayValue",
+                                @"uuid", @"displayKey",
+                                nil];
+
+    return [NSArray arrayWithObject: dictionary];
 }
 
 - (IBAction)showAboutPanel:(id)sender {

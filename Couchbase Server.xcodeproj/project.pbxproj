@@ -56,7 +56,6 @@
 		DA638DFA13E1F7BA005E6A5B /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 		DA638DFB13E1F7BA005E6A5B /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
 		DA638DFC13E1F7BA005E6A5B /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB10133DA68B00B282D6 /* ImportController.m */; };
-		DA638DFD13E1F7BA005E6A5B /* SUUpdaterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB12133DA68B00B282D6 /* SUUpdaterDelegate.m */; };
 		DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA638DFF13E1F7BA005E6A5B /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
 		DA638E0113E1F7BA005E6A5B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
@@ -80,7 +79,6 @@
 		DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 		DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
 		DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB10133DA68B00B282D6 /* ImportController.m */; };
-		DAADFB16133DA68B00B282D6 /* SUUpdaterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB12133DA68B00B282D6 /* SUUpdaterDelegate.m */; };
 		DAADFB18133DA6CE00B282D6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
 		DAADFB1B133DA71800B282D6 /* Sparkle.framework in Install Sparkle */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
 		DAADFB28133DA75F00B282D6 /* bin in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB1D133DA75F00B282D6 /* bin */; };
@@ -238,8 +236,6 @@
 		DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportableDatabase.m; sourceTree = "<group>"; };
 		DAADFB0F133DA68B00B282D6 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportController.h; sourceTree = "<group>"; };
 		DAADFB10133DA68B00B282D6 /* ImportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportController.m; sourceTree = "<group>"; };
-		DAADFB11133DA68B00B282D6 /* SUUpdaterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdaterDelegate.h; sourceTree = "<group>"; };
-		DAADFB12133DA68B00B282D6 /* SUUpdaterDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdaterDelegate.m; sourceTree = "<group>"; };
 		DAADFB17133DA6CE00B282D6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		DAADFB1D133DA75F00B282D6 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; name = bin; path = ../../build/bin; sourceTree = "<group>"; };
 		DAADFB1E133DA75F00B282D6 /* env.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = env.sh; path = ../../build/env.sh; sourceTree = "<group>"; };
@@ -344,8 +340,6 @@
 				DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */,
 				DAADFB0F133DA68B00B282D6 /* ImportController.h */,
 				DAADFB10133DA68B00B282D6 /* ImportController.m */,
-				DAADFB11133DA68B00B282D6 /* SUUpdaterDelegate.h */,
-				DAADFB12133DA68B00B282D6 /* SUUpdaterDelegate.m */,
 				DA1AD349133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.h */,
 				DA1AD34A133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m */,
 				2725AADB158A46E800CCC0B9 /* ToolInstallController.h */,
@@ -687,7 +681,6 @@
 				DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */,
 				DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */,
 				DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */,
-				DAADFB16133DA68B00B282D6 /* SUUpdaterDelegate.m in Sources */,
 				DA0E692413DD364400CDAC6D /* dictionary.c in Sources */,
 				DA0E692513DD364400CDAC6D /* iniparser.c in Sources */,
 			);
@@ -710,7 +703,6 @@
 				DA638DFA13E1F7BA005E6A5B /* LoginItemManager.m in Sources */,
 				DA638DFB13E1F7BA005E6A5B /* ImportableDatabase.m in Sources */,
 				DA638DFC13E1F7BA005E6A5B /* ImportController.m in Sources */,
-				DA638DFD13E1F7BA005E6A5B /* SUUpdaterDelegate.m in Sources */,
 				DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */,
 				DA638DFF13E1F7BA005E6A5B /* iniparser.c in Sources */,
 				2725AADE158A46E800CCC0B9 /* ToolInstallController.m in Sources */,

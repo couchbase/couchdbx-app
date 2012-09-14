@@ -5,6 +5,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "LoginItemManager.h"
+@class SUUpdaterDelegate;
 
 #define MIN_LIFETIME 10
 
@@ -27,6 +28,8 @@
 
     NSString *logPath;
     FILE *logFile;
+
+    SUUpdaterDelegate *updaterDelegate;
 }
 
 -(IBAction)start:(id)sender;
