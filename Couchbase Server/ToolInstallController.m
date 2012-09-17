@@ -21,12 +21,7 @@ static ToolInstallController* sController;
 
 
 + (ToolInstallController*) showIfFirstRun {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey: @"ToolInstallController_Asked"]) {
-        return nil;
-    }
-    [[NSUserDefaults standardUserDefaults] setBool: YES forKey: @"ToolInstallController_Asked"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    return [self show];
+    return nil;
 }
 
 
