@@ -11,6 +11,9 @@
 
 #define FORCEKILL_INTERVAL 15.0     // How long to wait for the server task to exit, on quit
 
+#define MAX_OPEN_FILES 10240        // rlimit for max # of open files (RLIMIT_NOFILE)
+
+
 @implementation Couchbase_ServerAppDelegate
 
 -(BOOL)isSingle
@@ -330,9 +333,28 @@
                name:NSTaskDidTerminateNotification
              object:task];
 
+    // Raise limit on number of open files:
+    BOOL changedRLimit = NO;
+    struct rlimit limits, newLimits;
+    if (getrlimit(RLIMIT_NOFILE, &limits) < 0)
+        NSLog(@"WARNING: getrlimit call failed, errno=%d", errno);
+    else if (limits.rlim_cur < MAX_OPEN_FILES) {
+        newLimits = limits;
+        newLimits.rlim_cur = MAX_OPEN_FILES;
+        if (setrlimit(RLIMIT_NOFILE, &newLimits) < 0)
+            NSLog(@"WARNING: setrlimit call failed, errno=%d", errno);
+        else
+            changedRLimit = YES;
+    }
+
   	[task launch];
   	[fh readInBackgroundAndNotify];
     NSLog(@"Launched server task -- pid = %d", task.processIdentifier);
+
+    if (changedRLimit) {
+        if (setrlimit(RLIMIT_NOFILE, &limits) < 0)
+            NSLog(@"WARNING: failed to restore previous rlimits, errno=%d", errno);
+    }
 }
 
 
