@@ -93,7 +93,8 @@ _load_config
 _add_config_file "$PLATFORM_CONFIG_FILE"
 _add_config_file "$CUSTOM_CONFIG_FILE"
 
-eval exec erl \
+# Run Erlang. This will run until the app stops the server by sending a quit command to stdin.
+eval erl \
     +A 16 \
     -setcookie nocookie \
     -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
@@ -103,3 +104,6 @@ eval exec erl \
     -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
     -ns_server dont_suppress_stderr_logger true
+
+# On exit, stop the epmd process we started (if no one else is using it)
+epmd -kill
