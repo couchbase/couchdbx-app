@@ -35,7 +35,6 @@ _fix_python_path () {
 
 echo "fixing path for cb* commands in `pwd`"
 _fix_python_path "bin/cbbackup"                 ".."
-_fix_python_path "bin/cbcollect_info"           ".."
 _fix_python_path "bin/cbepctl"                  ".."
 _fix_python_path "bin/cbrestore"                ".."
 _fix_python_path "bin/cbstats"                  ".."
