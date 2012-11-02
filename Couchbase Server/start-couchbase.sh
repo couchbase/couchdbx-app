@@ -84,6 +84,11 @@ cd "$datadir"
 ERL_LIBS="$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
 export ERL_LIBS
 
+# Limit number of vbuckets to avoid running out of file descriptors; attempts to raise the
+# RLIMIT_NOFILE in the AppDelegate code have been unsuccessful.
+COUCHBASE_NUM_VBUCKETS=64
+export COUCHBASE_NUM_VBUCKETS
+
 mkdir -p "$datadir/etc/couchbase"
 
 sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
