@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">12B19</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">2840</string>
+			<string key="NS.object.0">2844</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -75,14 +75,6 @@
 						<reference key="NSMenu" ref="54003695"/>
 						<bool key="NSIsAlternate">YES</bool>
 						<string key="NSTitle">Re-Run Importer</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="190466617"/>
-						<reference key="NSMixedImage" ref="358770894"/>
-					</object>
-					<object class="NSMenuItem" id="83921279">
-						<reference key="NSMenu" ref="54003695"/>
-						<string key="NSTitle">View Logs</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="190466617"/>
@@ -251,14 +243,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">showLogs:</string>
-						<reference key="source" ref="259954524"/>
-						<reference key="destination" ref="83921279"/>
-					</object>
-					<int key="connectionID">503</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">showImportWindow:</string>
 						<reference key="source" ref="259954524"/>
 						<reference key="destination" ref="207377944"/>
@@ -332,7 +316,6 @@
 							<reference ref="452718719"/>
 							<reference ref="769843498"/>
 							<reference ref="817844652"/>
-							<reference ref="83921279"/>
 							<reference ref="207377944"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -393,11 +376,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">502</int>
-						<reference key="object" ref="83921279"/>
-						<reference key="parent" ref="54003695"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">504</int>
 						<reference key="object" ref="207377944"/>
 						<reference key="parent" ref="54003695"/>
@@ -426,12 +404,10 @@
 					<string>496.IBPluginDependency</string>
 					<string>498.IBPluginDependency</string>
 					<string>500.IBPluginDependency</string>
-					<string>502.IBPluginDependency</string>
 					<string>504.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
