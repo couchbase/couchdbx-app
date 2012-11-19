@@ -400,6 +400,7 @@
 
 -(void)killTask {
     NSLog(@"Force terminating task");
+    taskKiller = nil;   // It just fired, so it's going to go away
     [task terminate];
 }
 
