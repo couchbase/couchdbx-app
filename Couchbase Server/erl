@@ -18,7 +18,7 @@
 # %CopyrightEnd%
 #
 ROOTDIR=$COUCHBASE_TOP/lib/erlang
-BINDIR=`dirname "$ROOTDIR"/erts-5.8.*/bin/erlexec`
+BINDIR=`dirname "$ROOTDIR"/erts-5.9.*/bin/erlexec`
 EMU=beam
 PROGNAME=`echo $0 | sed 's/.*\///'`
 export EMU
