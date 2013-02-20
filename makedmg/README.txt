@@ -1,4 +1,4 @@
-Couchbase Server Community Edition 2.0.0
+Couchbase Server Community Edition 2.0.1
 
 In order to run the appliction please drag and drop the "Couchbase Server" icon
 into the "Applications" folder. You can start the Couchbase Server application
