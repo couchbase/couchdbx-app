@@ -36,14 +36,14 @@ _fix_python_path () {
 }
 
 echo "fixing path for cb* commands in `pwd`"
+_fix_python_path "bin/cbanalyze-core"           ".."
 _fix_python_path "bin/cbbackup"                 ".."
 _fix_python_path "bin/cbepctl"                  ".."
 _fix_python_path "bin/cbrestore"                ".."
 _fix_python_path "bin/cbstats"                  ".."
 _fix_python_path "bin/cbtransfer"               ".."
 _fix_python_path "bin/cbvbucketctl"             ".."
+_fix_python_path "bin/cbworkloadgen"            ".."
 _fix_python_path "bin/couchbase-cli"            ".."
 
-_fix_python_path "bin/tools/cbanalyze-core"     "../.."
 _fix_python_path "bin/tools/cbdocloader"        "../.."
-_fix_python_path "bin/cbworkloadgen"            ".."
