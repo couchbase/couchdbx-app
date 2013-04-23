@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+echo running $0
+
 topdir="$PROJECT_DIR/.."
 
 dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core"
@@ -7,12 +9,12 @@ dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core"
 # ns_server bits
 rsync -a --delete "$topdir/install/" "$dest/"
 rm "$dest/bin/couchjs"
-cp "$PROJECT_DIR/Couchbase Server/erl" "$dest/bin/erl"
-cp "$PROJECT_DIR/Couchbase Server/couchjs.tpl" "$dest/bin/couchjs.tpl"
-cp "$PROJECT_DIR/Couchbase Server/erl" "$dest/lib/erlang/bin/erl"
+cp "$PROJECT_DIR/Couchbase Server/erl"                "$dest/bin/erl"
+cp "$PROJECT_DIR/Couchbase Server/couchjs.tpl"        "$dest/bin/couchjs.tpl"
+cp "$PROJECT_DIR/Couchbase Server/erl"                "$dest/lib/erlang/bin/erl"
 cp "$PROJECT_DIR/Couchbase Server/start-couchbase.sh" "$dest/../start-server.sh"
 rm "$dest/etc/couchbase/static_config"
-cp "$topdir/ns_server/etc/static_config.in" "$dest/etc/couchbase/static_config.in"
+cp "$topdir/ns_server/etc/static_config.in"           "$dest/etc/couchbase/static_config.in"
 
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 
@@ -42,6 +44,6 @@ _fix_python_path "bin/cbtransfer"               ".."
 _fix_python_path "bin/cbvbucketctl"             ".."
 _fix_python_path "bin/couchbase-cli"            ".."
 
-_fix_python_path "bin/tools/cbanalyze-core"                         "../.."
-_fix_python_path "bin/tools/cbdocloader"                            "../.."
-_fix_python_path "bin/tools/cbworkloadgen"                          "../.."
+_fix_python_path "bin/tools/cbanalyze-core"     "../.."
+_fix_python_path "bin/tools/cbdocloader"        "../.."
+_fix_python_path "bin/cbworkloadgen"            ".."
