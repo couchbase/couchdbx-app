@@ -87,11 +87,6 @@ COOKIEFILE="$datadir/var/lib/couchbase/couchbase-server.cookie"
 ERL_LIBS="$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
 export ERL_LIBS
 
-umask 007
-ERL_MAX_PORTS=1024
-export ERL_MAX_PORTS
-
-
 # Limit number of vbuckets to avoid running out of file descriptors; attempts to raise the
 # RLIMIT_NOFILE in the AppDelegate code have been unsuccessful.
 COUCHBASE_NUM_VBUCKETS=64
@@ -110,17 +105,17 @@ _add_config_file "$CUSTOM_CONFIG_FILE"
 eval erl \
     +A 16 \
     -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
+    -sasl sasl_error_logger false \
     -hidden \
     -name 'babysitter_of_ns_1@127.0.0.1' \
     -setcookie nocookie \
     $* \
-    -eval 'os:putenv("ERL_MAX_PORTS","").' \
     -run ns_babysitter_bootstrap -- \
     -couch_ini $couch_start_arguments \
-    -ns_babysitter cookiefile "\"$COOKIEFILE\"" \
+    -ns_babysitter cookiefile "\"\\\"$COOKIEFILE\\\"\"" \
     -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
-    -ns_server cookiefile "\"$COOKIEFILE-ns-server\"" \
+    -ns_server cookiefile "\"\\\"$COOKIEFILE-ns-server\\\"\"" \
     -ns_server dont_suppress_stderr_logger true
 
 
