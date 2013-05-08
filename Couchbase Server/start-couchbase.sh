@@ -83,7 +83,8 @@ cd "$datadir"
 
 COOKIEFILE="$datadir/var/lib/couchbase/couchbase-server.cookie"
 
-ERL_LIBS="$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
+#This order is important - ravi
+ERL_LIBS="$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
 export ERL_LIBS
 
 umask 007
