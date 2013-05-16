@@ -13,7 +13,7 @@ LibraryDir = Pathname.new("lib")
 BinDir = Pathname.new("bin")
 
 def log (message)
-    #puts message       # Uncomment for verbose logging
+    puts message       # Uncomment for verbose logging
 end
 
 # Returns the libraries imported by the binary at 'path', as an array of Pathnames.
@@ -33,6 +33,7 @@ end
 
 # Edits the binary at 'libpath' to change its import of 'import' to 'newimport'.
 def change_import (libpath, import, newimport)
+  log "\tchange_import called with libpath: #{libpath}, import: #{import}, newimport: #{newimport}"
   return  if newimport == import
   log "\tChange import #{import} to #{newimport}"
   unless system("install_name_tool", "-change", import, newimport, libpath)
@@ -104,6 +105,8 @@ puts "Fixing library imports in #{BinDir} ..."
 BinDir.children.each do |file|
   if file.ftype == "file" && file.executable?
     process(file)
+  else
+    log "Skipping #{file}."
   end
 end
 
