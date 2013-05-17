@@ -13,7 +13,7 @@ LibraryDir = Pathname.new("lib")
 BinDir = Pathname.new("bin")
 
 def log (message)
-    puts message       # Uncomment for verbose logging
+    # puts message       # Uncomment for verbose logging
 end
 
 # Returns the libraries imported by the binary at 'path', as an array of Pathnames.
