@@ -97,18 +97,24 @@ def process_libs_in_tree (dir)
     end
   end
 end
+  
+def process_binaries_in_tree (dir)
+  dir.children.each do |file|
+    if file.directory?
+      process_binaries_in_tree file
+    elsif file.ftype == "file" && file.executable?
+      process(file)
+    else
+      log "Skipping #{file}."
+    end
+  end
+end
 
 
 ### OK, here's the main code:
 
 puts "Fixing library imports in #{BinDir} ..."
-BinDir.children.each do |file|
-  if file.ftype == "file" && file.executable?
-    process(file)
-  else
-    log "Skipping #{file}."
-  end
-end
+process_binaries_in_tree BinDir
 
 puts "\nFixing library imports in #{LibraryDir} ..."
 process_libs_in_tree LibraryDir
