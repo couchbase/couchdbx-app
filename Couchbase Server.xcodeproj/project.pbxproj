@@ -835,6 +835,7 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+                                        "-headerpad_max_install_names",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -857,6 +858,7 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+                                        "-headerpad_max_install_names",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
