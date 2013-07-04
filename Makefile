@@ -23,7 +23,7 @@ ifeq ($(LICENSE),LICENSE-enterprise.txt)
 endif
 
 clean:
-	(cd makedmg            && rm LICENSE.txt)
-	(cd "Couchbase Server" && rm Credits.html)
+	(cd makedmg            && rm -f LICENSE.txt)
+	(cd "Couchbase Server" && rm -f Credits.html)
 	xcodebuild -target 'Couchbase Server' -configuration Release clean
 	rm -rf build cb.plist "Couchbase Server/Couchbase Server-Info.plist"
