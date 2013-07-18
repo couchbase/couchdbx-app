@@ -31,7 +31,10 @@ cd "$dest"
 
 _fix_python_path () {
     echo "Fixing Python lib path in $1"
-    sed -i '~' -e "s,\/opt\/couchbase,\`dirname \"\$0\"\`\/$2,g" $1
+    DIRNAME=`dirname $0`
+    echo DEBUG: dirname is $DIRNAME
+    echo DEBUG: sed -i '~' -e "s,/opt/couchbase,${DIRNAME}/$2,g" $1
+                sed -i '~' -e "s,/opt/couchbase,${DIRNAME}/$2,g" $1
     rm "$1~"
 }
 
