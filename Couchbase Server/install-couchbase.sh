@@ -1,6 +1,9 @@
 #!/bin/sh -e
 
-echo running $0
+echo      running $0
+THIS_DIR=`dirname $0`
+INST_DIR=${THIS_DIR}
+echo installing to ${INST_DIR}
 
 topdir="$PROJECT_DIR/.."
 
@@ -31,10 +34,8 @@ cd "$dest"
 
 _fix_python_path () {
     echo "Fixing Python lib path in $1"
-    DIRNAME=`dirname $0`
-    echo DEBUG: dirname is $DIRNAME
-    echo DEBUG: sed -i '~' -e "s,/opt/couchbase,${DIRNAME}/$2,g" $1
-                sed -i '~' -e "s,/opt/couchbase,${DIRNAME}/$2,g" $1
+    echo DEBUG: sed -i '~' -e "s,/opt/couchbase,${INST_DIR}/$2,g" $1
+                sed -i '~' -e "s,/opt/couchbase,${INST_DIR}/$2,g" $1
     rm "$1~"
 }
 
