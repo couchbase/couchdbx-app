@@ -1,7 +1,12 @@
 #!/bin/sh -e
 
-echo      running $0
-THIS_DIR=`dirname $0`
+
+# was:  sed -i '~' -e "s,\/opt\/couchbase,\`dirname \"\$0\"\`\/$2,g" $1
+# 
+# need to escape SPACES in directory name !
+
+echo        running $0
+THIS_DIR=`dirname "\$0"`
 INST_DIR=${THIS_DIR}
 echo installing to ${INST_DIR}
 
