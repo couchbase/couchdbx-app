@@ -44,7 +44,7 @@ _fix_python_path "bin/cbtransfer"               ".."
 _fix_python_path "bin/cbvbucketctl"             ".."
 _fix_python_path "bin/couchbase-cli"            ".."
 _fix_python_path "bin/cbrecovery"               ".."
-_fix_python_path "bin/cbhealthchecker           ".."
+_fix_python_path "bin/cbhealthchecker"          ".."
 
 _fix_python_path "bin/tools/cbanalyze-core"     "../.."
 _fix_python_path "bin/tools/cbdocloader"        "../.."
