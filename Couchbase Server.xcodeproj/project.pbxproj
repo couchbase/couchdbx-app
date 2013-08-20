@@ -911,8 +911,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+                                CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
+                                PROVISIONING_PROFILE = "3B464580-5CE0-4BF8-B3E0-7D0F892408B8";
 			};
 			name = Release;
 		};
@@ -929,8 +931,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+                                CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+                                PROVISIONING_PROFILE = "3B464580-5CE0-4BF8-B3E0-7D0F892408B8";
 			};
 			name = Release;
 		};
