@@ -1,4 +1,4 @@
-Couchbase Server Community Edition 2.0.1
+Couchbase Server Community Edition 2.2.0
 
 This is a self-contained installation of Couchbase Server.
   * To start the server, simply launch the application.
