@@ -16,6 +16,9 @@ cp "$PROJECT_DIR/Couchbase Server/start-couchbase.sh" "$dest/../start-server.sh"
 rm "$dest/etc/couchbase/static_config"
 cp "$topdir/ns_server/etc/static_config.in"           "$dest/etc/couchbase/static_config.in"
 
+# healthchecker bits
+mv "$dest/lib/python/reports"                         "$dest/bin"
+
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 
 echo "Installing and fixing up libraries:"
