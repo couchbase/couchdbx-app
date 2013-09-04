@@ -17,7 +17,7 @@ rm "$dest/etc/couchbase/static_config"
 cp "$topdir/ns_server/etc/static_config.in"           "$dest/etc/couchbase/static_config.in"
 
 # healthchecker bits
-mv "$dest/lib/python/reports"                         "$dest/bin"
+cp -r "$dest/lib/python/reports"                       "$dest/bin"
 
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 
