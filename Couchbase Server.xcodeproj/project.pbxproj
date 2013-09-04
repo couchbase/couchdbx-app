@@ -754,6 +754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -766,6 +767,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3B464580-5CE0-4BF8-B3E0-7D0F892408B8";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -775,6 +777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -783,6 +786,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PROVISIONING_PROFILE = "3B464580-5CE0-4BF8-B3E0-7D0F892408B8";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -835,6 +839,7 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-headerpad_max_install_names",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -857,6 +862,7 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-headerpad_max_install_names",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -909,8 +915,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
+				PROVISIONING_PROFILE = "3B464580-5CE0-4BF8-B3E0-7D0F892408B8";
 			};
 			name = Release;
 		};
@@ -927,8 +935,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3B464580-5CE0-4BF8-B3E0-7D0F892408B8";
 			};
 			name = Release;
 		};
