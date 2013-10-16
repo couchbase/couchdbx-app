@@ -1,19 +1,34 @@
-Couchbase Server Community Edition 2.0.1
+Couchbase Server 2.2, Mac OSX
 
-This is a self-contained installation of Couchbase Server.
-  * To start the server, simply launch the application.
-  * Click the Couchbase icon in the menu bar to access menu commands.
-  * To stop the server, choose "Quit Couchbase Server" from the menu.
+Couchbase Server 2.2 is the updated release for Couchbase Server 2.0. 
 
-This application may be run from any location on any writeable volume.
-You may choose to move it to /Applications, but this is not required.
-However:
-  * Do not move the application while it's running.
-  * After installing the command-line tools (via the item in the menu),
-    moving the app will break the symbolic links that were created in
-    /usr/local/bin (or wherever you installed the tools into.)
+Couchbase Server is a distributed NoSQL document database for interactive applications. Its scale-out architecture runs in the cloud or on commodity hardware and provides a flexible data model, consistent high-performance, easy scalability and always-on 24x365 availability. This release contains major enhancements and bug fixes. For more information, see our Release Notes: http://docs.couchbase.com/couchbase-manual-2.2/#appendix-release-notes
 
-Before you start the server for the first time, please do make sure you
-have erased any previous (1.8) Membase/Couchbase settings by deleting
-"~/Library/Application Support/Couchbase" and
-"~/Library/Application Support/Membase".
+REQUIREMENTS
+
+- If you have previous installation of Membase/Couchbase please follow the instructions here http://docs.couchbase.com/couchbase-manual-2.2/couchbase-getting-started-install-macosx.html
+
+INSTALL
+
+Instructions: 
+
+- By default we install Couchbase Server at "/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/".
+
+- After install, Couchbase Server icon appears in the menu bar on the right-hand side. 
+
+- The server will automatically start after install and will be available by default on port 8091.
+
+Note: 
+
+For Mac OSX 10.8+ if your security level is set to Anywhere you can run the server. If your security level is higher, you will not be able to open Couchbase Server due to lack of a valid developer certificate. If this occurs:
+
+1. Hold down the Control key and click the application icon. From the contextual menu choose Open.
+
+2. A popup will appear asking you to confirm this action. Click the Open button.
+ 
+
+ADDITIONAL
+
+- For a full list of network ports for Couchbase Server, see http://docs.couchbase.com/couchbase-manual-2.2/#network-ports
+
+- To read more about Couchbase Server best practices, see http://docs.couchbase.com/couchbase-manual-2.2/#best-practices

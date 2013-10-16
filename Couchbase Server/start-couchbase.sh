@@ -81,7 +81,10 @@ chmod 755 "$COUCHBASE_TOP/bin/couchjs"
 mkdir -p "$datadir/var/lib/couchbase/logs"
 cd "$datadir"
 
-ERL_LIBS="$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
+COOKIEFILE="$datadir/var/lib/couchbase/couchbase-server.cookie"
+
+#This order is important - ravi
+ERL_LIBS="$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
 export ERL_LIBS
 
 # Limit number of vbuckets to avoid running out of file descriptors; attempts to raise the
@@ -101,14 +104,20 @@ _add_config_file "$CUSTOM_CONFIG_FILE"
 # Run Erlang. This will run until the app stops the server by sending a quit command to stdin.
 eval erl \
     +A 16 \
-    -setcookie nocookie \
     -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
+    -sasl sasl_error_logger false \
+    -hidden \
+    -name 'babysitter_of_ns_1@127.0.0.1' \
+    -setcookie nocookie \
     $* \
-    -run ns_bootstrap -- \
+    -run ns_babysitter_bootstrap -- \
     -couch_ini $couch_start_arguments \
+    -ns_babysitter cookiefile "\"\\\"$COOKIEFILE\\\"\"" \
     -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
+    -ns_server cookiefile "\"\\\"$COOKIEFILE-ns-server\\\"\"" \
     -ns_server dont_suppress_stderr_logger true
+
 
 # On exit, stop the epmd process we started (if no one else is using it)
 epmd -kill
