@@ -35,6 +35,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0F18A8731936BB3800585D2A /* Importer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F18A8721936BB3800585D2A /* Importer.xib */; };
+		0F18A8741936BB3800585D2A /* Importer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F18A8721936BB3800585D2A /* Importer.xib */; };
 		2725AADE158A46E800CCC0B9 /* ToolInstallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AADC158A46E800CCC0B9 /* ToolInstallController.m */; };
 		2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */; };
 		2725AAE8158A84BD00CCC0B9 /* PrivilegedInstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */; };
@@ -61,7 +63,6 @@
 		DA638E0113E1F7BA005E6A5B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
 		DA638E0213E1F7BA005E6A5B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
 		DA638E0413E1F7BA005E6A5B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA1AD340133DA58D00E6A9E1 /* InfoPlist.strings */; };
-		DA638E0513E1F7BA005E6A5B /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF7133DA61700B282D6 /* Importer.nib */; };
 		DA638E0613E1F7BA005E6A5B /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */; };
 		DA638E0713E1F7BA005E6A5B /* Couchbase.icns in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF9133DA61700B282D6 /* Couchbase.icns */; };
 		DA638E0813E1F7BA005E6A5B /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFA133DA61700B282D6 /* Credits.html */; };
@@ -70,7 +71,6 @@
 		DA638E0B13E1F7BA005E6A5B /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFB00133DA61700B282D6 /* MainMenu.nib */; };
 		DA638E0C13E1F7BA005E6A5B /* Couchbase-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */; };
 		DA638E0E13E1F7BA005E6A5B /* Sparkle.framework in Install Sparkle */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
-		DAADFB01133DA61700B282D6 /* Importer.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF7133DA61700B282D6 /* Importer.nib */; };
 		DAADFB02133DA61700B282D6 /* Couchbase-Status.png in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */; };
 		DAADFB03133DA61700B282D6 /* Couchbase.icns in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAF9133DA61700B282D6 /* Couchbase.icns */; };
 		DAADFB04133DA61700B282D6 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFA133DA61700B282D6 /* Credits.html */; };
@@ -190,6 +190,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F18A8721936BB3800585D2A /* Importer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Importer.xib; sourceTree = "<group>"; };
 		2725AADB158A46E800CCC0B9 /* ToolInstallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolInstallController.h; sourceTree = "<group>"; };
 		2725AADC158A46E800CCC0B9 /* ToolInstallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolInstallController.m; sourceTree = "<group>"; };
 		2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolInstallController.xib; sourceTree = "<group>"; };
@@ -224,7 +225,6 @@
 		DA638E2313E1F7BA005E6A5B /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA638E3613E1F99D005E6A5B /* install-couchbase.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-couchbase.sh"; sourceTree = "<group>"; };
 		DA638E3713E1FA08005E6A5B /* start-couchbase.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "start-couchbase.sh"; sourceTree = "<group>"; };
-		DAADFAF7133DA61700B282D6 /* Importer.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = Importer.nib; sourceTree = "<group>"; };
 		DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Couchbase-Status.png"; sourceTree = "<group>"; };
 		DAADFAF9133DA61700B282D6 /* Couchbase.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Couchbase.icns; sourceTree = "<group>"; };
 		DAADFAFA133DA61700B282D6 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 				DAAEC781133DBD0700EE9189 /* dsa_pub.pem */,
 				DAADFB37133DA84400B282D6 /* erl */,
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
-				DAADFAF7133DA61700B282D6 /* Importer.nib */,
+				0F18A8721936BB3800585D2A /* Importer.xib */,
 				2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */,
 				DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */,
 				DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */,
@@ -525,12 +525,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1AD342133DA58D00E6A9E1 /* InfoPlist.strings in Resources */,
-				DAADFB01133DA61700B282D6 /* Importer.nib in Resources */,
 				DAADFB02133DA61700B282D6 /* Couchbase-Status.png in Resources */,
 				DAADFB03133DA61700B282D6 /* Couchbase.icns in Resources */,
 				DAADFB04133DA61700B282D6 /* Credits.html in Resources */,
 				DAAEC783133DBD1E00EE9189 /* dsa_pub.pem in Resources */,
 				DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */,
+				0F18A8731936BB3800585D2A /* Importer.xib in Resources */,
 				DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */,
 				DA45A4391384EF0300DF68ED /* Couchbase-Status-bw.png in Resources */,
 			);
@@ -551,7 +551,6 @@
 			files = (
 				E802C02A14FEDCD100A54EC8 /* LICENSE.txt in Resources */,
 				DA638E0413E1F7BA005E6A5B /* InfoPlist.strings in Resources */,
-				DA638E0513E1F7BA005E6A5B /* Importer.nib in Resources */,
 				DA638E0613E1F7BA005E6A5B /* Couchbase-Status.png in Resources */,
 				DA638E0713E1F7BA005E6A5B /* Couchbase.icns in Resources */,
 				DA638E0813E1F7BA005E6A5B /* Credits.html in Resources */,
@@ -560,6 +559,7 @@
 				DA638E0B13E1F7BA005E6A5B /* MainMenu.nib in Resources */,
 				DA638E0C13E1F7BA005E6A5B /* Couchbase-Status-bw.png in Resources */,
 				2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */,
+				0F18A8741936BB3800585D2A /* Importer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
