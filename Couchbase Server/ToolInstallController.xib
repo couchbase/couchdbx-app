@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1050" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5">
+                    <button verticalHuggingPriority="750" id="5">
                         <rect key="frame" x="388" y="13" width="78" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6">
@@ -38,7 +38,7 @@ DQ
                             <action selector="install:" target="-2" id="135"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                    <button verticalHuggingPriority="750" id="9">
                         <rect key="frame" x="306" y="13" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10">
@@ -52,20 +52,16 @@ Gw
                             <action selector="cancel:" target="-2" id="136"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13">
+                    <textField verticalHuggingPriority="750" id="13">
                         <rect key="frame" x="87" y="216" width="362" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="358" id="345"/>
-                            <constraint firstAttribute="height" constant="34" id="367"/>
-                        </constraints>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Install (symlink) Couchbase Server command-line tools into system for convenient access?" id="14">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="32">
+                    <textField verticalHuggingPriority="750" id="32">
                         <rect key="frame" x="18" y="177" width="256" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="The following tools can be installed into" id="33">
@@ -74,25 +70,21 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="36">
+                    <textField verticalHuggingPriority="750" id="36">
                         <rect key="frame" x="41" y="123" width="421" height="47"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="47" id="365"/>
-                            <constraint firstAttribute="width" constant="417" id="366"/>
-                        </constraints>
                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="LIST OF TOOLS" id="37">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="49">
+                    <popUpButton verticalHuggingPriority="750" id="49">
                         <rect key="frame" x="278" y="171" width="125" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="~/bin" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="54" id="50">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="51">
                                 <items>
                                     <menuItem title="~/bin" state="on" id="54"/>
@@ -103,7 +95,7 @@ Gw
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="77">
+                    <textField verticalHuggingPriority="750" id="77">
                         <rect key="frame" x="18" y="81" width="444" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="78">
@@ -114,50 +106,21 @@ Or if you choose not to install, they can still be run from:</string>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="106">
+                    <textField verticalHuggingPriority="750" id="106">
                         <rect key="frame" x="41" y="49" width="421" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="29" id="364"/>
-                        </constraints>
                         <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" sendsActionOnEndEditing="YES" title="PATH TO TOOLS" id="109">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="179">
+                    <imageView id="179">
                         <rect key="frame" x="20" y="202" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="48" id="256"/>
-                            <constraint firstAttribute="width" constant="48" id="363"/>
-                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSApplicationIcon" id="180"/>
                     </imageView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="179" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="219"/>
-                    <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" symbolic="YES" id="241"/>
-                    <constraint firstItem="32" firstAttribute="top" secondItem="179" secondAttribute="bottom" constant="8" symbolic="YES" id="262"/>
-                    <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" constant="20" symbolic="YES" id="287"/>
-                    <constraint firstAttribute="trailing" secondItem="77" secondAttribute="trailing" constant="20" symbolic="YES" id="355"/>
-                    <constraint firstItem="32" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="357"/>
-                    <constraint firstItem="36" firstAttribute="top" secondItem="2" secondAttribute="top" constant="100" id="368"/>
-                    <constraint firstItem="77" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="369"/>
-                    <constraint firstAttribute="trailing" secondItem="36" secondAttribute="trailing" constant="20" symbolic="YES" id="370"/>
-                    <constraint firstItem="179" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="371"/>
-                    <constraint firstItem="5" firstAttribute="leading" secondItem="9" secondAttribute="trailing" constant="12" symbolic="YES" id="372"/>
-                    <constraint firstItem="13" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="373"/>
-                    <constraint firstItem="49" firstAttribute="baseline" secondItem="32" secondAttribute="baseline" id="374"/>
-                    <constraint firstItem="13" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="89" id="375"/>
-                    <constraint firstItem="77" firstAttribute="top" secondItem="36" secondAttribute="bottom" constant="8" symbolic="YES" id="376"/>
-                    <constraint firstItem="36" firstAttribute="leading" secondItem="106" secondAttribute="leading" id="377"/>
-                    <constraint firstItem="9" firstAttribute="top" secondItem="106" secondAttribute="bottom" constant="8" symbolic="YES" id="378"/>
-                    <constraint firstAttribute="trailing" secondItem="106" secondAttribute="trailing" constant="20" symbolic="YES" id="379"/>
-                    <constraint firstAttribute="bottom" secondItem="5" secondAttribute="bottom" constant="20" symbolic="YES" id="380"/>
-                    <constraint firstItem="49" firstAttribute="leading" secondItem="32" secondAttribute="trailing" constant="8" symbolic="YES" id="381"/>
-                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="4"/>
