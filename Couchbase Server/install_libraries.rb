@@ -13,13 +13,14 @@ LibraryDir = Pathname.new("lib")
 BinDir = Pathname.new("bin")
 
 def log (message)
-    # puts message       # Uncomment for verbose logging
+  #   puts message       # Uncomment for verbose logging
 end
 
 # Returns the libraries imported by the binary at 'path', as an array of Pathnames.
 def get_imports (path)
   imports = []
-  for line in `otool -L '#{path}'`
+  puts "path: #{path}"
+  for line in `otool -L '#{path}'`.split("\n")
     if line =~ /^\t(.*)\s*\(.*\)$/
       import = Pathname.new($1.rstrip)
       if import.basename != path.basename
@@ -57,7 +58,7 @@ def copy_lib (src, loaded_from)
   fail "bad path #{src}"  unless src.absolute?
 
   log "\tCopying #{src} --> #{dst}"
-  unless system("cp", src, dst)
+  unless system("cp", src.to_s, dst.to_s)
     fail "cp failed on #{src}"
   end
   dst.chmod(0644)  # Make it writable so we can change its imports
@@ -78,9 +79,9 @@ def process (file, original_path =nil)
     unless path.start_with?("/usr/lib/") || path.start_with?("/System/")
       dst = copy_lib(import, (original_path || file))
       unless dst.absolute?
-        dst = '@loader_path/' + dst.relative_path_from(file.dirname)
+        dst = '@loader_path/' + dst.relative_path_from(file.dirname).to_s
       end
-      change_import(file, import, dst)
+      change_import(file.to_s, import.to_s, dst.to_s)
     end
   end
   log "\tend #{file}"
@@ -103,7 +104,13 @@ def process_binaries_in_tree (dir)
     if file.directory?
       process_binaries_in_tree file
     elsif file.ftype == "file" && file.executable?
-      process(file)
+      File.open(file, 'r') do |f|
+        if f.getc == '#' && f.getc == '!'
+          log "Skipping script file #{file}."
+        else
+          process(file)
+        end
+      end
     else
       log "Skipping #{file}."
     end
