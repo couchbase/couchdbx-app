@@ -1,6 +1,6 @@
-Couchbase Server 2.5.0, Mac OSX
+Couchbase Server 3.0.0, Mac OSX
 
-Couchbase Server 2.5 is the updated release for Couchbase Server 2.2.
+Couchbase Server 3.0 is the updated release for Couchbase Server 2.5.
 
 Couchbase Server is a distributed NoSQL document database for interactive applications.
 Its scale-out architecture runs in the cloud or on commodity hardware and provides a
@@ -9,13 +9,13 @@ flexible data model, consistent high-performance, easy scalability and always-on
 
 This release contains major enhancements and bug fixes.
 For more information, see the Couchbase Server Release Notes:
-http://docs.couchbase.com/couchbase-manual-2.5/cb-release-notes/
+http://docs.couchbase.com/couchbase-manual-3.0/cb-release-notes/
 
 REQUIREMENTS
 
 - If you have a previous installation of Membase/Couchbase,
   see the instructions for removing the Couchbase Server:
-  http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#mac-os-x-installation
+  http://docs.couchbase.com/couchbase-manual-3.0/cb-install/#mac-os-x-installation
 
 INSTALL
 
@@ -47,7 +47,7 @@ due to lack of a valid developer certificate. If this occurs:
 ADDITIONAL
 
 - For a full list of network ports for Couchbase Server, see
-  http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#network-ports
+  http://docs.couchbase.com/couchbase-manual-3.0/cb-install/#network-ports
 
 - To read more about Couchbase Server best practices, see
-  http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#best-practices
+  http://docs.couchbase.com/couchbase-manual-3.0/cb-admin/#best-practices
