@@ -754,7 +754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Couchbase, Inc. (N2Q372V7W2)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -767,7 +767,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1d865d24-161b-4584-a275-4920a8bf7eb4";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -777,7 +776,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Couchbase, Inc. (N2Q372V7W2)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Couchbase, Inc. (N2Q372V7W2)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -786,7 +785,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				PROVISIONING_PROFILE = "1d865d24-161b-4584-a275-4920a8bf7eb4";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
 			};
