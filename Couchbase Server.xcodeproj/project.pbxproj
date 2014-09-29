@@ -502,6 +502,7 @@
 						DevelopmentTeam = N2Q372V7W2;
 					};
 				};
+			};
 			buildConfigurationList = DA1AD32D133DA58D00E6A9E1 /* Build configuration list for PBXProject "Couchbase Server" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
