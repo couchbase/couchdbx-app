@@ -497,7 +497,11 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = NorthScale;
-			};
+				TargetAttributes = {
+					DA1AD332133DA58D00E6A9E1 = {
+						DevelopmentTeam = N2Q372V7W2;
+					};
+				};
 			buildConfigurationList = DA1AD32D133DA58D00E6A9E1 /* Build configuration list for PBXProject "Couchbase Server" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -754,6 +758,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Couchbase, Inc. (N2Q372V7W2)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -766,6 +771,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -775,6 +781,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Couchbase, Inc. (N2Q372V7W2)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -783,6 +790,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
 			};
@@ -792,6 +800,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -800,6 +810,7 @@
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -808,6 +819,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -816,6 +829,7 @@
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
