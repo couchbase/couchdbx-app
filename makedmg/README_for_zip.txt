@@ -1,6 +1,6 @@
-Couchbase Server 2.5.1, Mac OSX
+Couchbase Server 2.5.2, Mac OSX
 
-Couchbase Server 2.5.1 is a minor release of 2.5.0 and a updated release for Couchbase Server 2.2. 
+Couchbase Server 2.5.2 is a minor release of 2.5.0 and a updated release for Couchbase Server 2.2. 
 
 Couchbase Server is a distributed NoSQL document database for interactive applications. 
 Its scale-out architecture runs in the cloud or on commodity hardware and provides a 
