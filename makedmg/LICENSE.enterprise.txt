@@ -28,7 +28,7 @@ Software updates to correct known bugs and errors to the extent
 Couchbase Inc. incorporates such corrections into the free edition
 version of the Software; and (b) access to, and use of, the Couchbase
 Inc. support forum available at the following URL:
-http://www.couchbase.org/forums/. Couchbase, Inc. may, at its
+http://forums.couchbase.com/ . Couchbase, Inc. may, at its
 discretion, modify, suspend or terminate support at any time upon notice
 to Licensee.
 

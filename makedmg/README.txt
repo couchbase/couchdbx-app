@@ -1,6 +1,4 @@
-Couchbase Server 2.5.0, Mac OSX
-
-Couchbase Server 2.5 is the updated release for Couchbase Server 2.2.
+Couchbase Server 3.0, Mac OSX
 
 Couchbase Server is a distributed NoSQL document database for interactive applications.
 Its scale-out architecture runs in the cloud or on commodity hardware and provides a
@@ -8,14 +6,13 @@ flexible data model, consistent high-performance, easy scalability and always-on
 24x365 availability.
 
 This release contains major enhancements and bug fixes.
-For more information, see the Couchbase Server Release Notes:
-http://docs.couchbase.com/couchbase-manual-2.5/cb-release-notes/
+
 
 REQUIREMENTS
 
 - If you have a previous installation of Membase/Couchbase,
-  see the instructions for removing the Couchbase Server:
-  http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#mac-os-x-installation
+  see the Couchbase Server Mac OS X installation information.
+
 
 INSTALL
 
@@ -30,10 +27,12 @@ Instructions:
 - The server automatically starts after install and is available on
   port 8091 (default).
 
+- For more information, see the Couchbase Server Mac OS X installation information.
+
 
 Note:
 
-For Mac OSX 10.8+, if your security level is set to Anywhere you can run the server.
+For Mac OSX 10.8+, if your security level is set to Anywhere, you can run the server.
 If your security level is higher, you will not be able to open Couchbase Server
 due to lack of a valid developer certificate. If this occurs:
 
@@ -42,12 +41,22 @@ due to lack of a valid developer certificate. If this occurs:
 
 2. A popup appears asking you to confirm this action.
    Click the Open button.
- 
+
 
 ADDITIONAL
 
-- For a full list of network ports for Couchbase Server, see
-  http://docs.couchbase.com/couchbase-manual-2.5/cb-install/#network-ports
+- For Couchbase Server documentation, see the Couchbase documentation at http://docs.couchbase.com.
 
-- To read more about Couchbase Server best practices, see
-  http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#best-practices
+- For information new Couchbase features, known issues, and fixed issues, see the Release Notes.
+
+- For information about the reserved Couchbase Server network ports, see the Installation documentation.
+
+- For information about Couchbase Server deployment considerations, see the Administration documentation.
+
+
+THIRD-PARTY LICENSE INFORMATION
+
+You can find the Third Party License for all the third party products included
+with Couchbase Server at:
+
+  http://www.couchbase.com/redirect/agreement/3rdparty-license/Couchbase-server/3.0.0
