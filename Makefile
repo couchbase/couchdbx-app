@@ -1,5 +1,3 @@
-PRODUCT_VERSION := $(shell git describe)
-
 all: couchbase-server
 
 couchbase-server: license cb.plist
