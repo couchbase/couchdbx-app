@@ -26,10 +26,6 @@ cp "$topdir/ns_server/etc/static_config.in"           "$dest/etc/couchbase/stati
 
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 
-echo "Installing and fixing up libraries:"
-cd "$dest"
-ruby "$PROJECT_DIR/Couchbase Server/install_libraries.rb"
-
 cd "$topdir/install"
 install_absolute_path=`pwd`
 
