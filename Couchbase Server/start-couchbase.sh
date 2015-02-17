@@ -54,8 +54,8 @@ couchname=`basename "$COUCHBASE_TOP/lib/couchdb/erlang/lib/"couch-*/`
 sed -e "s,@APP_PATH@,$COUCHBASE_TOP,g" -e "s,@DATADIR@,$datadir,g" \
     -e "s,@HOME@,$HOME,g" -e "s,@COUCHNAME@,$couchname,g" <<EOF > "$PLATFORM_CONFIG_FILE"
 [couchdb]
-database_dir = @DATADIR@/var/lib/couchdb
-view_index_dir = @DATADIR@/var/lib/couchdb
+database_dir = @DATADIR@/var/lib/couchbase
+view_index_dir = @DATADIR@/var/lib/couchbase
 util_driver_dir = @APP_PATH@/lib/couchdb/erlang/lib/@COUCHNAME@/priv/lib
 uri_file = @DATADIR@/var/couch.uri
 
