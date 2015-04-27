@@ -1,4 +1,5 @@
 PRODUCT_VERSION := $(shell git describe)
+NO_REL_VERSION := $(shell echo ${PRODUCT_VERSION} | sed s/-rel//)
 
 all: couchbase-server
 
@@ -9,7 +10,7 @@ couchbase-server-zip: license cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 cb.plist: cb.plist.tmpl
-	sed s/@VERSION@/$(PRODUCT_VERSION)/g $< > $@
+	sed s/@VERSION@/$(NO_REL_VERSION)/g $< > $@
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
 
 license:
