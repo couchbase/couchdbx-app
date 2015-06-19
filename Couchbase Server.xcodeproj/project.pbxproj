@@ -202,7 +202,7 @@
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
 		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
 		DA0E692313DD364400CDAC6D /* iniparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iniparser.h; sourceTree = "<group>"; };
-		DA1AD333133DA58D00E6A9E1 /* Couchbase Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Couchbase Server.app"; path = "Couchbase Single Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA1AD333133DA58D00E6A9E1 /* Couchbase Single Server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Single Server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DA1AD33A133DA58D00E6A9E1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DA1AD33B133DA58D00E6A9E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -302,7 +302,7 @@
 		DA1AD334133DA58D00E6A9E1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA1AD333133DA58D00E6A9E1 /* Couchbase Server.app */,
+				DA1AD333133DA58D00E6A9E1 /* Couchbase Single Server.app */,
 				DA1AD354133DA58D00E6A9E1 /* Couchbase ServerTests.octest */,
 				DA638E2313E1F7BA005E6A5B /* Couchbase Server.app */,
 			);
@@ -445,7 +445,7 @@
 			);
 			name = "Couchbase Single Server";
 			productName = "Couchbase Server";
-			productReference = DA1AD333133DA58D00E6A9E1 /* Couchbase Server.app */;
+			productReference = DA1AD333133DA58D00E6A9E1 /* Couchbase Single Server.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DA1AD353133DA58D00E6A9E1 /* Couchbase ServerTests */ = {
@@ -465,7 +465,7 @@
 			name = "Couchbase ServerTests";
 			productName = "Couchbase ServerTests";
 			productReference = DA1AD354133DA58D00E6A9E1 /* Couchbase ServerTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		DA638DF613E1F7BA005E6A5B /* Couchbase Server */ = {
 			isa = PBXNativeTarget;
@@ -797,6 +797,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -813,6 +814,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -830,6 +832,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase ServerTests/Couchbase ServerTests-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase ServerTests/Couchbase ServerTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -853,6 +856,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase ServerTests/Couchbase ServerTests-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase ServerTests/Couchbase ServerTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -875,6 +879,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "Couchbase Server";
 				WRAPPER_EXTENSION = app;
 			};
@@ -891,6 +896,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "Couchbase Server";
 				WRAPPER_EXTENSION = app;
 			};
@@ -900,6 +906,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
 			};
@@ -909,6 +916,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
 			};
@@ -918,6 +926,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -927,6 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
