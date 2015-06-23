@@ -14,6 +14,10 @@
 #define MAX_OPEN_FILES 10240        // rlimit for max # of open files (RLIMIT_NOFILE)
 
 
+@interface Couchbase_ServerAppDelegate () <SUUpdaterDelegate>
+@end
+
+
 @implementation Couchbase_ServerAppDelegate
 
 -(BOOL)isSingle
