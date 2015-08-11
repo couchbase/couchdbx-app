@@ -10,3 +10,11 @@ The server automatically starts after installation and the web-based
 console is available on port 8091 (default).
 
 For Couchbase Server documentation, see http://docs.couchbase.com.
+
+
+THIRD-PARTY LICENSE INFORMATION
+
+You can find the Third Party License for all the third party products
+included with Couchbase Server at:
+
+http://www.couchbase.com/redirect/agreement/3rdparty-license/Couchbase-server/4.0.0
