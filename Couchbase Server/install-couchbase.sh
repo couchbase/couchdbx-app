@@ -30,26 +30,3 @@ cd "$topdir/install"
 install_absolute_path=`pwd`
 
 cd "$dest"
-
-# fix the path to lib/python in the Python scripts:
-
-_fix_python_path () {
-    echo "Fixing Python lib path in $1"
-    echo DEBUG: sed -i '~' -e "s,/opt/couchbase,${INST_DIR}/$2,g" $1
-                sed -i '~' -e "s,/opt/couchbase,${INST_DIR}/$2,g" $1
-    rm "$1~"
-}
-
-echo "fixing path for cb* commands in `pwd`"
-_fix_python_path "bin/cbbackup"                 ".."
-_fix_python_path "bin/cbepctl"                  ".."
-_fix_python_path "bin/cbrestore"                ".."
-_fix_python_path "bin/cbstats"                  ".."
-_fix_python_path "bin/cbtransfer"               ".."
-_fix_python_path "bin/cbvbucketctl"             ".."
-_fix_python_path "bin/cbworkloadgen"            ".."
-_fix_python_path "bin/couchbase-cli"            ".."
-_fix_python_path "bin/cbrecovery"               ".."
-_fix_python_path "bin/cbdocloader"              ".."
-
-_fix_python_path "bin/tools/cbanalyze-core"     "../.."
