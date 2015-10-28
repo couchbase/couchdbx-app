@@ -116,7 +116,8 @@ eval erl \
     -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
     -ns_server cookiefile "\"\\\"$COOKIEFILE-ns-server\\\"\"" \
-    -ns_server dont_suppress_stderr_logger true
+    -ns_server dont_suppress_stderr_logger true \
+    -ns_server loglevel_stderr info
 
 
 # On exit, stop the epmd process we started (if no one else is using it)

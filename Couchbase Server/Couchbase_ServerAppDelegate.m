@@ -321,7 +321,8 @@
     [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
 	[task setLaunchPath:launchPath];
 	[task setStandardInput:in];
-	[task setStandardOutput:out];
+	// ns_server logs to stderr, so read the output from the subprocess from there
+	[task setStandardError:out];
 
 	NSFileHandle *fh = [out fileHandleForReading];
 	NSNotificationCenter *nc;
