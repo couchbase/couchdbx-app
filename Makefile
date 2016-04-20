@@ -1,3 +1,13 @@
+#
+# To make the couchbase server app bundle, use:
+#   make couchbase-server-zip LICENSE=LICENSE-enterprise.txt
+#
+# If you just want to quickly make the Couchbase Server.app file, do:
+#   make couchbase-server LICENSE=LICENSE-enterprise.txt
+#
+# The .app file will be created in couchdbx-app/build/Release
+# 
+
 all: couchbase-server
 
 couchbase-server: license cb.plist
@@ -14,10 +24,13 @@ license:
 ifeq ($(LICENSE),LICENSE-community.txt)
 	(cd makedmg            && cp LICENSE.community.txt  LICENSE.txt)
 	(cd "Couchbase Server" && cp Credits.community.html Credits.html)
-endif
+else
 ifeq ($(LICENSE),LICENSE-enterprise.txt)
 	(cd makedmg            && cp LICENSE.enterprise.txt  LICENSE.txt)
 	(cd "Couchbase Server" && cp Credits.enterprise.html Credits.html)
+else
+	$(error "You must specify either LICENSE=LICENSE-enterprise.txt or LICENSE=LICENSE-community.txt")
+endif
 endif
 
 clean:

@@ -4,7 +4,6 @@
  */
 #import <Cocoa/Cocoa.h>
 
-#import "LoginItemManager.h"
 @class SUUpdaterDelegate;
 
 #define MIN_LIFETIME 10
@@ -15,7 +14,6 @@
     
     IBOutlet NSMenuItem *launchBrowserItem;
     IBOutlet NSMenuItem *launchAtStartupItem;
-    IBOutlet LoginItemManager *loginItems;
     
     NSTask *task;
     NSPipe *in, *out;

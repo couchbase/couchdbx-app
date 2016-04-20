@@ -6,6 +6,7 @@
 #import "ImportController.h"
 #import "Sparkle/Sparkle.h"
 #import "ToolInstallController.h"
+#import "LaunchAtLoginController.h"
 
 #import "iniparser.h"
 
@@ -524,16 +525,24 @@
 }
 
 -(void) updateAddItemButtonState {
-    [launchAtStartupItem setState:[loginItems inLoginItems] ? NSOnState : NSOffState];
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+    BOOL launch = [launchController launchAtLogin];
+    [launchController release];
+
+    [launchAtStartupItem setState:launch];
 }
 
 -(IBAction)changeLoginItems:(id)sender {
+    LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+
     if([sender state] == NSOffState) {
-        [loginItems addToLoginItems:self];
+      [launchController setLaunchAtLogin:YES];
     } else {
-        [loginItems removeLoginItem:self];
+      [launchController setLaunchAtLogin:NO];
     }
     [self updateAddItemButtonState];
+
+    [launchController release];
 }
 
 - (IBAction)showImportWindow:(id)sender
