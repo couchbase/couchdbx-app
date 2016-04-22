@@ -41,6 +41,7 @@
 		2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */; };
 		2725AAE8158A84BD00CCC0B9 /* PrivilegedInstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */; };
 		2725AAEF158A93CF00CCC0B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2725AAEE158A93CF00CCC0B9 /* Security.framework */; };
+		B2367DDC1CC833EB004BA06F /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2367DDB1CC833EB004BA06F /* LaunchAtLoginController.m */; };
 		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
 		DA1AD338133DA58D00E6A9E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
@@ -55,7 +56,6 @@
 		DA45A4391384EF0300DF68ED /* Couchbase-Status-bw.png in Resources */ = {isa = PBXBuildFile; fileRef = DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */; };
 		DA638DF813E1F7BA005E6A5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD344133DA58D00E6A9E1 /* main.m */; };
 		DA638DF913E1F7BA005E6A5B /* Couchbase_ServerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1AD34A133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m */; };
-		DA638DFA13E1F7BA005E6A5B /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 		DA638DFB13E1F7BA005E6A5B /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
 		DA638DFC13E1F7BA005E6A5B /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB10133DA68B00B282D6 /* ImportController.m */; };
 		DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
@@ -76,7 +76,6 @@
 		DAADFB04133DA61700B282D6 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFA133DA61700B282D6 /* Credits.html */; };
 		DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */ = {isa = PBXBuildFile; fileRef = DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */; };
 		DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFB00133DA61700B282D6 /* MainMenu.nib */; };
-		DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */; };
 		DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */; };
 		DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAADFB10133DA68B00B282D6 /* ImportController.m */; };
 		DAADFB18133DA6CE00B282D6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
@@ -198,6 +197,8 @@
 		2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedInstall.m; sourceTree = "<group>"; };
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = README_for_zip.txt; path = makedmg/README_for_zip.txt; sourceTree = SOURCE_ROOT; };
+		B2367DDA1CC833EB004BA06F /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		B2367DDB1CC833EB004BA06F /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
 		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
@@ -229,8 +230,6 @@
 		DAADFAFA133DA61700B282D6 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		DAADFAFB133DA61700B282D6 /* ensure_full_commit.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ensure_full_commit.sh; sourceTree = "<group>"; };
 		DAADFB00133DA61700B282D6 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MainMenu.nib; sourceTree = "<group>"; };
-		DAADFB0B133DA68B00B282D6 /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
-		DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		DAADFB0D133DA68B00B282D6 /* ImportableDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportableDatabase.h; sourceTree = "<group>"; };
 		DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportableDatabase.m; sourceTree = "<group>"; };
 		DAADFB0F133DA68B00B282D6 /* ImportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportController.h; sourceTree = "<group>"; };
@@ -333,8 +332,8 @@
 		DA1AD33D133DA58D00E6A9E1 /* Couchbase Server */ = {
 			isa = PBXGroup;
 			children = (
-				DAADFB0B133DA68B00B282D6 /* LoginItemManager.h */,
-				DAADFB0C133DA68B00B282D6 /* LoginItemManager.m */,
+				B2367DDA1CC833EB004BA06F /* LaunchAtLoginController.h */,
+				B2367DDB1CC833EB004BA06F /* LaunchAtLoginController.m */,
 				DAADFB0D133DA68B00B282D6 /* ImportableDatabase.h */,
 				DAADFB0E133DA68B00B282D6 /* ImportableDatabase.m */,
 				DAADFB0F133DA68B00B282D6 /* ImportController.h */,
@@ -676,7 +675,6 @@
 			files = (
 				DA1AD345133DA58D00E6A9E1 /* main.m in Sources */,
 				DA1AD34B133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m in Sources */,
-				DAADFB13133DA68B00B282D6 /* LoginItemManager.m in Sources */,
 				DAADFB14133DA68B00B282D6 /* ImportableDatabase.m in Sources */,
 				DAADFB15133DA68B00B282D6 /* ImportController.m in Sources */,
 				DA0E692413DD364400CDAC6D /* dictionary.c in Sources */,
@@ -697,8 +695,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA638DF813E1F7BA005E6A5B /* main.m in Sources */,
+				B2367DDC1CC833EB004BA06F /* LaunchAtLoginController.m in Sources */,
 				DA638DF913E1F7BA005E6A5B /* Couchbase_ServerAppDelegate.m in Sources */,
-				DA638DFA13E1F7BA005E6A5B /* LoginItemManager.m in Sources */,
 				DA638DFB13E1F7BA005E6A5B /* ImportableDatabase.m in Sources */,
 				DA638DFC13E1F7BA005E6A5B /* ImportController.m in Sources */,
 				DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */,
