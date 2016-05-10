@@ -17,4 +17,4 @@ THIRD-PARTY LICENSE INFORMATION
 You can find the Third Party License for all the third party products
 included with Couchbase Server at:
 
-http://www.couchbase.com/redirect/agreement/3rdparty-license/Couchbase-server/4.0.0
+http://www.couchbase.com/3rdpartylicenses-couchbaseserver-4.5.0
