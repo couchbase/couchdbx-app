@@ -74,13 +74,15 @@ void sharedFileListDidChange(LSSharedFileListRef inList, void *context)
     for (id itemObject in listSnapshot) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef) itemObject;
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-        CFURLRef currentItemURL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, NULL);
-        if (currentItemURL && CFEqual(currentItemURL, wantedURL)) {
+        CFURLRef currentItemURL = NULL;
+        OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, /*outRef*/ NULL);
+        if (err == noErr) {
+            Boolean foundIt = CFEqual(currentItemURL, wantedURL);
             CFRelease(currentItemURL);
-            return item;
+            if (foundIt) {
+                return item;
+            }
         }
-        if (currentItemURL)
-            CFRelease(currentItemURL);
     }
 
     return NULL;
