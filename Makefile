@@ -17,11 +17,11 @@ couchbase-server-zip: license cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 cb.plist: cb.plist.tmpl
-	sed s/@VERSION@/$(PRODUCT_VERSION)/g $< > $@
+	sed s/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g $< > $@
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
 
 license:
-ifeq ($(LICENSE),LICENSE-community.txt)
+ifeq ($(if $(LICENSE),$(LICENSE),LICENSE-community.txt),LICENSE-community.txt)
 	(cd makedmg            && cp LICENSE.community.txt  LICENSE.txt)
 	(cd "Couchbase Server" && cp Credits.community.html Credits.html)
 else
