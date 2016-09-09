@@ -3,10 +3,12 @@ COUCHBASE SERVER
 Couchbase Server is an open source, distributed NoSQL document
 database. It exposes a fast key-value store with managed cache
 for sub-millisecond data operations, a powerful query engine for
-executing SQL queries, and purpose-built indexers for fast queries.
+executing SQL queries over JSON data, and purpose-built indexers 
+for fast queries.
 
-Couchbase Server enables developers to build applications with
-agility by leveraging the power of SQL with the flexibility of JSON.
+Couchbase Server enables developers to build applications with 
+agility by combining the flexibility of JSON data with the power 
+of SQL querying, using N1QL.
 
 By providing a flexible data model, consistent high performance,
 elastic scalability, and always-on availability, Couchbase Server
