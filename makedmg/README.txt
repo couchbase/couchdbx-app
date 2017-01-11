@@ -6,8 +6,8 @@ for sub-millisecond data operations, a powerful query engine for
 executing SQL queries over JSON data, and purpose-built indexers 
 for fast queries.
 
-Couchbase Server enables developers to build applications with 
-agility by combining the flexibility of JSON data with the power 
+Couchbase Server enables developers to build applications with
+agility by combining the flexibility of JSON data with the power
 of SQL querying, using N1QL.
 
 By providing a flexible data model, consistent high performance,
@@ -35,4 +35,4 @@ THIRD-PARTY LICENSE INFORMATION
 
 You can find the Third Party License for all the third party products
 included with Couchbase Server at:
-http://www.couchbase.com/3rdpartylicenses-couchbaseserver-4.5.0
+http://www.couchbase.com/3rdpartylicenses-couchbaseserver
