@@ -6,6 +6,10 @@ export COUCHBASE_TOP
 PATH="$COUCHBASE_TOP:$COUCHBASE_TOP/bin":/bin:/usr/bin
 export PATH
 
+# The couchdbx-app redirects stderr to Couchbase.log under
+# ~/Library/Logs, thus we echo there so that these log messages
+# show up.
+echo "Starting epmd ..." 1>&2
 epmd -daemon
 
 couch_start_arguments=""
@@ -96,6 +100,7 @@ _load_config
 _add_config_file "$PLATFORM_CONFIG_FILE"
 _add_config_file "$CUSTOM_CONFIG_FILE"
 
+echo "Starting Couchbase Server ..." 1>&2
 # Run Erlang. This will run until the app stops the server by sending a quit command to stdin.
 eval erl \
     +A 16 \
@@ -115,5 +120,18 @@ eval erl \
     -ns_server loglevel_stderr info
 
 
+echo "Couchbase Server has stopped." 1>&2
+
+# The couchdbx-app shuts down Couchbase Server by invoking q() (aka init:stop())
+# on it - which shuts down the babysitter gracefully. However it can take a
+# brief moment for the Erlang sub-processes (such as the CouchDB VM) to disconnect
+# from epmd. Waiting briefly allows us to actually stop epmd in almost all cases.
+# To be certain of stopping epmd we'd have to run `epmd -names` and wait until it
+# returned a list of names of VMs that are not Couchbase related. However, this is
+# complicated and brittle and seems like overkill. So, we just sleep. In the worst
+# case the user will have to manually kill epmd.
+sleep 1
+
+echo "Stopping epmd ..." 1>&2
 # On exit, stop the epmd process we started (if no one else is using it)
 epmd -kill
