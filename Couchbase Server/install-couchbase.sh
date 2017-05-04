@@ -26,6 +26,8 @@ cp "$topdir/ns_server/etc/static_config.in"           "$dest/etc/couchbase/stati
 
 mkdir -p "$dest/priv" "$dest/logs" "$dest/config" "$dest/tmp"
 
+chmod -R g-w "$dest"
+
 cd "$topdir/install"
 install_absolute_path=`pwd`
 
