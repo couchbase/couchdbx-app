@@ -17,7 +17,7 @@ couchbase-server-zip: license cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 cb.plist: cb.plist.tmpl
-	sed s/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g $< > $@
+	sed 's/@SHORT_VERSION@/$(if $(PRODUCT_VERSION),$(shell echo $(PRODUCT_VERSION) | cut -d- -f1),"0.0.0")/g; s/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g' $< > $@
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
 
 license:
