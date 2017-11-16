@@ -37,6 +37,25 @@ _load_config () {
     fi
 }
 
+_check_inet_mode() {
+    cmd="erl -noshell -setcookie nocookie -run ns_babysitter_bootstrap ipv6_from_static_config $STATIC_CONFIG_FILE"
+    eval OUTPUT=\$\($cmd\)
+
+    if [ $? -ne 0 ]
+    then
+        echo $OUTPUT
+        exit 1
+    fi
+
+    if [ $OUTPUT == "true" ]; then
+        VM_NAME='babysitter_of_ns_1@::1'
+        PROTO_DIST='inet6_tcp'
+    else
+        VM_NAME='babysitter_of_ns_1@127.0.0.1'
+        PROTO_DIST='inet_tcp'
+    fi
+}
+
 datadir="$HOME/Library/Application Support/Couchbase"
 
 DEFAULT_CONFIG_DIR="$COUCHBASE_TOP/etc/couchdb/default.d"
@@ -45,6 +64,7 @@ LOCAL_CONFIG_DIR="$COUCHBASE_TOP/etc/couchdb/local.d"
 LOCAL_CONFIG_FILE="$COUCHBASE_TOP/etc/couchdb/local.ini"
 PLATFORM_CONFIG_FILE="$datadir/etc/couch-platform.ini"
 CUSTOM_CONFIG_FILE="$datadir/etc/couch-custom.ini"
+STATIC_CONFIG_FILE=$(printf %q "$datadir/etc/couchbase/static_config")
 
 mkdir -p "$DEFAULT_CONFIG_DIR" "$LOCAL_CONFIG_DIR" "$datadir/etc"
 
@@ -99,6 +119,7 @@ sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
 _load_config
 _add_config_file "$PLATFORM_CONFIG_FILE"
 _add_config_file "$CUSTOM_CONFIG_FILE"
+_check_inet_mode
 
 echo "Starting Couchbase Server ..." 1>&2
 # Run Erlang. This will run until the app stops the server by sending a quit command to stdin.
@@ -107,7 +128,8 @@ eval erl \
     -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
     -sasl sasl_error_logger false \
     -hidden \
-    -name 'babysitter_of_ns_1@127.0.0.1' \
+    -name $VM_NAME \
+    -proto_dist $PROTO_DIST \
     -setcookie nocookie \
     $* \
     -run ns_babysitter_bootstrap -- \
