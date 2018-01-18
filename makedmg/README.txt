@@ -25,6 +25,14 @@ web-based console is available on port 8091 (default). Refer to
 the documentation for setup instructions.
 
 
+INSTALLATION
+
+Mac OS X has a security policy that requires downloaded
+software be installed into the Applications directory. This can
+be achieved by copying the Couchbase Server application into that
+folder.
+
+
 DOCUMENTATION
 
 The online documentation library is available at:
