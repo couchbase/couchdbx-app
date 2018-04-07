@@ -8,11 +8,13 @@ for fast queries.
 
 Couchbase Server enables developers to build applications with
 agility by combining the flexibility of JSON data with the power
-of SQL querying, using N1QL.
+of SQL-like queries, using N1QL, or through built-in full-text
+search capabilities.
 
 By providing a flexible data model, consistent high performance,
 elastic scalability, and always-on availability, Couchbase Server
-enables enterprises to operate at any scale.
+enables enterprises to operate at any scale with enterprise-level
+security.
 
 Its memory-centric architecture is designed to provide low-latency
 data management for large-scale interactive web, mobile, and IoT
