@@ -1,19 +1,19 @@
 #
 # To make the couchbase server app bundle, use:
-#   make couchbase-server-zip LICENSE=LICENSE-enterprise.txt
+#   make couchbase-server-zip BUILD_ENTERPRISE=TRUE
 #
 # If you just want to quickly make the Couchbase Server.app file, do:
-#   make couchbase-server LICENSE=LICENSE-enterprise.txt
+#   make couchbase-server BUILD_ENTERPRISE=TRUE
 #
 # The .app file will be created in couchdbx-app/build/Release
-# 
+#
 
 all: couchbase-server
 
-couchbase-server: license cb.plist
+couchbase-server: license readme cb.plist
 	xcodebuild -target 'Couchbase Server' -configuration Release
 
-couchbase-server-zip: license cb.plist
+couchbase-server-zip: license readme readme-zip cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 cb.plist: cb.plist.tmpl
@@ -21,20 +21,26 @@ cb.plist: cb.plist.tmpl
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
 
 license:
-ifeq ($(if $(LICENSE),$(LICENSE),LICENSE-community.txt),LICENSE-community.txt)
-	(cd makedmg            && cp LICENSE.community.txt  LICENSE.txt)
-	(cd "Couchbase Server" && cp Credits.community.html Credits.html)
+ifeq ($(BUILD_ENTERPRISE),FALSE)
+	cp ../product-texts/couchbase-server/license/ce-license.txt  makedmg/LICENSE.txt
+	cp ../product-texts/couchbase-server/license/ce-license.html "Couchbase Server/Credits.html"
 else
-ifeq ($(LICENSE),LICENSE-enterprise.txt)
-	(cd makedmg            && cp LICENSE.enterprise.txt  LICENSE.txt)
-	(cd "Couchbase Server" && cp Credits.enterprise.html Credits.html)
+ifeq ($(BUILD_ENTERPRISE),TRUE)
+	cp ../product-texts/couchbase-server/license/ee-license.txt  makedmg/LICENSE.txt
+	cp ../product-texts/couchbase-server/license/ee-license.html "Couchbase Server/Credits.html"
 else
-	$(error "You must specify either LICENSE=LICENSE-enterprise.txt or LICENSE=LICENSE-community.txt")
+	$(error "You must specify either BUILD_ENTERPRISE=FALSE or BUILD_ENTERPRISE=TRUE")
 endif
 endif
 
+readme:
+	cp ../product-texts/couchbase-server/readme/README.txt makedmg/README.txt
+
+readme-zip:
+	cp ../product-texts/couchbase-server/readme/README.txt makedmg/README_for_zip.txt
+
 clean:
-	(cd makedmg            && rm -f LICENSE.txt)
+	(cd makedmg            && rm -f LICENSE.txt README.txt README_for_zip.txt)
 	(cd "Couchbase Server" && rm -f Credits.html)
 	xcodebuild -target 'Couchbase Server' -configuration Release clean
 	rm -rf build cb.plist "Couchbase Server/Couchbase Server-Info.plist"
