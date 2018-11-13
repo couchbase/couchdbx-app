@@ -38,21 +38,25 @@ _load_config () {
 }
 
 _check_inet_mode() {
-    cmd="erl -noshell -setcookie nocookie -run ns_babysitter_bootstrap ipv6_from_static_config $STATIC_CONFIG_FILE"
-    eval OUTPUT=\$\($cmd\)
+    cmd='erl
+         -pa "$COUCHBASE_TOP/lib/ns_server/erlang/lib/ns_server/ebin"
+         -noshell
+         -setcookie nocookie
+         -run dist_manager get_proto_dist_type "$datadir/var/lib/couchbase" start'
+    eval PROTO_DIST=\$\($cmd\)
 
     if [ $? -ne 0 ]
     then
-        echo $OUTPUT
+        echo $PROTO_DIST
         exit 1
     fi
 
-    if [ $OUTPUT == "true" ]; then
+    if [ $PROTO_DIST == "inet6_tcp" ]; then
         VM_NAME='babysitter_of_ns_1@::1'
-        PROTO_DIST='inet6_tcp'
+        IPV6=true
     else
         VM_NAME='babysitter_of_ns_1@127.0.0.1'
-        PROTO_DIST='inet_tcp'
+        IPV6=false
     fi
 }
 
@@ -139,7 +143,8 @@ eval erl \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
     -ns_server cookiefile "\"\\\"$COOKIEFILE-ns-server\\\"\"" \
     -ns_server dont_suppress_stderr_logger true \
-    -ns_server loglevel_stderr info
+    -ns_server loglevel_stderr info \
+    -ns_server ipv6 $IPV6
 
 
 echo "Couchbase Server has stopped." 1>&2
