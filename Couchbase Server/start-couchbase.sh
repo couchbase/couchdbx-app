@@ -62,6 +62,25 @@ _check_inet_mode() {
 
 datadir="$HOME/Library/Application Support/Couchbase"
 
+_check_data_is_good() {
+    config="${datadir}"/var/lib/couchbase/config
+    if [ -d "${config}" ]
+    then
+        # Run cbupgrade with the namespace_upgrade_only flag, which was added
+        # specifically for this script and will ensure any database files are
+        # compatible with KV-engine and is effectively a no-op if they already
+        # are.
+        if ! sh "${COUCHBASE_TOP}"/bin/cbupgrade \
+              -c "${config}" \
+              -a yes \
+              --namespace_upgrade_only
+        then
+            echo "Error: exit of $? from cbupgrade"
+            exit 1
+        fi
+    fi
+}
+
 DEFAULT_CONFIG_DIR="$COUCHBASE_TOP/etc/couchdb/default.d"
 DEFAULT_CONFIG_FILE="$COUCHBASE_TOP/etc/couchdb/default.ini"
 LOCAL_CONFIG_DIR="$COUCHBASE_TOP/etc/couchdb/local.d"
@@ -124,6 +143,7 @@ _load_config
 _add_config_file "$PLATFORM_CONFIG_FILE"
 _add_config_file "$CUSTOM_CONFIG_FILE"
 _check_inet_mode
+_check_data_is_good
 
 echo "Starting Couchbase Server ..." 1>&2
 # Run Erlang. This will run until the app stops the server by sending a quit command to stdin.
