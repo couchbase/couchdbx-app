@@ -37,29 +37,6 @@ _load_config () {
     fi
 }
 
-_check_inet_mode() {
-    cmd='erl
-         -pa "$COUCHBASE_TOP/lib/ns_server/erlang/lib/ns_server/ebin"
-         -noshell
-         -setcookie nocookie
-         -run dist_manager get_proto_dist_type "$datadir/var/lib/couchbase" start'
-    eval PROTO_DIST=\$\($cmd\)
-
-    if [ $? -ne 0 ]
-    then
-        echo $PROTO_DIST
-        exit 1
-    fi
-
-    if [ $PROTO_DIST == "inet6_tcp" ]; then
-        VM_NAME='babysitter_of_ns_1@::1'
-        IPV6=true
-    else
-        VM_NAME='babysitter_of_ns_1@127.0.0.1'
-        IPV6=false
-    fi
-}
-
 datadir="$HOME/Library/Application Support/Couchbase"
 
 _check_data_is_good() {
@@ -88,6 +65,9 @@ LOCAL_CONFIG_FILE="$COUCHBASE_TOP/etc/couchdb/local.ini"
 PLATFORM_CONFIG_FILE="$datadir/etc/couch-platform.ini"
 CUSTOM_CONFIG_FILE="$datadir/etc/couch-custom.ini"
 STATIC_CONFIG_FILE=$(printf %q "$datadir/etc/couchbase/static_config")
+INETRC_FILE=$(printf %q "$COUCHBASE_TOP/etc/couchbase/hosts.cfg")
+DIST_CONFIG_FILE=$(printf %q "$datadir/var/lib/couchbase/config/dist_cfg")
+SSL_DIST_OPTFILE=$(printf %q "$datadir/etc/couchbase/ssl_dist_opts")
 
 mkdir -p "$DEFAULT_CONFIG_DIR" "$LOCAL_CONFIG_DIR" "$datadir/etc"
 
@@ -139,10 +119,12 @@ mkdir -p "$datadir/etc/couchbase"
 sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
     "$COUCHBASE_TOP/etc/couchbase/static_config.in" > "$datadir/etc/couchbase/static_config"
 
+sed -e "s|@CONFIG_PREFIX@|$datadir/var/lib/couchbase/config|g" \
+    "$COUCHBASE_TOP/etc/couchbase/ssl_dist_opts.in" > "$datadir/etc/couchbase/ssl_dist_opts"
+
 _load_config
 _add_config_file "$PLATFORM_CONFIG_FILE"
 _add_config_file "$CUSTOM_CONFIG_FILE"
-_check_inet_mode
 _check_data_is_good
 
 echo "Starting Couchbase Server ..." 1>&2
@@ -150,10 +132,14 @@ echo "Starting Couchbase Server ..." 1>&2
 eval erl \
     +A 16 \
     -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
+    -kernel inetrc "\"\\\"$INETRC_FILE\\\"\"" \
+    -kernel dist_config_file "\"\\\"$DIST_CONFIG_FILE\\\"\"" \
     -sasl sasl_error_logger false \
     -hidden \
-    -name $VM_NAME \
-    -proto_dist $PROTO_DIST \
+    -name babysitter_of_ns_1@cb.local \
+    -proto_dist cb \
+    -epmd_module cb_epmd \
+    -ssl_dist_optfile $SSL_DIST_OPTFILE \
     -setcookie nocookie \
     $* \
     -run ns_babysitter_bootstrap -- \
@@ -163,8 +149,7 @@ eval erl \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
     -ns_server cookiefile "\"\\\"$COOKIEFILE-ns-server\\\"\"" \
     -ns_server dont_suppress_stderr_logger true \
-    -ns_server loglevel_stderr info \
-    -ns_server ipv6 $IPV6
+    -ns_server loglevel_stderr info
 
 
 echo "Couchbase Server has stopped." 1>&2
