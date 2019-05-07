@@ -12,7 +12,6 @@ all: couchbase-server
 
 couchbase-server: license readme cb.plist
 	xcodebuild -target 'Couchbase Server' -configuration Release
-	cp InstallerBackground.jpg "build/Release/Couchbase Server.app/Contents/Resources"
 
 couchbase-server-zip: license readme readme-zip cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
