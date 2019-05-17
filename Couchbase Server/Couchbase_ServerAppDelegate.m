@@ -202,11 +202,11 @@
 
 	[self launchServer];
 
-    [ToolInstallController showIfFirstRun];
+//    [ToolInstallController showIfFirstRun];
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"runImport"]) {
-        [self showImportWindow:nil];
-    }
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"runImport"]) {
+//        [self showImportWindow:nil];
+//    }
 }
 
 -(IBAction)start:(id)sender
@@ -545,26 +545,26 @@
     [launchController release];
 }
 
-- (IBAction)showImportWindow:(id)sender
-{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    [self logMessage:@"Starting import"];
-    [NSApp activateIgnoringOtherApps:YES];
-
-    ImportController *controller = [[[ImportController alloc]
-                                    initWithWindowNibName:@"Importer"] autorelease];
-
-    [controller setPaths:[self applicationSupportFolder]
-                    from:[self applicationSupportFolder:@"CouchDBX"]];
-    [controller loadWindow];
-
-    if (sender != nil && ![controller hasImportableDBs]) {
-        NSRunAlertPanel(@"No Importable Databases",
-                        @"No databases can be imported from CouchDBX.", nil, nil, nil);
-    }
-}
+//- (IBAction)showImportWindow:(id)sender
+//{
+//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//    [self logMessage:@"Starting import"];
+//    [NSApp activateIgnoringOtherApps:YES];
+//
+//    ImportController *controller = [[[ImportController alloc]
+//                                    initWithWindowNibName:@"Importer"] autorelease];
+//
+//    [controller setPaths:[self applicationSupportFolder]
+//                    from:[self applicationSupportFolder:@"CouchDBX"]];
+//    [controller loadWindow];
+//
+//    if (sender != nil && ![controller hasImportableDBs]) {
+//        NSRunAlertPanel(@"No Importable Databases",
+//                        @"No databases can be imported from CouchDBX.", nil, nil, nil);
+//    }
+//}
 
 -(IBAction)showTechSupport:(id)sender {
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
@@ -574,26 +574,26 @@
 
 }
 
--(IBAction)showLogs:(id)sender {
-    FSRef ref;
-
-    if (FSPathMakeRef((const UInt8 *)[logPath cStringUsingEncoding:NSUTF8StringEncoding],
-                      &ref, NULL) != noErr) {
-        NSRunAlertPanel(@"Cannot Find Logfile",
-                        @"I've been looking for logs in all the wrong places.", nil, nil, nil);
-        return;
-    }
-
-    LSLaunchFSRefSpec params = {NULL, 1, &ref, NULL, kLSLaunchDefaults, NULL};
-
-    if (LSOpenFromRefSpec(&params, NULL) != noErr) {
-        NSRunAlertPanel(@"Cannot View Logfile",
-                        @"Error launching log viewer.", nil, nil, nil);
-    }
-}
-
--(IBAction)showToolInstaller:(id)sender {
-    [ToolInstallController show];
-}
+//-(IBAction)showLogs:(id)sender {
+//    FSRef ref;
+//
+//    if (FSPathMakeRef((const UInt8 *)[logPath cStringUsingEncoding:NSUTF8StringEncoding],
+//                      &ref, NULL) != noErr) {
+//        NSRunAlertPanel(@"Cannot Find Logfile",
+//                        @"I've been looking for logs in all the wrong places.", nil, nil, nil);
+//        return;
+//    }
+//
+//    LSLaunchFSRefSpec params = {NULL, 1, &ref, NULL, kLSLaunchDefaults, NULL};
+//
+//    if (LSOpenFromRefSpec(&params, NULL) != noErr) {
+//        NSRunAlertPanel(@"Cannot View Logfile",
+//                        @"Error launching log viewer.", nil, nil, nil);
+//    }
+//}
+//
+//-(IBAction)showToolInstaller:(id)sender {
+//    [ToolInstallController show];
+//}
 
 @end
