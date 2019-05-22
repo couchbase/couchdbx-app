@@ -413,14 +413,14 @@
 -(void)taskTerminated:(NSNotification *)note
 {
     int status = [[note object] terminationStatus];
-    NSLog(@"Task terminated with status %d", status);
+    NSLog(@"Task terminated with status %d, terminating app: %d", status, terminatingApp);
     [self cleanup];
     [self logMessage: [NSString stringWithFormat:@"Terminated with status %d\n",
                        status]];
 
     if (terminatingApp) {
         // I was just waiting for the task to exit before quitting
-        [NSApp stop: self];
+        [[NSApplication sharedApplication] terminate:nil];
     } else {
         time_t now = time(NULL);
         if (now - startTime < MIN_LIFETIME) {
