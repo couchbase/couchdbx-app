@@ -11,13 +11,13 @@
 @interface Couchbase_ServerAppDelegate : NSObject{
     NSStatusItem *statusBar;
     IBOutlet NSMenu *statusMenu;
-    
+
     IBOutlet NSMenuItem *launchBrowserItem;
     IBOutlet NSMenuItem *launchAtStartupItem;
-    
+
     NSTask *task;
     NSPipe *in, *out;
-    
+
     BOOL hasSeenStart;
     time_t startTime;
 
@@ -28,6 +28,7 @@
     FILE *logFile;
 
     SUUpdaterDelegate *updaterDelegate;
+
 }
 
 -(IBAction)start:(id)sender;
@@ -49,10 +50,7 @@
 -(IBAction)changeLoginItems:(id)sender;
 
 -(IBAction)showAboutPanel:(id)sender;
-//-(IBAction)showLogs:(id)sender;
-//-(IBAction)showImportWindow:(id)sender;
 -(IBAction)showTechSupport:(id)sender;
-//-(IBAction)showToolInstaller:(id)sender;
 
 
 @end

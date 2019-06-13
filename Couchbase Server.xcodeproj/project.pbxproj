@@ -36,7 +36,9 @@
 
 /* Begin PBXBuildFile section */
 		2725AAEF158A93CF00CCC0B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2725AAEE158A93CF00CCC0B9 /* Security.framework */; };
-		B2367DDC1CC833EB004BA06F /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2367DDB1CC833EB004BA06F /* LaunchAtLoginController.m */; };
+		B2CA238B22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
+		B2CA238C22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
+		B2CA238D22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
 		B2E5783422822D7F00C942AE /* InstallerBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2E5783322822D7F00C942AE /* InstallerBackground.jpg */; };
 		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
@@ -183,8 +185,8 @@
 /* Begin PBXFileReference section */
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = README_for_zip.txt; path = makedmg/README_for_zip.txt; sourceTree = SOURCE_ROOT; };
-		B2367DDA1CC833EB004BA06F /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
-		B2367DDB1CC833EB004BA06F /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		B2CA238A22B03EE000C35307 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		B2E5783322822D7F00C942AE /* InstallerBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = InstallerBackground.jpg; sourceTree = SOURCE_ROOT; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
@@ -315,8 +317,8 @@
 		DA1AD33D133DA58D00E6A9E1 /* Couchbase Server */ = {
 			isa = PBXGroup;
 			children = (
-				B2367DDA1CC833EB004BA06F /* LaunchAtLoginController.h */,
-				B2367DDB1CC833EB004BA06F /* LaunchAtLoginController.m */,
+				B2CA238A22B03EE000C35307 /* LaunchAtLoginController.h */,
+				B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */,
 				DA1AD349133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.h */,
 				DA1AD34A133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m */,
 				DA1AD33E133DA58D00E6A9E1 /* Supporting Files */,
@@ -646,6 +648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1AD345133DA58D00E6A9E1 /* main.m in Sources */,
+				B2CA238B22B03EE000C35307 /* LaunchAtLoginController.m in Sources */,
 				DA1AD34B133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m in Sources */,
 				DA0E692413DD364400CDAC6D /* dictionary.c in Sources */,
 				DA0E692513DD364400CDAC6D /* iniparser.c in Sources */,
@@ -657,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1AD362133DA58D00E6A9E1 /* Couchbase_ServerTests.m in Sources */,
+				B2CA238C22B03EE000C35307 /* LaunchAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA638DF813E1F7BA005E6A5B /* main.m in Sources */,
-				B2367DDC1CC833EB004BA06F /* LaunchAtLoginController.m in Sources */,
+				B2CA238D22B03EE000C35307 /* LaunchAtLoginController.m in Sources */,
 				DA638DF913E1F7BA005E6A5B /* Couchbase_ServerAppDelegate.m in Sources */,
 				DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */,
 				DA638DFF13E1F7BA005E6A5B /* iniparser.c in Sources */,

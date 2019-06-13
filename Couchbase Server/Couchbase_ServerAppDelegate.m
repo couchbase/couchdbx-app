@@ -322,18 +322,36 @@
     [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
 	[task setLaunchPath:launchPath];
 	[task setStandardInput:in];
-	// ns_server logs to stderr, so read the output from the subprocess from there
-	[task setStandardError:out];
 
-	NSFileHandle *fh = [out fileHandleForReading];
-	NSNotificationCenter *nc;
+    // output from 'start-server.log' used to be processed by dataReady function.
+    // This was causing problems in MacOS Mojave. Instead we will pipe output
+    // directly to CouchbaseServer.log.
+    NSString *logPath = [self logFilePath:@"CouchbaseServer.log"];
+    NSFileManager *outputFileManager = [NSFileManager defaultManager];
+
+    // if the log file exists, move it to CouchbaseServer.log.old
+    if ([outputFileManager fileExistsAtPath: logPath ] == YES)
+    {
+        const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *oldLogPath = [[self logFilePath:@"CouchbaseServer.log.old"] cStringUsingEncoding:NSUTF8StringEncoding];
+        rename(logPathC, oldLogPath);
+    }
+
+    // CouchbaseServer.log must exist in order to pipe to it, make an empty version
+    [outputFileManager createFileAtPath: logPath
+                       contents: nil
+                       attributes: nil];
+
+    // get a handle to the log file and pipe output to it
+    NSFileHandle *log = [NSFileHandle fileHandleForWritingAtPath: logPath];
+    if (log == nil)
+        NSLog(@"Failed to open CouchbaseServer.log for output");
+    [task setStandardError: log];
+    [task setStandardOutput: log];
+
+    // listen for the task being stopped
+ 	NSNotificationCenter *nc;
 	nc = [NSNotificationCenter defaultCenter];
-
-	[nc addObserver:self
-           selector:@selector(dataReady:)
-               name:NSFileHandleReadCompletionNotification
-             object:fh];
-
 	[nc addObserver:self
            selector:@selector(taskTerminated:)
                name:NSTaskDidTerminateNotification
@@ -354,8 +372,11 @@
     }
 
   	[task launch];
-  	[fh readInBackgroundAndNotify];
+  	//[fh readInBackgroundAndNotify];
     NSLog(@"Launched server task -- pid = %d", task.processIdentifier);
+
+    // wait a second and see if we should launch the admin console
+    [self performSelector:@selector(checkForServerStart:) withObject:nil afterDelay:1.0];
 
     if (changedRLimit) {
         if (setrlimit(RLIMIT_NOFILE, &limits) < 0)
@@ -475,37 +496,32 @@
     //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]];
 }
 
-- (void)appendData:(NSData *)d
+- (void)checkForServerStart:(NSData *)d
 {
-    NSString *s = [[NSString alloc] initWithData: d
-                                        encoding: NSUTF8StringEncoding];
-
     if (!hasSeenStart) {
-        if ([s rangeOfString:@"Couchbase Server has started on web port 8091"].location != NSNotFound) {
+        NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8091/whoami"];
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+
+        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        int status = (int)[response statusCode];
+
+        if (error == nil && status == 200) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             if ([defaults boolForKey:@"browseAtStart"]) {
                 [self openFuton];
             }
             hasSeenStart = YES;
         }
+
+        // bad response, try again in 1 second
+        else {
+            [self performSelector:@selector(checkForServerStart:) withObject:nil afterDelay:1.0];
+        }
     }
-
-    [self logMessage:[s stringByReplacingOccurrencesOfString:@"1> "
-                                                  withString:@""]];
-
-    [s release];
 }
 
-- (void)dataReady:(NSNotification *)n
-{
-    NSData *d;
-    d = [[n userInfo] valueForKey:NSFileHandleNotificationDataItem];
-    if ([d length]) {
-        [self appendData:d];
-    }
-    if (task)
-        [[out fileHandleForReading] readInBackgroundAndNotify];
-}
 
 -(IBAction)setLaunchPref:(id)sender {
 
@@ -545,27 +561,6 @@
     [launchController release];
 }
 
-//- (IBAction)showImportWindow:(id)sender
-//{
-//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"runImport"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//    [self logMessage:@"Starting import"];
-//    [NSApp activateIgnoringOtherApps:YES];
-//
-//    ImportController *controller = [[[ImportController alloc]
-//                                    initWithWindowNibName:@"Importer"] autorelease];
-//
-//    [controller setPaths:[self applicationSupportFolder]
-//                    from:[self applicationSupportFolder:@"CouchDBX"]];
-//    [controller loadWindow];
-//
-//    if (sender != nil && ![controller hasImportableDBs]) {
-//        NSRunAlertPanel(@"No Importable Databases",
-//                        @"No databases can be imported from CouchDBX.", nil, nil, nil);
-//    }
-//}
-
 -(IBAction)showTechSupport:(id)sender {
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
 	NSString *homePage = [info objectForKey:@"SupportPage"];
@@ -574,26 +569,5 @@
 
 }
 
-//-(IBAction)showLogs:(id)sender {
-//    FSRef ref;
-//
-//    if (FSPathMakeRef((const UInt8 *)[logPath cStringUsingEncoding:NSUTF8StringEncoding],
-//                      &ref, NULL) != noErr) {
-//        NSRunAlertPanel(@"Cannot Find Logfile",
-//                        @"I've been looking for logs in all the wrong places.", nil, nil, nil);
-//        return;
-//    }
-//
-//    LSLaunchFSRefSpec params = {NULL, 1, &ref, NULL, kLSLaunchDefaults, NULL};
-//
-//    if (LSOpenFromRefSpec(&params, NULL) != noErr) {
-//        NSRunAlertPanel(@"Cannot View Logfile",
-//                        @"Error launching log viewer.", nil, nil, nil);
-//    }
-//}
-//
-//-(IBAction)showToolInstaller:(id)sender {
-//    [ToolInstallController show];
-//}
 
 @end
