@@ -8,13 +8,16 @@
 # The .app file will be created in couchdbx-app/build/Release
 #
 
-all: couchbase-server
+all: couchbase-server version_text
 
 couchbase-server: license readme cb.plist
 	xcodebuild -target 'Couchbase Server' -configuration Release
 
 couchbase-server-zip: license readme readme-zip cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
+
+version_text: couchbase-server
+	echo "0.0.0-0000" > build/Release/Couchbase\ Server.app/Contents/Resources/couchbase-core/VERSION.txt
 
 cb.plist: cb.plist.tmpl
 	sed 's/@SHORT_VERSION@/$(if $(PRODUCT_VERSION),$(shell echo $(PRODUCT_VERSION) | cut -d- -f1),"0.0.0")/g; s/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g' $< > $@
