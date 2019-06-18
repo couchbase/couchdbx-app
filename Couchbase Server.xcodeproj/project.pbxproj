@@ -35,8 +35,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0F18A8731936BB3800585D2A /* Importer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F18A8721936BB3800585D2A /* Importer.xib */; };
-		0F18A8741936BB3800585D2A /* Importer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F18A8721936BB3800585D2A /* Importer.xib */; };
 		2725AADE158A46E800CCC0B9 /* ToolInstallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AADC158A46E800CCC0B9 /* ToolInstallController.m */; };
 		2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */; };
 		2725AAE8158A84BD00CCC0B9 /* PrivilegedInstall.m in Sources */ = {isa = PBXBuildFile; fileRef = 2725AAE7158A84BC00CCC0B9 /* PrivilegedInstall.m */; };
@@ -189,7 +187,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F18A8721936BB3800585D2A /* Importer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Importer.xib; sourceTree = "<group>"; };
 		2725AADB158A46E800CCC0B9 /* ToolInstallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolInstallController.h; sourceTree = "<group>"; };
 		2725AADC158A46E800CCC0B9 /* ToolInstallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolInstallController.m; sourceTree = "<group>"; };
 		2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolInstallController.xib; sourceTree = "<group>"; };
@@ -368,7 +365,6 @@
 				DAAEC781133DBD0700EE9189 /* dsa_pub.pem */,
 				DAADFB37133DA84400B282D6 /* erl */,
 				DAADFB38133DA84400B282D6 /* fix-paths.sh */,
-				0F18A8721936BB3800585D2A /* Importer.xib */,
 				2725AADD158A46E800CCC0B9 /* ToolInstallController.xib */,
 				DAADFAF8133DA61700B282D6 /* Couchbase-Status.png */,
 				DA45A4381384EF0300DF68ED /* Couchbase-Status-bw.png */,
@@ -527,7 +523,6 @@
 				DAADFB04133DA61700B282D6 /* Credits.html in Resources */,
 				DAAEC783133DBD1E00EE9189 /* dsa_pub.pem in Resources */,
 				DAADFB05133DA61700B282D6 /* ensure_full_commit.sh in Resources */,
-				0F18A8731936BB3800585D2A /* Importer.xib in Resources */,
 				DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */,
 				DA45A4391384EF0300DF68ED /* Couchbase-Status-bw.png in Resources */,
 			);
@@ -556,7 +551,6 @@
 				DA638E0B13E1F7BA005E6A5B /* MainMenu.nib in Resources */,
 				DA638E0C13E1F7BA005E6A5B /* Couchbase-Status-bw.png in Resources */,
 				2725AADF158A46E800CCC0B9 /* ToolInstallController.xib in Resources */,
-				0F18A8741936BB3800585D2A /* Importer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,8 +788,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -811,8 +807,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -829,8 +827,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase ServerTests/Couchbase ServerTests-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Couchbase ServerTests/Couchbase ServerTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -853,8 +853,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase ServerTests/Couchbase ServerTests-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Couchbase ServerTests/Couchbase ServerTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -876,8 +878,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "Couchbase Server";
 				WRAPPER_EXTENSION = app;
 			};
@@ -893,8 +897,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Couchbase Server/Couchbase Server-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Couchbase Server/Couchbase Server-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "Couchbase Server";
 				WRAPPER_EXTENSION = app;
 			};
@@ -904,8 +910,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
 			};
 			name = Debug;
@@ -914,8 +921,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
 			};
 			name = Release;
@@ -924,8 +932,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -934,8 +943,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = i386;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
