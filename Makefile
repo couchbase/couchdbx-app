@@ -13,7 +13,7 @@ all: couchbase-server version_text
 couchbase-server: license readme cb.plist
 	xcodebuild -target 'Couchbase Server' -configuration Release
 
-couchbase-server-zip: license readme readme-zip cb.plist
+couchbase-server-zip: license readme cb.plist
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 version_text: couchbase-server
@@ -25,11 +25,11 @@ cb.plist: cb.plist.tmpl
 
 license:
 ifeq ($(BUILD_ENTERPRISE),FALSE)
-	cp ../product-texts/couchbase-server/license/ce-license.txt  makedmg/LICENSE.txt
+	cp ../product-texts/couchbase-server/license/ce-license.txt  "Couchbase Server/LICENSE.txt"
 	cp ../product-texts/couchbase-server/license/ce-license.html "Couchbase Server/Credits.html"
 else
 ifeq ($(BUILD_ENTERPRISE),TRUE)
-	cp ../product-texts/couchbase-server/license/ee-license.txt  makedmg/LICENSE.txt
+	cp ../product-texts/couchbase-server/license/ee-license.txt  "Couchbase Server/LICENSE.txt"
 	cp ../product-texts/couchbase-server/license/ee-license.html "Couchbase Server/Credits.html"
 else
 	$(error "You must specify either BUILD_ENTERPRISE=FALSE or BUILD_ENTERPRISE=TRUE")
@@ -37,13 +37,9 @@ endif
 endif
 
 readme:
-	cp ../product-texts/couchbase-server/readme/README.txt makedmg/README.txt
-
-readme-zip:
-	cp ../product-texts/couchbase-server/readme/README.txt makedmg/README_for_zip.txt
+	cp ../product-texts/couchbase-server/readme/README.txt  "Couchbase Server/README.txt"	
 
 clean:
-	(cd makedmg            && rm -f LICENSE.txt README.txt README_for_zip.txt)
-	(cd "Couchbase Server" && rm -f Credits.html)
+	(cd "Couchbase Server" && rm -f Credits.html LICENSE.txt README.txt)
 	xcodebuild -target 'Couchbase Server' -configuration Release clean
 	rm -rf build cb.plist "Couchbase Server/Couchbase Server-Info.plist"

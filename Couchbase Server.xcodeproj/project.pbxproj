@@ -39,6 +39,7 @@
 		B2CA238B22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
 		B2CA238C22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
 		B2CA238D22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
+		B2CFFCA5234E602900A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz in Resources */ = {isa = PBXBuildFile; fileRef = B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */; };
 		B2E5783422822D7F00C942AE /* InstallerBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2E5783322822D7F00C942AE /* InstallerBackground.jpg */; };
 		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
@@ -184,9 +185,9 @@
 
 /* Begin PBXFileReference section */
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = README_for_zip.txt; path = makedmg/README_for_zip.txt; sourceTree = SOURCE_ROOT; };
 		B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		B2CA238A22B03EE000C35307 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "couchbase-server-macos-template_x86_64.dmg.gz"; sourceTree = SOURCE_ROOT; };
 		B2E5783322822D7F00C942AE /* InstallerBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = InstallerBackground.jpg; sourceTree = SOURCE_ROOT; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
@@ -234,11 +235,6 @@
 		DAADFB37133DA84400B282D6 /* erl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = erl; sourceTree = "<group>"; };
 		DAADFB38133DA84400B282D6 /* fix-paths.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fix-paths.sh"; sourceTree = "<group>"; };
 		DAAEC781133DBD0700EE9189 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = SOURCE_ROOT; };
-		E802C02414FEDB9500A54EC8 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = makedmg/LICENSE.txt; sourceTree = SOURCE_ROOT; };
-		E802C02614FEDBDB00A54EC8 /* dmg-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dmg-background.png"; path = "makedmg/dmg-background.png"; sourceTree = SOURCE_ROOT; };
-		E802C02714FEDBDB00A54EC8 /* makedmg.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = makedmg.sh; path = makedmg/makedmg.sh; sourceTree = SOURCE_ROOT; };
-		E802C02814FEDBDB00A54EC8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.txt; path = makedmg/README.txt; sourceTree = SOURCE_ROOT; };
-		E802C02914FEDBDB00A54EC8 /* setviewoptions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = setviewoptions.applescript; path = makedmg/setviewoptions.applescript; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,9 +325,8 @@
 		DA1AD33E133DA58D00E6A9E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */,
 				B2E5783322822D7F00C942AE /* InstallerBackground.jpg */,
-				E802C02614FEDBDB00A54EC8 /* dmg-background.png */,
-				E802C02714FEDBDB00A54EC8 /* makedmg.sh */,
 				E802C02814FEDBDB00A54EC8 /* README.txt */,
 				27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */,
 				E802C02914FEDBDB00A54EC8 /* setviewoptions.applescript */,
@@ -476,6 +471,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = DA1AD328133DA58D00E6A9E1;
@@ -531,6 +527,7 @@
 				DA638E0A13E1F7BA005E6A5B /* ensure_full_commit.sh in Resources */,
 				DA638E0B13E1F7BA005E6A5B /* MainMenu.nib in Resources */,
 				DA638E0C13E1F7BA005E6A5B /* Couchbase-Status-bw.png in Resources */,
+				B2CFFCA5234E602900A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +575,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp \"$SRCROOT/makedmg/README_for_zip.txt\" \"README.txt\"\nrm -f \"Couchbase Server-$V.zip\"\nzip -r --symlinks --quiet -9 \"Couchbase Server-$V.zip\" \"Couchbase Server.app\" \"README.txt\"";
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp \"$SRCROOT/Couchbase Server/README.txt\" \"README.txt\"\nrm -f \"Couchbase Server-$V.zip\"\nzip -r --symlinks --quiet -9 \"Couchbase Server-$V.zip\" \"Couchbase Server.app\" \"README.txt\"";
 			showEnvVarsInLog = 0;
 		};
 		DA638E4113E1FF1E005E6A5B /* Install Erlang */ = {
@@ -624,21 +621,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"$PROJECT_NAME.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$PROJECT_NAME-$V.zip\"\n";
-		};
-		E867F93014A8CD0800F64EC8 /* Create a dmg */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Create a dmg";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "exit 0 # DISABLED DMG CREATION -- REMOVE THIS LINE TO RE-ENABLE\n\ncd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Server.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp -rf \"$PROJECT_DIR\"/makedmg/* .\ncp -f \"$PROJECT_DIR/Couchbase Server/Couchbase.icns\" .\n./makedmg.sh \"$PROJECT_NAME-$V.dmg\" \"Couchbase Server.app\" \"Couchbase Server\" dmg-background.png Couchbase.icns";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
