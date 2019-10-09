@@ -40,7 +40,6 @@
 		B2CA238C22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
 		B2CA238D22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
 		B2CFFCA5234E602900A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz in Resources */ = {isa = PBXBuildFile; fileRef = B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */; };
-		B2E5783422822D7F00C942AE /* InstallerBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2E5783322822D7F00C942AE /* InstallerBackground.jpg */; };
 		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
 		DA1AD338133DA58D00E6A9E1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1AD337133DA58D00E6A9E1 /* Cocoa.framework */; };
@@ -188,7 +187,6 @@
 		B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		B2CA238A22B03EE000C35307 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "couchbase-server-macos-template_x86_64.dmg.gz"; sourceTree = SOURCE_ROOT; };
-		B2E5783322822D7F00C942AE /* InstallerBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = InstallerBackground.jpg; sourceTree = SOURCE_ROOT; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
 		DA0E692213DD364400CDAC6D /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 			isa = PBXGroup;
 			children = (
 				B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */,
-				B2E5783322822D7F00C942AE /* InstallerBackground.jpg */,
 				E802C02814FEDBDB00A54EC8 /* README.txt */,
 				27F00DEE15B5CFB8008CDA68 /* README_for_zip.txt */,
 				E802C02914FEDBDB00A54EC8 /* setviewoptions.applescript */,
@@ -517,7 +514,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2E5783422822D7F00C942AE /* InstallerBackground.jpg in Resources */,
 				E802C02A14FEDCD100A54EC8 /* LICENSE.txt in Resources */,
 				DA638E0413E1F7BA005E6A5B /* InfoPlist.strings in Resources */,
 				DA638E0613E1F7BA005E6A5B /* Couchbase-Status.png in Resources */,
