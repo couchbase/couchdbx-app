@@ -65,7 +65,7 @@ couchbase-server-macos-template_x86_64.dmg.gz: couchbase-server
 	rm -rf template/Couchbase\ Server.app/Contents/Frameworks/* template/Couchbase\ Server.app/Contents/Resources/couchbase-core template/Couchbase\ Server.app/Contents/Resources/*.sh
   # and of course we need a link to /Applications so they can copy the .app there
 	ln -s /Applications template
-  # create the DMG
+  # create the DMG, at 1500MB big enough to hold everything
 	create-dmg --volname "Couchbase Installer ${PRODUCT_VERSION}" \
            --background "InstallerBackground.jpg" \
 	         --format UDRW \
@@ -73,6 +73,7 @@ couchbase-server-macos-template_x86_64.dmg.gz: couchbase-server
            --icon "Couchbase Server.app" 150 200 \
            --icon "Applications" 650 200 \
            --icon "README.txt" 400 475 \
+	         --disk-image-size 1500 \
            couchbase-server-macos-template_x86_64.dmg \
            template
 	rm -rf template couchbase-server-macos-template_x86_64.dmg.gz
