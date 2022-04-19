@@ -10,10 +10,10 @@
 
 all: couchbase-server version_text
 
-couchbase-server: license readme cb.plist
+couchbase-server: license readme cb.plist InfoPlist.strings
 	xcodebuild -target 'Couchbase Server' -configuration Release
 
-couchbase-server-zip: license readme cb.plist
+couchbase-server-zip: license readme cb.plist InfoPlist.strings
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
 version_text: couchbase-server
@@ -22,6 +22,11 @@ version_text: couchbase-server
 cb.plist: cb.plist.tmpl
 	sed 's/@SHORT_VERSION@/$(if $(PRODUCT_VERSION),$(shell echo $(PRODUCT_VERSION) | cut -d- -f1),"0.0.0")/g; s/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g' $< > $@
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
+
+InfoPlist.strings: InfoPlist.strings.tmpl
+	sed 's/@COPYRIGHT_YEAR@/$(shell date +%Y)/g' $< > $@
+	mkdir "Couchbase Server/en.lproj"
+	cp InfoPlist.strings "Couchbase Server/en.lproj/InfoPlist.strings"
 
 license:
 ifeq ($(BUILD_ENTERPRISE),FALSE)
