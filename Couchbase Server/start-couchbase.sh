@@ -119,6 +119,9 @@ mkdir -p "$datadir/etc/couchbase"
 sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
     "$COUCHBASE_TOP/etc/couchbase/static_config.in" > "$datadir/etc/couchbase/static_config"
 
+sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
+    "$COUCHBASE_TOP/etc/couchbase/serverless_profile" > "$datadir/etc/couchbase/serverless_profile"
+
 sed -e "s|@CONFIG_PREFIX@|$datadir/var/lib/couchbase/config|g" \
     "$COUCHBASE_TOP/etc/couchbase/ssl_dist_opts.in" > "$datadir/etc/couchbase/ssl_dist_opts"
 
