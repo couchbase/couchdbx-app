@@ -103,8 +103,6 @@ chmod 755 "$COUCHBASE_TOP/bin/couchjs"
 mkdir -p "$datadir/var/lib/couchbase/logs"
 cd "$datadir"
 
-COOKIEFILE="$datadir/var/lib/couchbase/couchbase-server.cookie"
-
 #This order is important - ravi
 ERL_LIBS="$COUCHBASE_TOP/lib/ns_server/erlang/lib:$COUCHBASE_TOP/lib/couchdb/erlang/lib:$COUCHBASE_TOP/lib/couchdb/plugins"
 export ERL_LIBS
@@ -147,10 +145,8 @@ eval erl \
     $* \
     -run ns_babysitter_bootstrap -- \
     -couch_ini $couch_start_arguments \
-    -ns_babysitter cookiefile "\"\\\"$COOKIEFILE\\\"\"" \
     -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
     -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
-    -ns_server cookiefile "\"\\\"$COOKIEFILE-ns-server\\\"\"" \
     -ns_server dont_suppress_stderr_logger true \
     -ns_server loglevel_stderr info
 
