@@ -135,6 +135,7 @@ eval erl \
     -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
     -kernel inetrc "\"\\\"$INETRC_FILE\\\"\"" \
     -kernel dist_config_file "\"\\\"$DIST_CONFIG_FILE\\\"\"" \
+    -kernel prevent_overlapping_partitions false \
     -sasl sasl_error_logger false \
     -hidden \
     -name babysitter_of_ns_1@cb.local \
