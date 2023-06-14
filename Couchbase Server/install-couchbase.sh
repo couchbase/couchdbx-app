@@ -1,8 +1,7 @@
 #!/bin/sh -e
 
-
 # was:  sed -i '~' -e "s,\/opt\/couchbase,\`dirname \"\$0\"\`\/$2,g" $1
-# 
+#
 # need to escape SPACES in directory name !
 
 echo        running $0
@@ -16,7 +15,7 @@ dest="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core"
 
 # ns_server bits
 rsync -a --delete "$topdir/install/" "$dest/"
-rm "$dest/bin/couchjs"
+rm -f "$dest/bin/couchjs"
 cp "$PROJECT_DIR/Couchbase Server/erl"                "$dest/bin/erl"
 cp "$PROJECT_DIR/Couchbase Server/couchjs.tpl"        "$dest/bin/couchjs.tpl"
 cp "$PROJECT_DIR/Couchbase Server/erl"                "$dest/lib/erlang/bin/erl"
