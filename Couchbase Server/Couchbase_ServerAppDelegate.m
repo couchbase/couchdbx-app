@@ -7,19 +7,24 @@
 #import "Sparkle/Sparkle.h"
 #import "ToolInstallController.h"
 #import "LaunchAtLoginController.h"
-
 #import "iniparser.h"
+#include "TargetConditionals.h"
 
 #define FORCEKILL_INTERVAL 15.0     // How long to wait for the server task to exit, on quit
 
 #define MAX_OPEN_FILES 10240        // rlimit for max # of open files (RLIMIT_NOFILE)
-
 
 @interface Couchbase_ServerAppDelegate () <SUUpdaterDelegate>
 @end
 
 
 @implementation Couchbase_ServerAppDelegate
+
+#if TARGET_CPU_ARM64
+  // Code meant for the arm64 architecture here.
+#elif TARGET_CPU_X86_64
+  // Code meant for the x86_64 architecture here.
+#endif
 
 -(BOOL)isSingle
 {
@@ -114,34 +119,15 @@
 
 - (NSString *)finalConfigPath {
     NSString *confFile = nil;
-    FSRef foundRef;
-    OSErr err = FSFindFolder(kUserDomain, kPreferencesFolderType, kDontCreateFolder, &foundRef);
-    if (err == noErr) {
-        unsigned char path[PATH_MAX];
-        OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
-        if (validPath == noErr) {
-            confFile = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
-                                                                                   length:(NSUInteger)strlen((char*)path)];
-        }
-    }
-    confFile = [confFile stringByAppendingPathComponent:@"couchbase-server.ini"];
+    confFile = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Preferences/couchbase-server.ini"];
     return confFile;
 }
 
 - (NSString *)logFilePath:(NSString*)logName {
     NSString *logDir = nil;
-    FSRef foundRef;
-    OSErr err = FSFindFolder(kUserDomain, kLogsFolderType, kDontCreateFolder, &foundRef);
-    if (err == noErr) {
-        unsigned char path[PATH_MAX];
-        OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
-        if (validPath == noErr) {
-            logDir = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
-                                                                                 length:(NSUInteger)strlen((char*)path)];
-        }
-    }
-	logDir = [logDir stringByAppendingPathComponent:logName];
-    return logDir;
+    logDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/"];
+    NSString *logFile = [NSString stringWithFormat: @"%@/%@", logDir,logName];
+    return logFile;
 }
 
 -(void)awakeFromNib
@@ -193,11 +179,11 @@
     for (int i = 0; i < [statusMenu numberOfItems]; ++i) {
         NSMenuItem *itm = [statusMenu itemAtIndex:i];
         if ([itm isAlternate]) {
-            [itm setKeyEquivalentModifierMask:NSAlternateKeyMask];
+            [itm setKeyEquivalentModifierMask:NSEventModifierFlagOption];
         }
     }
 
-    [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
+    [launchBrowserItem setState:([defaults boolForKey:@"browseAtStart"] ? NSControlStateValueOn : NSControlStateValueOff)];
     [self updateAddItemButtonState];
 
 	[self launchServer];
@@ -227,20 +213,9 @@
     [writer closeFile];
 }
 
-/* found at http://www.cocoadev.com/index.pl?ApplicationSupportFolder */
 - (NSString *)applicationSupportFolder:(NSString*)appName {
-    NSString *applicationSupportFolder = nil;
-    FSRef foundRef;
-    OSErr err = FSFindFolder(kUserDomain, kApplicationSupportFolderType, kDontCreateFolder, &foundRef);
-    if (err == noErr) {
-        unsigned char path[PATH_MAX];
-        OSStatus validPath = FSRefMakePath(&foundRef, path, sizeof(path));
-        if (validPath == noErr) {
-            applicationSupportFolder = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:(const char *)path
-                                                                                                   length:(NSUInteger)strlen((char*)path)];
-        }
-    }
-	applicationSupportFolder = [applicationSupportFolder stringByAppendingPathComponent:appName];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportFolder = paths.firstObject;
     return applicationSupportFolder;
 }
 
@@ -319,7 +294,7 @@
                          nil, nil];
     [task setEnvironment:env];
 
-    [self logMessage:[NSString stringWithFormat:@"Launching '%@'\n", launchPath]];
+    NSLog(@"Launching:  %@\n", launchPath);
 	[task setLaunchPath:launchPath];
 	[task setStandardInput:in];
 
@@ -327,6 +302,7 @@
     // This was causing problems in MacOS Mojave. Instead we will pipe output
     // directly to CouchbaseServer.log.
     NSString *logPath = [self logFilePath:@"CouchbaseServer.log"];
+    NSLog(@"Write output to %@", logPath);
     NSFileManager *outputFileManager = [NSFileManager defaultManager];
 
     // if the log file exists, move it to CouchbaseServer.log.old
@@ -345,7 +321,7 @@
     // get a handle to the log file and pipe output to it
     NSFileHandle *log = [NSFileHandle fileHandleForWritingAtPath: logPath];
     if (log == nil)
-        NSLog(@"Failed to open CouchbaseServer.log for output");
+        NSLog(@"Failed to open %@ for output", logPath);
     [task setStandardError: log];
     [task setStandardOutput: log];
 
@@ -376,8 +352,9 @@
     NSLog(@"Launched server task -- pid = %d", task.processIdentifier);
 
     // wait a second and see if we should launch the admin console
-    [self performSelector:@selector(checkForServerStart:) withObject:nil afterDelay:1.0];
-
+    //[self performSelector:@selector(checkForServerStart:) withObject:nil afterDelay:1.0];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(checkForServerStart:) userInfo:nil repeats:YES];
+    NSLog(@"launch browser");
     if (changedRLimit) {
         if (setrlimit(RLIMIT_NOFILE, &limits) < 0)
             NSLog(@"WARNING: failed to restore previous rlimits, errno=%d", errno);
@@ -445,14 +422,18 @@
     } else {
         time_t now = time(NULL);
         if (now - startTime < MIN_LIFETIME) {
-            NSInteger b = NSRunAlertPanel(@"Problem Running Couchbase",
-                                          @"Couchbase Server doesn't seem to be operating properly.  "
-                                          @"Check Console logs for more details.", @"Retry", @"Quit", nil);
-            if (b == NSAlertAlternateReturn) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"Problem Running Couchbase"];
+            [alert setInformativeText:@"Couchbase Server doesn't seem to be operating properly.  Check Console logs for more details."];
+            [alert addButtonWithTitle:@"ORetry"];
+            [alert addButtonWithTitle:@"Quit"];
+            [alert setAlertStyle:NSAlertStyleWarning];
+        
+            if ([alert runModal] == NSAlertSecondButtonReturn) {
                 [NSApp terminate:self];
+                return;
             }
         }
-
         // Relaunch the server task...
         [NSTimer scheduledTimerWithTimeInterval:1.0
                                          target:self selector:@selector(launchServer)
@@ -496,48 +477,53 @@
     //[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://127.0.0.1:5984/_utils/"]];
 }
 
-- (void)checkForServerStart:(NSData *)d
+- (void)checkForServerStart:(NSTimer *)timer
 {
-    if (!hasSeenStart) {
-        NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8091/whoami"];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        NSURLResponse *response = nil;
-        NSError *error = nil;
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8091/whoami"];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url
+        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
+                if (httpResp.statusCode == 200) {
+                    NSLog(@"%@ is ready.", url);
+                    [timer invalidate];
+                    [self openBrowserConsole];
+                }
+    }];
+    [dataTask resume];
+}
 
-        [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        int status = (int)[response statusCode];
-
-        if (error == nil && status == 200) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            if ([defaults boolForKey:@"browseAtStart"]) {
-                [self openFuton];
-            }
-            hasSeenStart = YES;
-        }
-
-        // bad response, try again in 1 second
-        else {
-            [self performSelector:@selector(checkForServerStart:) withObject:nil afterDelay:1.0];
-        }
+-(void)openBrowserConsole{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"browseAtStart"]) {
+        [self openFuton];
     }
 }
 
 
 -(IBAction)setLaunchPref:(id)sender {
 
-    NSCellStateValue stateVal = [sender state];
-    stateVal = (stateVal == NSOnState) ? NSOffState : NSOnState;
+    NSControlStateValue stateVal = [sender state];
+    stateVal = (stateVal == NSControlStateValueOn) ? NSControlStateValueOff : NSControlStateValueOn;
 
-    NSLog(@"Setting launch pref to %s", stateVal == NSOnState ? "on" : "off");
+    NSLog(@"Setting launch pref to %s", stateVal == NSControlStateValueOn ? "on" : "off");
 
     [[NSUserDefaults standardUserDefaults]
-     setBool:(stateVal == NSOnState)
+     setBool:(stateVal == NSControlStateValueOn)
      forKey:@"browseAtStart"];
 
     [launchBrowserItem setState:([[NSUserDefaults standardUserDefaults]
-                                  boolForKey:@"browseAtStart"] ? NSOnState : NSOffState)];
+                                  boolForKey:@"browseAtStart"] ? NSControlStateValueOn : NSControlStateValueOff)];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(IBAction)showTechSupport:(id)sender {
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+	NSString *homePage = [info objectForKey:@"SupportPage"];
+    NSURL *url=[NSURL URLWithString:homePage];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+
 }
 
 -(void) updateAddItemButtonState {
@@ -551,7 +537,7 @@
 -(IBAction)changeLoginItems:(id)sender {
     LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
 
-    if([sender state] == NSOffState) {
+    if([sender state] == NSControlStateValueOff) {
       [launchController setLaunchAtLogin:YES];
     } else {
       [launchController setLaunchAtLogin:NO];
@@ -560,14 +546,5 @@
 
     [launchController release];
 }
-
--(IBAction)showTechSupport:(id)sender {
-    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-	NSString *homePage = [info objectForKey:@"SupportPage"];
-    NSURL *url=[NSURL URLWithString:homePage];
-    [[NSWorkspace sharedWorkspace] openURL:url];
-
-}
-
 
 @end

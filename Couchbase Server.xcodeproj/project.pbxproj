@@ -36,9 +36,7 @@
 
 /* Begin PBXBuildFile section */
 		2725AAEF158A93CF00CCC0B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2725AAEE158A93CF00CCC0B9 /* Security.framework */; };
-		B2CA238B22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
-		B2CA238C22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
-		B2CA238D22B03EE000C35307 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */; };
+		747246692A32738C00D07D9C /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747246682A32738C00D07D9C /* LaunchAtLoginController.m */; };
 		B2CFFCA5234E602900A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz in Resources */ = {isa = PBXBuildFile; fileRef = B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */; };
 		DA0E692413DD364400CDAC6D /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692013DD364400CDAC6D /* dictionary.c */; };
 		DA0E692513DD364400CDAC6D /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = DA0E692213DD364400CDAC6D /* iniparser.c */; };
@@ -74,6 +72,7 @@
 		DAADFB0A133DA61700B282D6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = DAADFB00133DA61700B282D6 /* MainMenu.nib */; };
 		DAADFB18133DA6CE00B282D6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
 		DAADFB1B133DA71800B282D6 /* Sparkle.framework in Install Sparkle */ = {isa = PBXBuildFile; fileRef = DAADFB17133DA6CE00B282D6 /* Sparkle.framework */; };
+
 		DAADFB28133DA75F00B282D6 /* bin in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB1D133DA75F00B282D6 /* bin */; };
 		DAADFB29133DA75F00B282D6 /* env.sh in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB1E133DA75F00B282D6 /* env.sh */; };
 		DAADFB2A133DA75F00B282D6 /* etc in Install Core */ = {isa = PBXBuildFile; fileRef = DAADFB1F133DA75F00B282D6 /* etc */; };
@@ -183,9 +182,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		747246672A32738C00D07D9C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		747246682A32738C00D07D9C /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
-		B2CA238A22B03EE000C35307 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "couchbase-server-macos-template_x86_64.dmg.gz"; sourceTree = SOURCE_ROOT; };
 		DA0E692013DD364400CDAC6D /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dictionary.c; sourceTree = "<group>"; };
 		DA0E692113DD364400CDAC6D /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
@@ -311,8 +310,8 @@
 		DA1AD33D133DA58D00E6A9E1 /* Couchbase Server */ = {
 			isa = PBXGroup;
 			children = (
-				B2CA238A22B03EE000C35307 /* LaunchAtLoginController.h */,
-				B2CA238922B03EE000C35307 /* LaunchAtLoginController.m */,
+				747246672A32738C00D07D9C /* LaunchAtLoginController.h */,
+				747246682A32738C00D07D9C /* LaunchAtLoginController.m */,
 				DA1AD349133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.h */,
 				DA1AD34A133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m */,
 				DA1AD33E133DA58D00E6A9E1 /* Supporting Files */,
@@ -626,7 +625,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1AD345133DA58D00E6A9E1 /* main.m in Sources */,
-				B2CA238B22B03EE000C35307 /* LaunchAtLoginController.m in Sources */,
 				DA1AD34B133DA58D00E6A9E1 /* Couchbase_ServerAppDelegate.m in Sources */,
 				DA0E692413DD364400CDAC6D /* dictionary.c in Sources */,
 				DA0E692513DD364400CDAC6D /* iniparser.c in Sources */,
@@ -638,7 +636,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1AD362133DA58D00E6A9E1 /* Couchbase_ServerTests.m in Sources */,
-				B2CA238C22B03EE000C35307 /* LaunchAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +644,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA638DF813E1F7BA005E6A5B /* main.m in Sources */,
-				B2CA238D22B03EE000C35307 /* LaunchAtLoginController.m in Sources */,
+				747246692A32738C00D07D9C /* LaunchAtLoginController.m in Sources */,
 				DA638DF913E1F7BA005E6A5B /* Couchbase_ServerAppDelegate.m in Sources */,
 				DA638DFE13E1F7BA005E6A5B /* dictionary.c in Sources */,
 				DA638DFF13E1F7BA005E6A5B /* iniparser.c in Sources */,
@@ -697,7 +694,7 @@
 		DA1AD363133DA58D00E6A9E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -708,10 +705,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "arm64 x86_64";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
@@ -719,7 +716,7 @@
 		DA1AD364133DA58D00E6A9E1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -727,9 +724,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "arm64 x86_64";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
@@ -856,9 +853,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-                CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
 			};
 			name = Debug;
@@ -867,9 +864,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-        		CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "Couchbase Single Server Zip copy";
 			};
 			name = Release;
@@ -879,7 +876,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -889,7 +886,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
