@@ -425,7 +425,7 @@
             NSAlert *alert = [[NSAlert alloc] init];
             [alert setMessageText:@"Problem Running Couchbase"];
             [alert setInformativeText:@"Couchbase Server doesn't seem to be operating properly.  Check Console logs for more details."];
-            [alert addButtonWithTitle:@"ORetry"];
+            [alert addButtonWithTitle:@"Retry"];
             [alert addButtonWithTitle:@"Quit"];
             [alert setAlertStyle:NSAlertStyleWarning];
         
