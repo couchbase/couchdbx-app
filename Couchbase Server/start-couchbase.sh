@@ -6,12 +6,6 @@ export COUCHBASE_TOP
 PATH="$COUCHBASE_TOP:$COUCHBASE_TOP/bin":/bin:/usr/bin
 export PATH
 
-# The couchdbx-app redirects stderr to Couchbase.log under
-# ~/Library/Logs, thus we echo there so that these log messages
-# show up.
-echo "Starting epmd ..." 1>&2
-epmd -daemon
-
 couch_start_arguments=""
 
 _add_config_file () {
@@ -52,6 +46,9 @@ _check_data_is_good() {
               -a yes \
               --namespace_upgrade_only
         then
+            # The couchdbx-app redirects stderr to Couchbase.log under
+            # ~/Library/Logs, thus we echo there so that these log messages
+            # show up.
             echo "Error: exit of $? from cbupgrade"
             exit 1
         fi
@@ -132,7 +129,6 @@ echo "Starting Couchbase Server ..." 1>&2
 # Run Erlang. This will run until the app stops the server by sending a quit command to stdin.
 eval erl \
     +A 16 \
-    -kernel inet_dist_listen_min 21100 inet_dist_listen_max 21299 \
     -kernel inetrc "\"\\\"$INETRC_FILE\\\"\"" \
     -kernel dist_config_file "\"\\\"$DIST_CONFIG_FILE\\\"\"" \
     -kernel prevent_overlapping_partitions false \
@@ -141,6 +137,7 @@ eval erl \
     -name babysitter_of_ns_1@cb.local \
     -proto_dist cb \
     -epmd_module cb_epmd \
+    -no_epmd \
     -ssl_dist_optfile $SSL_DIST_OPTFILE \
     -setcookie nocookie \
     $* \
@@ -153,17 +150,3 @@ eval erl \
 
 
 echo "Couchbase Server has stopped." 1>&2
-
-# The couchdbx-app shuts down Couchbase Server by invoking q() (aka init:stop())
-# on it - which shuts down the babysitter gracefully. However it can take a
-# brief moment for the Erlang sub-processes (such as the CouchDB VM) to disconnect
-# from epmd. Waiting briefly allows us to actually stop epmd in almost all cases.
-# To be certain of stopping epmd we'd have to run `epmd -names` and wait until it
-# returned a list of names of VMs that are not Couchbase related. However, this is
-# complicated and brittle and seems like overkill. So, we just sleep. In the worst
-# case the user will have to manually kill epmd.
-sleep 1
-
-echo "Stopping epmd ..." 1>&2
-# On exit, stop the epmd process we started (if no one else is using it)
-epmd -kill
