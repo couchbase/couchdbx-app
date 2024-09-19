@@ -2,4 +2,4 @@ components:
 
     sparkle:
         bd-id: ffc560e5-b992-43d1-9a2c-91f767a84d53
-        versions: [ 1.27.1 ]
+        versions: [ 1.27.3 ]
