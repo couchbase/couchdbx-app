@@ -16,11 +16,18 @@ couchbase-server: license readme cb.plist InfoPlist.strings
 couchbase-server-zip: license readme cb.plist InfoPlist.strings
 	xcodebuild -target 'Couchbase Server Zip' -configuration Release
 
+couchbase-columnar-zip: license readme cb.plist InfoPlist.strings
+	xcodebuild -target 'Couchbase Columnar Zip' -configuration Release
+
 version_text: couchbase-server
 	echo "0.0.0-0000" > build/Release/Couchbase\ Server.app/Contents/Resources/couchbase-core/VERSION.txt
 
 cb.plist: cb.plist.tmpl
-	sed 's/@SHORT_VERSION@/$(if $(PRODUCT_VERSION),$(shell echo $(PRODUCT_VERSION) | cut -d- -f1),"0.0.0")/g; s/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g' $< > $@
+	sed -e 's/@SHORT_VERSION@/$(if $(PRODUCT_VERSION),$(shell echo $(PRODUCT_VERSION) | cut -d- -f1),"0.0.0")/g' \
+		-e 's/@VERSION@/$(if $(PRODUCT_VERSION),$(PRODUCT_VERSION),"0.0.0-1000")/g' \
+		-e 's/@BUNDLE_ID@/com.couchbase.$(if $(PRODUCT),$(shell echo $(PRODUCT)),"couchbase-server")/g' \
+		-e 's|@APPCAST_URL@|$(if $(findstring couchbase-columnar,$(PRODUCT)),http://appcast.couchbase.com/columnar.xml,http://appcast.couchbase.com/membasex.xml)|g' \
+		$< > $@
 	cp cb.plist "Couchbase Server/Couchbase Server-Info.plist"
 
 InfoPlist.strings: InfoPlist.strings.tmpl
