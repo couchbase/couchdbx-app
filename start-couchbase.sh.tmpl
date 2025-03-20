@@ -83,7 +83,7 @@ javascript = "@APP_PATH@/bin/couchjs" "@APP_PATH@/share/couchdb/server/main.js"
 coffeescript = "@APP_PATH@/bin/couchjs" "@APP_PATH@/share/couchdb/server/main-coffee.js"
 
 [log]
-file = @HOME@/Library/Logs/couchbase-server.log
+file = @HOME@/Library/Logs/@PRODUCT@.log
 
 [access_log]
 enable = false
@@ -92,7 +92,7 @@ file = @HOME@/Library/Logs/couch_access.log
 EOF
 
 touch "$CUSTOM_CONFIG_FILE"
-touch "$HOME/Library/Preferences/couchbase-server.ini"
+touch "$HOME/Library/Preferences/@PRODUCT@.ini"
 
 sed "s,@APP_DIR@,$COUCHBASE_TOP,g" < "$COUCHBASE_TOP/bin/couchjs.tpl" > "$COUCHBASE_TOP/bin/couchjs"
 chmod 755 "$COUCHBASE_TOP/bin/couchjs"
@@ -144,7 +144,7 @@ eval erl \
     -run ns_babysitter_bootstrap -- \
     -couch_ini $couch_start_arguments \
     -ns_server config_path "\"\\\"$datadir/etc/couchbase/static_config\\\"\"" \
-    -ns_server pidfile "\"\\\"$datadir/couchbase-server.pid\\\"\"" \
+    -ns_server pidfile "\"\\\"$datadir/@PRODUCT@.pid\\\"\"" \
     -ns_server dont_suppress_stderr_logger true \
     -ns_server loglevel_stderr info
 

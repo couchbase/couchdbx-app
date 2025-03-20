@@ -232,7 +232,6 @@
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4612FDBD2D66A49F0022DFDF /* Couchbase Columnar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Columnar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4612FDBE2D66A49F0022DFDF /* Couchbase Server copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Couchbase Server copy-Info.plist"; path = "/Users/ming.ho/test/couchdbx-app/Couchbase Server copy-Info.plist"; sourceTree = "<absolute>"; };
-		4614D1D62D6FCA7900338C8A /* install-columnar.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "install-columnar.sh"; sourceTree = "<group>"; };
 		747246672A32738C00D07D9C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		747246682A32738C00D07D9C /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = "couchbase-server-macos-template_x86_64.dmg.gz"; sourceTree = SOURCE_ROOT; };
@@ -384,7 +383,6 @@
 		DA1AD33E133DA58D00E6A9E1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4614D1D62D6FCA7900338C8A /* install-columnar.sh */,
 				B2CFFCA4234E602800A3CB04 /* couchbase-server-macos-template_x86_64.dmg.gz */,
 				DA0E692013DD364400CDAC6D /* dictionary.c */,
 				DA0E692113DD364400CDAC6D /* dictionary.h */,
@@ -648,7 +646,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Couchbase Server/install-columnar.sh",
+				"$(SRCROOT)/Couchbase Server/install-couchbase.sh",
 			);
 			name = "Install Core";
 			outputPaths = (
@@ -699,7 +697,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nexec \"$SCRIPT_INPUT_FILE_0\"";
+			shellScript = "set -e\nexec \"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA638E2813E1F7C9005E6A5B /* Zip it up */ = {
@@ -729,7 +727,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nrm -rf \"$dest\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"";
+			shellScript = "set -e\n# If Erlang already exists in the built Couchbase dir, skip this step\ntest -f \"$PROJECT_DIR/../install/bin/erl\" && exit 0\n\nVER=\"R14B03-OSX-10.6.8\"\nFN=\"erlang-$VER.tgz\"\nURL=\"http://downloads.northscale.com/builddeps/$FN\"\n\ndest=\"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/couchbase-core\"\nrm -rf \"$dest\"\nmkdir -p \"$dest\"\n\ntest -f \"$FN\" || curl -sfO \"$URL\"\n\ncd \"$dest\"\ngzip -dc \"$PROJECT_DIR/$FN\" | tar xf -\necho \"Installed erlang $VER into $dest\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DAADFB34133DA78D00B282D6 /* Fixup Paths */ = {
