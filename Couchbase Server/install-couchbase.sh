@@ -22,11 +22,6 @@ cp "$PROJECT_DIR/Couchbase Server/erl"                "$dest/lib/erlang/bin/erl"
 cp "$PROJECT_DIR/Couchbase Server/start-couchbase.sh" "$dest/../start-server.sh"
 rm "$dest/etc/couchbase/static_config"
 cp "$topdir/ns_server/etc/static_config.in"           "$dest/etc/couchbase/static_config.in"
-if [ -e "$topdir/ns_server/etc/columnar_profile" ]
-then
-  rm "$dest/etc/couchbase/columnar_profile"
-  cp "$topdir/ns_server/etc/columnar_profile"         "$dest/etc/couchbase/columnar_profile"
-fi
 rm -f "$dest/etc/couchbase/ssl_dist_opts"
 cp "$topdir/ns_server/etc/ssl_dist_opts.in"           "$dest/etc/couchbase/ssl_dist_opts.in"
 cp "$topdir/ns_server/etc/hosts.cfg"                  "$dest/etc/couchbase/hosts.cfg"
