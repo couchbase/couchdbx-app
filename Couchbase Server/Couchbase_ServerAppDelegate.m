@@ -15,6 +15,11 @@
 #define MAX_OPEN_FILES 10240        // rlimit for max # of open files (RLIMIT_NOFILE)
 
 @interface Couchbase_ServerAppDelegate () <SUUpdaterDelegate>
+@property (nonatomic, retain) NSString *productName;
+@property (nonatomic, retain) NSString *iniName;
+@property (nonatomic, retain) NSString *supportFolder;
+@property (nonatomic, retain) NSString *logName;
+@property (nonatomic, retain) NSString *oldLogName;
 @end
 
 
@@ -119,8 +124,24 @@
 
 - (NSString *)finalConfigPath {
     NSString *confFile = nil;
-    confFile = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Preferences/couchbase-server.ini"];
+    confFile = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Library/Preferences/%@", self.iniName]];
+
     return confFile;
+}
+
+- (void)configureForProductType {
+    self.productName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+
+    // Determine product type
+    if ([self.productName isEqualToString:@"Couchbase Server"]) {
+        self.logName = @"CouchbaseServer.log";
+        self.iniName = @"couchbase-server.ini";
+        self.supportFolder = @"Couchbase";
+    } else {
+        self.logName = @"CouchbaseColumnar.log";
+        self.iniName = @"couchbase-columnar.ini";
+        self.supportFolder = @"Couchbase";
+    }
 }
 
 - (NSString *)logFilePath:(NSString*)logName {
@@ -130,15 +151,26 @@
     return logFile;
 }
 
+- (NSString *)currentLogPath {
+    return [self logFilePath:self.logName];
+}
+
+- (NSString *)oldLogPath {
+    return [self logFilePath:[self.logName stringByAppendingString:@".old"]];
+}
+
 -(void)awakeFromNib
 {
     hasSeenStart = NO;
 
-    logPath = [[self logFilePath:@"Couchbase.log"] retain];
-    const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
+    // Configure product-specific settings
+    [self configureForProductType];
 
-    NSString *oldLogFileString = [self logFilePath:@"Couchbase.log.old"];
-    const char *oldLogPath = [oldLogFileString cStringUsingEncoding:NSUTF8StringEncoding];
+    // Setup logging
+    logPath = [[self currentLogPath] retain];
+    self.oldLogName = [self oldLogPath];
+    const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *oldLogPath = [self.oldLogName cStringUsingEncoding:NSUTF8StringEncoding];
     rename(logPathC, oldLogPath); // This will fail the first time.
 
     // Now our logs go to a private file.
@@ -220,7 +252,7 @@
 }
 
 - (NSString *)applicationSupportFolder {
-    return [self applicationSupportFolder:@"CouchbaseServer"];
+    return [self applicationSupportFolder:self.supportFolder];
 }
 
 -(void)setInitParams
@@ -300,20 +332,20 @@
 
     // output from 'start-server.log' used to be processed by dataReady function.
     // This was causing problems in MacOS Mojave. Instead we will pipe output
-    // directly to CouchbaseServer.log.
-    NSString *logPath = [self logFilePath:@"CouchbaseServer.log"];
+    // directly to CouchbaseServer.log or CouchbaseColumnar.log
+    logPath = [self currentLogPath];
     NSLog(@"Write output to %@", logPath);
     NSFileManager *outputFileManager = [NSFileManager defaultManager];
 
-    // if the log file exists, move it to CouchbaseServer.log.old
+    // if the log file exists, move it to CouchbaseServer.log.old or CouchbaseColumnar.log.old
     if ([outputFileManager fileExistsAtPath: logPath ] == YES)
     {
         const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
-        const char *oldLogPath = [[self logFilePath:@"CouchbaseServer.log.old"] cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *oldLogPath = [self.oldLogName cStringUsingEncoding:NSUTF8StringEncoding];
         rename(logPathC, oldLogPath);
     }
 
-    // CouchbaseServer.log must exist in order to pipe to it, make an empty version
+    // CouchbaseServer.log or CouchbaseColumnar.log must exist in order to pipe to it, make an empty version
     [outputFileManager createFileAtPath: logPath
                        contents: nil
                        attributes: nil];
