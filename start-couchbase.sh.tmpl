@@ -114,6 +114,18 @@ mkdir -p "$datadir/etc/couchbase"
 sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
     "$COUCHBASE_TOP/etc/couchbase/static_config.in" > "$datadir/etc/couchbase/static_config"
 
+if [ -e "$COUCHBASE_TOP/etc/couchbase/default_profile" ]
+then
+    sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
+        "$COUCHBASE_TOP/etc/couchbase/default_profile" > "$datadir/etc/couchbase/default_profile"
+fi
+
+if [ -e "$COUCHBASE_TOP/etc/couchbase/provisioned_profile" ]
+then
+    sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
+        "$COUCHBASE_TOP/etc/couchbase/provisioned_profile" > "$datadir/etc/couchbase/provisioned_profile"
+fi
+
 if [ -e "$COUCHBASE_TOP/etc/couchbase/serverless_profile" ]
 then
   sed -e "s|@DATA_PREFIX@|$datadir|g" -e "s|@BIN_PREFIX@|$COUCHBASE_TOP|g" \
