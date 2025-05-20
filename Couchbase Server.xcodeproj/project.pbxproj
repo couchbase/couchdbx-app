@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		4612FDBF2D66A4A20022DFDF /* Couchbase Columnar Zip */ = {
+		4612FDBF2D66A4A20022DFDF /* Enterprise Analytics Zip */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 4612FDC32D66A4A20022DFDF /* Build configuration list for PBXAggregateTarget "Couchbase Columnar Zip" */;
+			buildConfigurationList = 4612FDC32D66A4A20022DFDF /* Build configuration list for PBXAggregateTarget "Enterprise Analytics Zip" */;
 			buildPhases = (
 				4612FDC22D66A4A20022DFDF /* Zip it up */,
 			);
 			dependencies = (
 				4612FDC72D66B0C50022DFDF /* PBXTargetDependency */,
 			);
-			name = "Couchbase Columnar Zip";
+			name = "Enterprise Analytics Zip";
 			productName = "Couchbase Server Zip";
 		};
 		DA638E2513E1F7C9005E6A5B /* Couchbase Server Zip */ = {
@@ -124,7 +124,7 @@
 			containerPortal = DA1AD32A133DA58D00E6A9E1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4612FDA02D66A49F0022DFDF;
-			remoteInfo = "Couchbase Columnar";
+			remoteInfo = "Enterprise Analytics";
 		};
 		DA1AD356133DA58D00E6A9E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -230,7 +230,7 @@
 
 /* Begin PBXFileReference section */
 		2725AAEE158A93CF00CCC0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4612FDBD2D66A49F0022DFDF /* Couchbase Columnar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Couchbase Columnar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4612FDBD2D66A49F0022DFDF /* Enterprise Analytics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enterprise Analytics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4612FDBE2D66A49F0022DFDF /* Couchbase Server copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Couchbase Server copy-Info.plist"; path = "/Users/ming.ho/test/couchdbx-app/Couchbase Server copy-Info.plist"; sourceTree = "<absolute>"; };
 		747246672A32738C00D07D9C /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		747246682A32738C00D07D9C /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 				DA1AD333133DA58D00E6A9E1 /* Couchbase Single Server.app */,
 				DA1AD354133DA58D00E6A9E1 /* Couchbase ServerTests.octest */,
 				DA638E2313E1F7BA005E6A5B /* Couchbase Server.app */,
-				4612FDBD2D66A49F0022DFDF /* Couchbase Columnar.app */,
+				4612FDBD2D66A49F0022DFDF /* Enterprise Analytics.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,9 +449,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4612FDA02D66A49F0022DFDF /* Couchbase Columnar */ = {
+		4612FDA02D66A49F0022DFDF /* Enterprise Analytics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4612FDBA2D66A49F0022DFDF /* Build configuration list for PBXNativeTarget "Couchbase Columnar" */;
+			buildConfigurationList = 4612FDBA2D66A49F0022DFDF /* Build configuration list for PBXNativeTarget "Enterprise Analytics" */;
 			buildPhases = (
 				4612FDA12D66A49F0022DFDF /* Sources */,
 				4612FDA72D66A49F0022DFDF /* Frameworks */,
@@ -464,9 +464,9 @@
 			);
 			dependencies = (
 			);
-			name = "Couchbase Columnar";
+			name = "Enterprise Analytics";
 			productName = "Couchbase Server";
-			productReference = 4612FDBD2D66A49F0022DFDF /* Couchbase Columnar.app */;
+			productReference = 4612FDBD2D66A49F0022DFDF /* Enterprise Analytics.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DA1AD332133DA58D00E6A9E1 /* Couchbase Single Server */ = {
@@ -557,8 +557,8 @@
 				DA1AD353133DA58D00E6A9E1 /* Couchbase ServerTests */,
 				DA638E2513E1F7C9005E6A5B /* Couchbase Server Zip */,
 				DA638DF613E1F7BA005E6A5B /* Couchbase Server */,
-				4612FDA02D66A49F0022DFDF /* Couchbase Columnar */,
-				4612FDBF2D66A4A20022DFDF /* Couchbase Columnar Zip */,
+				4612FDA02D66A49F0022DFDF /* Enterprise Analytics */,
+				4612FDBF2D66A4A20022DFDF /* Enterprise Analytics Zip */,
 			);
 		};
 /* End PBXProject section */
@@ -668,7 +668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Couchbase Columnar.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp \"$SRCROOT/Couchbase Server/README.txt\" \"README.txt\"\nrm -f \"Couchbase Columnar-$V.zip\"\nzip -r --symlinks --quiet -9 \"Couchbase Columnar-$V.zip\" \"Couchbase Columnar.app\" \"README.txt\"\n";
+			shellScript = "cd \"$BUILT_PRODUCTS_DIR\"\nV=$(/usr/libexec/PlistBuddy \"Enterprise Analytics.app/Contents/Info.plist\" -c 'Print CFBundleVersion')\ncp \"$SRCROOT/Couchbase Server/README.txt\" \"README.txt\"\nrm -f \"Enterprise Analytics-$V.zip\"\nzip -r --symlinks --quiet -9 \"Enterprise Analytics-$V.zip\" \"Enterprise Analytics.app\" \"README.txt\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA1AD352133DA58D00E6A9E1 /* ShellScript */ = {
@@ -810,7 +810,7 @@
 /* Begin PBXTargetDependency section */
 		4612FDC72D66B0C50022DFDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4612FDA02D66A49F0022DFDF /* Couchbase Columnar */;
+			target = 4612FDA02D66A49F0022DFDF /* Enterprise Analytics */;
 			targetProxy = 4612FDC62D66B0C50022DFDF /* PBXContainerItemProxy */;
 		};
 		DA1AD357133DA58D00E6A9E1 /* PBXTargetDependency */ = {
@@ -1111,7 +1111,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4612FDBA2D66A49F0022DFDF /* Build configuration list for PBXNativeTarget "Couchbase Columnar" */ = {
+		4612FDBA2D66A49F0022DFDF /* Build configuration list for PBXNativeTarget "Enterprise Analytics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4612FDBB2D66A49F0022DFDF /* Debug */,
@@ -1120,7 +1120,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4612FDC32D66A4A20022DFDF /* Build configuration list for PBXAggregateTarget "Couchbase Columnar Zip" */ = {
+		4612FDC32D66A4A20022DFDF /* Build configuration list for PBXAggregateTarget "Enterprise Analytics Zip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4612FDC42D66A4A20022DFDF /* Debug */,

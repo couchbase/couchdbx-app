@@ -138,8 +138,8 @@
         self.iniName = @"couchbase-server.ini";
         self.supportFolder = @"Couchbase";
     } else {
-        self.logName = @"CouchbaseColumnar.log";
-        self.iniName = @"couchbase-columnar.ini";
+        self.logName = @"EenterpriseAnalytics.log";
+        self.iniName = @"enterprise-analytics.ini";
         self.supportFolder = @"Couchbase";
     }
 }
@@ -332,12 +332,12 @@
 
     // output from 'start-server.log' used to be processed by dataReady function.
     // This was causing problems in MacOS Mojave. Instead we will pipe output
-    // directly to CouchbaseServer.log or CouchbaseColumnar.log
+    // directly to CouchbaseServer.log or EnterpriseAnalytics.log
     logPath = [self currentLogPath];
     NSLog(@"Write output to %@", logPath);
     NSFileManager *outputFileManager = [NSFileManager defaultManager];
 
-    // if the log file exists, move it to CouchbaseServer.log.old or CouchbaseColumnar.log.old
+    // if the log file exists, move it to CouchbaseServer.log.old or EnterpriseAnalytics.log.old
     if ([outputFileManager fileExistsAtPath: logPath ] == YES)
     {
         const char *logPathC = [logPath cStringUsingEncoding:NSUTF8StringEncoding];
@@ -345,7 +345,7 @@
         rename(logPathC, oldLogPath);
     }
 
-    // CouchbaseServer.log or CouchbaseColumnar.log must exist in order to pipe to it, make an empty version
+    // CouchbaseServer.log or EnterpriseAnalytics.log must exist in order to pipe to it, make an empty version
     [outputFileManager createFileAtPath: logPath
                        contents: nil
                        attributes: nil];
